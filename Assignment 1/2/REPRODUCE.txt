@@ -1,0 +1,127 @@
+LAB 2 - SUBMISSION CONTENTS AND REPRODUCTION
+
+Name: Mahdi Davoodzadeh
+SN: 405725536
+
+Contents
+  Lab_2_Kernel_Memory_Tracing_Report.pdf: report with seven embedded figures.
+  src/program: original precompiled x86-64 executable supplied for the lab.
+  scripts/01_...sh through scripts/14_...sh: original experiment and analysis scripts.
+  logs/: original program outputs, Perf statistics, both binary Perf recordings,
+         Perf text exports, ftrace traces, and script execution logs.
+  notes/: environment, executable checksum, extracted evidence, corrected counts,
+          and report_numeric_verification.txt with the numerical recheck results.
+  SHA256SUMS: checksums for the packaged files.
+
+Environment
+  Original run: Ubuntu 24.04.5 LTS, x86-64, kernel 6.17.0-40-generic,
+  perf 6.17.13. Use the same kernel and compatible Ubuntu userspace to reproduce
+  the reported function names and tracing interfaces. The executable is the
+  assignment's supplied binary and is run directly.
+
+  Required tools: Bash, sudo, perf matching the running kernel, util-linux
+  (setpriv/findmnt), procps (ps), coreutils, grep, sed, and awk.
+  On Ubuntu, install matching Perf tools if necessary:
+
+    sudo apt install linux-tools-common "linux-tools-$(uname -r)"
+
+  The kernel must provide tracepoints, kprobes, and function_graph support.
+  TraceFS must be mounted at /sys/kernel/tracing. Check with:
+
+    uname -r
+    perf --version
+    findmnt /sys/kernel/tracing
+
+  If TraceFS is not mounted:
+
+    sudo mount -t tracefs tracefs /sys/kernel/tracing
+
+  Run the commands below as a normal user with sudo access. The scripts elevate
+  individual tracing commands and run the supplied program as the normal user.
+  Script 08 uses the main ftrace instance, saves its previous buffer, and restores
+  the original tracer settings. Its preflight protects existing custom settings.
+
+Check the submitted files
+  From the extracted lab2 directory:
+
+    sha256sum -c SHA256SUMS
+    sha256sum -c notes/program_sha256.txt
+
+Create a fresh experiment directory
+  Run this block from the extracted lab2 directory. It copies the inputs into a
+  new sibling directory so that all original measurements remain available:
+
+    lab2_package="$PWD"
+    lab2_rerun=$(mktemp -d "$lab2_package/../lab2-rerun-XXXXXX")
+    cp -a scripts src "$lab2_rerun/"
+    mkdir -p "$lab2_rerun/logs/perf" "$lab2_rerun/logs/ftrace" "$lab2_rerun/logs/runs" "$lab2_rerun/notes"
+    chmod u+x "$lab2_rerun/src/program"
+    cd "$lab2_rerun"
+
+Record baseline, environment, and event discovery
+  Continue in the same Bash terminal:
+
+    sudo -v
+    { date -Is; cat /etc/os-release; uname -r; perf --version; sudo cat /sys/kernel/tracing/available_tracers; } > notes/environment.txt
+    sha256sum src/program > notes/program_sha256.txt
+    ./src/program > logs/program_baseline.stdout 2> logs/program_baseline.stderr
+    printf 'Program exit code: %s\n' "$?" > logs/program_baseline.status
+    sudo perf list tracepoint > notes/perf_tracepoints.txt
+    grep -E 'kmem:|net:netif|syscalls:sys_(enter|exit)_mmap|tcp:|i2c:' notes/perf_tracepoints.txt > notes/perf_target_events.txt
+    sudo perf stat -e syscalls:sys_enter_mmap,syscalls:sys_exit_mmap -o logs/perf/mmap_stat.txt -- setpriv --reuid="$(id -u)" --regid="$(id -g)" --init-groups -- ./src/program > logs/perf/mmap_program.stdout 2> logs/perf/mmap_stat.stderr
+
+Run the original scripts in numerical order
+  Continue in the fresh directory. Each script writes its trace/analysis files;
+  this loop also saves its terminal output. Script 12 needs root access for its
+  read-only inspection of TraceFS. The other scripts handle sudo themselves.
+
+    (
+      set -euo pipefail
+      for lab2_script in scripts/[0-9][0-9]_*.sh; do
+        lab2_label=$(basename "$lab2_script" .sh)
+        if [[ "$lab2_label" == 12_* ]]; then
+          sudo bash "$lab2_script" 2>&1 | tee "logs/runs/${lab2_label}.log"
+        else
+          bash "$lab2_script" 2>&1 | tee "logs/runs/${lab2_label}.log"
+        fi
+      done
+    )
+
+  Check the saved run logs for errors, especially event-group failures printed
+  by script 01. The numbered workflow covers:
+    01: event-family statistics.
+    02-03: six-event Perf recording, export, and stack inspection.
+    04-05: temporary do_mmap probe, export, and application-stack selection.
+    06-07: ftrace preflight and instance capability check.
+    08-09: combined function graph/events recording and initial inspection.
+    10-12: PID-filtered/unfiltered syscall traces and output-format diagnosis.
+    13-14: corrected syscall counts and last complete mmap interval.
+
+  Scripts 09-11 retain the original search-pattern issue documented in Section 9:
+  their printed mmap counts can be zero because ftrace prints sys_mmap(...) and
+  sys_mmap ->. Use scripts 13-14 for the corrected syscall analysis. All four
+  memory-event counts from script 09 remain applicable.
+
+  After recording, make the new privileged output files readable by your user:
+
+    sudo chown -R "$(id -u):$(id -g)" "$lab2_rerun/logs" "$lab2_rerun/notes"
+
+Inspect and compare results
+  The PDF identifies the original counts, durations, and evidence files.
+  notes/report_numeric_verification.txt verifies those archived measurements.
+  Fresh runs naturally produce different addresses, timings, and some counts.
+  Compare event types, call paths, mapping arguments, and the agreement between
+  each run's syscall return address and that same run's program output.
+
+  Both original binary Perf recordings are included. On a compatible system,
+  regenerate their text exports with:
+
+    sudo perf script -i logs/perf/mmap_memory.data > /tmp/lab2-memory-reexport.txt
+    sudo perf script -i logs/perf/do_mmap_probe.data > /tmp/lab2-probe-reexport.txt
+
+  Full symbol resolution depends on matching kernel and userspace symbols.
+  The original symbolized text exports are included alongside the recordings.
+
+Packaging
+  The report's screenshots are embedded in the PDF. Separate screenshots,
+  Markdown source, temporary rendering files, and other archives are excluded.

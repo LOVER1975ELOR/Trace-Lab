@@ -1,0 +1,39 @@
+Recording session lab1-matrix4-v2: [inactive]
+    Trace output: /home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab1/logs/lttng/matrix4-v2
+
+=== Domain: Linux kernel ===
+
+Tracked process attributes
+  Process IDs:          all
+  Virtual process IDs:  all
+  User IDs:             all
+  Virtual user IDs:     all
+  Group IDs:            all
+  Virtual group IDs:    all
+
+Channels:
+-------------
+- schedchan: [enabled]
+
+    Attributes:
+      Event-loss mode:  discard
+      Sub-buffer size:  1048576 bytes
+      Sub-buffer count: 4
+      Switch timer:     inactive
+      Read timer:       200000 us
+      Monitor timer:    1000000 us
+      Blocking timeout: 0 us
+      Trace file count: 1 per stream
+      Trace file size:  unlimited
+      Output mode:      splice
+
+    Statistics:
+      Discarded events: 0
+
+    Recording event rules:
+      irq_* (loglevel: TRACE_EMERG (0)) (type: tracepoint) [enabled]
+      sched_process_exit (loglevel: TRACE_EMERG (0)) (type: tracepoint) [enabled]
+      sched_process_fork (loglevel: TRACE_EMERG (0)) (type: tracepoint) [enabled]
+      sched_wak* (loglevel: TRACE_EMERG (0)) (type: tracepoint) [enabled]
+      sched_switch (loglevel: TRACE_EMERG (0)) (type: tracepoint) [enabled]
+

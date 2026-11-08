@@ -1,0 +1,36 @@
+=== Lab 3: Futex Address Analysis ===
+
+======================================
+Futex uaddr: 94419365879872
+======================================
+Recorded futex entry events:
+21
+
+Operations by numeric op value:
+     11 op = 128
+     10 op = 129
+
+Last 5 matching entries:
+[18:57:54.859379358] (+0.000019307) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 4 }, { uaddr = 94419365879872, op = 128, val = 2, utime = 0, uaddr2 = 0, val3 = 0 }
+[18:57:55.159727441] (+0.000016112) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 15 }, { uaddr = 94419365879872, op = 129, val = 1, utime = 0, uaddr2 = 0, val3 = 0 }
+[18:57:55.459914838] (+0.000019184) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 15 }, { uaddr = 94419365879872, op = 128, val = 2, utime = 0, uaddr2 = 0, val3 = 0 }
+[18:57:55.760304224] (+0.000017217) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 4 }, { uaddr = 94419365879872, op = 129, val = 1, utime = 0, uaddr2 = 0, val3 = 0 }
+[18:57:56.460628761] (+0.000026888) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 4 }, { uaddr = 94419365879872, op = 128, val = 2, utime = 0, uaddr2 = 0, val3 = 0 }
+
+======================================
+Futex uaddr: 94419365879936
+======================================
+Recorded futex entry events:
+1
+
+Operations by numeric op value:
+      1 op = 128
+
+Last 5 matching entries:
+[18:57:56.560944830] (+0.000015124) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 15 }, { uaddr = 94419365879936, op = 128, val = 2, utime = 0, uaddr2 = 0, val3 = 0 }
+
+Operation meanings:
+128 = FUTEX_WAIT_PRIVATE
+129 = FUTEX_WAKE_PRIVATE
+
+Analysis completed.

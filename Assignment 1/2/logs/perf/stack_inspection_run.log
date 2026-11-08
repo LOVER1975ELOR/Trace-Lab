@@ -1,0 +1,35 @@
+=== Perf Event Counts ===
+syscalls:sys_enter_mmap            41
+syscalls:sys_exit_mmap             41
+kmem:kmalloc                       115
+kmem:kmem_cache_alloc              612
+kmem:mm_page_alloc                 120
+kmem:rss_stat                      275
+
+=== mmap Events by Process Name ===
+      9 program enter
+      9 program exit
+     32 setpriv enter
+     32 setpriv exit
+
+=== do_mmap Stack Matches ===
+127:	ffffffff9211215e do_mmap+0x48e ([kernel.kallsyms])
+150:	ffffffff9211215e do_mmap+0x48e ([kernel.kallsyms])
+171:	ffffffff9211215e do_mmap+0x48e ([kernel.kallsyms])
+257:	ffffffff9211215e do_mmap+0x48e ([kernel.kallsyms])
+280:	ffffffff9211215e do_mmap+0x48e ([kernel.kallsyms])
+301:	ffffffff9211215e do_mmap+0x48e ([kernel.kallsyms])
+322:	ffffffff9211215e do_mmap+0x48e ([kernel.kallsyms])
+345:	ffffffff9211215e do_mmap+0x48e ([kernel.kallsyms])
+366:	ffffffff9211215e do_mmap+0x48e ([kernel.kallsyms])
+387:	ffffffff9211215e do_mmap+0x48e ([kernel.kallsyms])
+410:	ffffffff9211215e do_mmap+0x48e ([kernel.kallsyms])
+431:	ffffffff9211215e do_mmap+0x48e ([kernel.kallsyms])
+612:	ffffffff9211215e do_mmap+0x48e ([kernel.kallsyms])
+636:	ffffffff9211215e do_mmap+0x48e ([kernel.kallsyms])
+658:	ffffffff9211215e do_mmap+0x48e ([kernel.kallsyms])
+
+=== Extracting Program Call Stacks ===
+Found do_mmap call stacks for program.
+
+Analysis completed.

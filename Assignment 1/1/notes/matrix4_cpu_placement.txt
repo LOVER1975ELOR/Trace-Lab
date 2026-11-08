@@ -1,0 +1,30 @@
+Worker CPU Placement Analysis
+=================================================================
+
+Worker TID: 8747
+Schedule-ins: 85
+CPUs used: [6, 13]
+Observed CPU changes: 1
+Schedule-ins per CPU: {6: 82, 13: 3}
+First transitions: ['13 -> 6']
+
+Worker TID: 8748
+Schedule-ins: 14
+CPUs used: [10]
+Observed CPU changes: 0
+Schedule-ins per CPU: {10: 14}
+First transitions: []
+
+Worker TID: 8749
+Schedule-ins: 36
+CPUs used: [3]
+Observed CPU changes: 0
+Schedule-ins per CPU: {3: 36}
+First transitions: []
+
+Worker TID: 8750
+Schedule-ins: 34
+CPUs used: [4, 8, 13, 14]
+Observed CPU changes: 3
+Schedule-ins per CPU: {4: 28, 8: 3, 13: 2, 14: 1}
+First transitions: ['13 -> 14', '14 -> 8', '8 -> 4']

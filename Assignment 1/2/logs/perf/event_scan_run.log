@@ -1,0 +1,34 @@
+==================================
+Lab 2 - Perf Event Discovery
+==================================
+Date: 2026-11-05T15:58:40+03:30
+Kernel: 6.17.0-40-generic
+Perf: perf version 6.17.13
+
+----------------------------------
+Testing: kmem
+Event pattern: kmem:*
+----------------------------------
+Result: SUCCESS
+
+----------------------------------
+Testing: netif
+Event pattern: net:netif*
+----------------------------------
+Result: SUCCESS
+
+----------------------------------
+Testing: tcp
+Event pattern: tcp:*
+----------------------------------
+Result: SUCCESS
+
+----------------------------------
+Testing: i2c
+Event pattern: i2c:*
+----------------------------------
+Result: SUCCESS
+
+==================================
+All event groups tested.
+==================================

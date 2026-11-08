@@ -1,0 +1,12 @@
+stress-ng: info:  [8743] setting to a 10 secs run per stressor
+stress-ng: info:  [8743] dispatching hogs: 4 matrix
+stress-ng: info:  [8743] note: /proc/sys/kernel/sched_autogroup_enabled is 1 and this can impact scheduling throughput for processes not attached to a tty. Setting this to 0 may improve performance metrics
+stress-ng: info:  [8743] note: 16 cpus have scaling governors set to powersave and this can impact on performance; setting /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor to 'performance' may improve performance
+stress-ng: metrc: [8743] stressor       bogo ops real time  usr time  sys time   bogo ops/s     bogo ops/s
+stress-ng: metrc: [8743]                           (secs)    (secs)    (secs)   (real time) (usr+sys time)
+stress-ng: metrc: [8743] matrix           170526     10.00     39.99      0.00     17051.11        4263.78
+stress-ng: info:  [8743] skipped: 0
+stress-ng: info:  [8743] passed: 4: matrix (4)
+stress-ng: info:  [8743] failed: 0
+stress-ng: info:  [8743] metrics untrustworthy: 0
+stress-ng: info:  [8743] successful run completed in 10.00 secs

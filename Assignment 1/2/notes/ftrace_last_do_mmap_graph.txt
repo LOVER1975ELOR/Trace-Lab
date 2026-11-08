@@ -1,0 +1,64 @@
+  3)               |  do_mmap() {
+  3)               |    __get_unmapped_area() {
+  3)               |      mm_get_unmapped_area_vmflags() {
+  3)               |        arch_get_unmapped_area_topdown() {
+  3)   0.163 us    |          get_mmap_base();
+  3)               |          vm_unmapped_area() {
+  3)   0.408 us    |            unmapped_area_topdown();
+  3)   0.693 us    |          }
+  3)   1.354 us    |        }
+  3)   1.637 us    |      }
+  3)               |      security_mmap_addr() {
+  3)   0.142 us    |        cap_mmap_addr();
+  3)   0.395 us    |      }
+  3)   2.447 us    |    }
+  3)               |    mmap_region() {
+  3)               |      __mmap_region() {
+  3)               |        __mmap_prepare() {
+  3)   0.129 us    |          may_expand_vm();
+  3)               |          security_vm_enough_memory_mm() {
+  3)               |            cap_vm_enough_memory() {
+  3)   0.128 us    |              cap_capable();
+  3)   0.370 us    |            }
+  3)   0.119 us    |            __vm_enough_memory();
+  3)   0.858 us    |          }
+  3)   1.569 us    |        }
+  3)   0.115 us    |        ksm_vma_flags();
+  3)               |        vma_merge_new_range() {
+  3)   0.133 us    |          can_vma_merge_left.constprop.0();
+  3)               |          can_vma_merge_right() {
+  3)   0.116 us    |            anon_vma_name();
+  3)   0.141 us    |            is_mergeable_anon_vma();
+  3)   0.660 us    |          }
+  3)               |          vma_expand() {
+  3)               |            __vma_start_write() {
+  3)   0.119 us    |              finish_rcuwait();
+  3)   0.421 us    |            }
+  3)               |            commit_merge() {
+  3)   0.194 us    |              init_multi_vma_prep();
+  3)               |              vma_prepare() {
+  3)               |                down_write() {
+  3)   0.118 us    |                  __cond_resched();
+  3)   0.372 us    |                }
+  3)   0.167 us    |                anon_vma_interval_tree_remove();
+  3)   0.943 us    |              }
+  3)   0.151 us    |              vma_adjust_trans_huge();
+  3)               |              vma_complete() {
+  3)   0.165 us    |                anon_vma_interval_tree_insert();
+  3)   0.128 us    |                up_write();
+  3)   0.762 us    |              }
+  3)   3.143 us    |            }
+  3)   3.938 us    |          }
+  3)               |          khugepaged_enter_vma() {
+  3)   0.116 us    |            hugepage_pmd_enabled();
+  3)   0.443 us    |          }
+  3)   5.885 us    |        }
+  3)   0.119 us    |        perf_event_mmap();
+  3)   0.121 us    |        vms_complete_munmap_vmas();
+  3)   0.158 us    |        vm_stat_account();
+  3)               |        vma_set_page_prot() {
+  3)   0.117 us    |          vma_wants_writenotify();
+  3)   0.377 us    |        }
+  3)   9.484 us    |      }
+  3)   9.743 us    |    }
+  3) + 12.635 us   |  }

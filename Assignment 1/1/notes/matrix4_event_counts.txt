@@ -1,0 +1,11 @@
+   2480  irq_handler_entry:
+   2480  irq_handler_exit:
+  46412  irq_softirq_entry:
+  46412  irq_softirq_exit:
+  46441  irq_softirq_raise:
+     29  sched_process_exit:
+     29  sched_process_fork:
+  58853  sched_switch:
+  29736  sched_wakeup:
+     29  sched_wakeup_new:
+  29736  sched_waking:

@@ -1,0 +1,16 @@
+Lab 2 - Initial ftrace Results
+
+Kernel: 6.17.0-40-generic
+Tracer: function_graph
+Target function: do_mmap
+Observed do_mmap entry lines: 17
+Program exit code: 0
+Program output: First byte of memory: A
+
+Main ftrace settings after cleanup:
+current_tracer: nop
+tracing_on: 1
+set_event: empty
+
+Nested function analysis: pending
+Memory tracepoint analysis: pending

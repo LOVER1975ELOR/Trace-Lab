@@ -1,0 +1,16 @@
+=== Lab 2: ftrace Final Inspection ===
+
+[1] Memory Event Counts
+sys_enter_mmap            0
+sys_exit_mmap             0
+kmalloc                   11
+kmem_cache_alloc          106
+mm_page_alloc             49
+rss_stat                  127
+
+[2] Extracting last complete do_mmap graph
+Last complete graph extracted.
+
+[3] Last mmap syscall events
+
+Inspection completed.

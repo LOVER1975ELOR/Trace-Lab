@@ -1,0 +1,46 @@
+=== Lab 2: ftrace do_mmap ===
+Kernel: 6.17.0-40-generic
+Date: 2026-11-05T16:26:24+03:30
+Previous trace snapshot saved.
+Function graph and memory events configured.
+Tracing PID: 58326
+
+Program exit code: 0
+Trace saved: logs/ftrace/08_do_mmap_ftrace.trace
+do_mmap graph matches:
+17
+
+Program output:
+Memory mapped at address: 0x73006ab99000
+First byte of memory: A
+
+Trace preview:
+# tracer: function_graph
+#
+# CPU  DURATION                  FUNCTION CALLS
+# |     |   |                     |   |   |   |
+  3)               |  finish_task_switch.isra.0() {
+  3)   0.482 us    |    _raw_spin_unlock();
+  3)               |    __mmdrop() {
+  3)               |      pgd_free() {
+  3)   0.186 us    |        _raw_spin_lock();
+  3)   0.133 us    |        _raw_spin_unlock();
+  3)               |        __lruvec_stat_mod_folio() {
+  3)   0.123 us    |          __rcu_read_lock();
+  3)   0.179 us    |          __mod_node_page_state();
+  3)               |          mod_memcg_lruvec_state() {
+  3)   0.126 us    |            css_rstat_updated();
+  3)   0.397 us    |          }
+  3)   0.134 us    |          __rcu_read_unlock();
+  3)   1.499 us    |        }
+  3)               |        __free_pages() {
+  3)               |          ___free_pages() {
+  3)               |            __free_frozen_pages() {
+  3)               |              __memcg_kmem_uncharge_page() {
+  3)               |                obj_cgroup_uncharge_pages() {
+  3)   0.121 us    |                  __rcu_read_lock();
+  3)   0.119 us    |                  __rcu_read_lock();
+  3)   0.134 us    |                  __rcu_read_unlock();
+  3)   0.135 us    |                  __rcu_read_unlock();
+  3)               |                  mod_memcg_state() {
+Main ftrace settings restored.

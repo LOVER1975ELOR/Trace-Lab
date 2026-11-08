@@ -1,0 +1,64 @@
+==================================
+Lab 3 - Futex and Scheduling
+==================================
+Date: 2026-11-05T18:54:17+03:30
+Kernel: 6.17.0-40-generic
+Perf: perf version 6.17.13
+
+[1] Checking required tracepoints...
+[OK] syscalls:sys_enter_futex
+[OK] syscalls:sys_exit_futex
+[OK] sched:sched_switch
+[OK] sched:sched_wakeup
+[OK] sched:sched_waking
+
+[2] Inspecting imported thread functions...
+                 U pthread_create@GLIBC_2.2.5
+                 U pthread_join@GLIBC_2.2.5
+                 U pthread_mutex_destroy@GLIBC_2.2.5
+                 U pthread_mutex_init@GLIBC_2.2.5
+                 U pthread_mutex_lock@GLIBC_2.2.5
+                 U pthread_mutex_unlock@GLIBC_2.2.5
+
+[3] Recording Perf counters (6-second run)...
+Program command exit status: 124
+The program reached the 6-second timeout.
+
+[4] Perf statistics:
+# started on Thu Nov  5 18:54:20 2026
+
+
+ Performance counter stats for 'setpriv --reuid=1000 --regid=1000 --init-groups -- timeout --signal=TERM --kill-after=2s 6s stdbuf -o0 -e0 ./src/deadlock_m':
+
+                25      syscalls:sys_enter_futex                                              
+                25      syscalls:sys_exit_futex                                               
+                34      sched:sched_switch                                                    
+                 0      sched:sched_wakeup                                                    
+                49      sched:sched_waking                                                    
+
+       6.007407024 seconds time elapsed
+
+       0.002078000 seconds user
+       0.011684000 seconds sys
+
+
+
+[5] Last 14 lines of program output:
+Thread 1: Unlocked B
+Thread 1: Waiting for A
+Thread 2: Unlocked A
+Thread 2: Waiting for B
+Thread 2: Locked B
+Thread 1: Locked A
+Thread 2: Unlocked B
+Thread 2: Waiting for A
+Thread 1: Unlocked A
+Thread 1: Waiting for B
+Thread 1: Locked B
+Thread 2: Locked A
+Thread 1: Unlocked B
+Thread 1: Waiting for A
+
+[6] Standard error:
+
+Experiment completed.

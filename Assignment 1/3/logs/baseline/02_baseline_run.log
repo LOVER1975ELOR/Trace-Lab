@@ -1,0 +1,93 @@
+==================================
+Lab 3 - Baseline Execution
+==================================
+Date: 2026-11-05T18:50:58+03:30
+Kernel: 6.17.0-40-generic
+
+[1] Checking executable...
+src/deadlock_m: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=0288c5b81ff9a4826cdba4b0c72aaa81c84c9b6b, for GNU/Linux 3.2.0, not stripped
+
+[2] Verifying SHA256...
+028556fb222831fb659210cf33c566434329edffd6f34c288d595eb3f82eabbf  src/deadlock_m
+
+[3] Running program (maximum 8 seconds)...
+
+Program exit status: 124
+Observation: The 8-second timeout was reached.
+
+========== STDOUT ==========
+Thread 1: Waiting for A
+Thread 1: Locked A
+Thread 2: Waiting for B
+Thread 2: Locked B
+Thread 2: Unlocked B
+Thread 2: Waiting for A
+Thread 1: Unlocked A
+Thread 1: Waiting for B
+Thread 1: Locked B
+Thread 2: Locked A
+Thread 1: Unlocked B
+Thread 1: Waiting for A
+Thread 2: Unlocked A
+Thread 2: Waiting for B
+Thread 2: Locked B
+Thread 1: Locked A
+Thread 2: Unlocked B
+Thread 2: Waiting for A
+Thread 1: Unlocked A
+Thread 1: Waiting for B
+Thread 1: Locked B
+Thread 2: Locked A
+Thread 1: Unlocked B
+Thread 1: Waiting for A
+Thread 2: Unlocked A
+Thread 2: Waiting for B
+Thread 2: Locked B
+Thread 1: Locked A
+Thread 2: Unlocked B
+Thread 2: Waiting for A
+Thread 1: Unlocked A
+Thread 1: Waiting for B
+Thread 1: Locked B
+Thread 2: Locked A
+Thread 1: Unlocked B
+Thread 1: Waiting for A
+Thread 2: Unlocked A
+Thread 2: Waiting for B
+Thread 2: Locked B
+Thread 1: Locked A
+Thread 2: Unlocked B
+Thread 2: Waiting for A
+Thread 1: Unlocked A
+Thread 1: Waiting for B
+Thread 1: Locked B
+Thread 2: Locked A
+Thread 1: Unlocked B
+Thread 1: Waiting for A
+Thread 2: Unlocked A
+Thread 2: Waiting for B
+Thread 2: Locked B
+Thread 1: Locked A
+Thread 2: Unlocked B
+Thread 2: Waiting for A
+Thread 1: Unlocked A
+Thread 1: Waiting for B
+Thread 1: Locked B
+Thread 2: Locked A
+Thread 1: Unlocked B
+Thread 1: Waiting for A
+Thread 2: Unlocked A
+Thread 2: Waiting for B
+Thread 2: Locked B
+Thread 1: Locked A
+Thread 2: Waiting for A
+Thread 1: Waiting for B
+
+========== STDERR ==========
+
+========== OUTPUT FILES ==========
+  66 1414 logs/baseline/02_program.stdout
+   0    0 logs/baseline/02_program.stderr
+  66 1414 total
+
+Baseline experiment completed.

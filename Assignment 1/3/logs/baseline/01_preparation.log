@@ -1,0 +1,25 @@
+==================================
+Lab 3 - Initial Preparation
+==================================
+Date: 2026-11-05T18:46:52+03:30
+Kernel: 6.17.0-40-generic
+Perf: perf version 6.17.13
+
+[1] Obtaining the assignment repository...
+
+[2] Listing Lab 3 source files...
+deadlock_m (17264 bytes)
+
+[3] Inspecting file types...
+reference/Lab 3/src/deadlock_m: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=0288c5b81ff9a4826cdba4b0c72aaa81c84c9b6b, for GNU/Linux 3.2.0, not stripped
+
+[4] Calculating SHA256 hashes...
+028556fb222831fb659210cf33c566434329edffd6f34c288d595eb3f82eabbf  reference/Lab 3/src/deadlock_m
+
+[5] Checking tracing tools...
+/usr/bin/lttng
+/usr/bin/perf
+/usr/bin/babeltrace
+
+Preparation completed.
+No supplied executable has been run.

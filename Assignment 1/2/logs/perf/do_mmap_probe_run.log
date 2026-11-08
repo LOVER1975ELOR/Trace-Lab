@@ -1,0 +1,73 @@
+=== Lab 2: do_mmap Probe ===
+Kernel: 6.17.0-40-generic
+Perf: perf version 6.17.13
+
+[1/4] Creating do_mmap probe...
+
+[2/4] Recording do_mmap calls...
+Recording: SUCCESS
+
+[3/4] Exporting call stacks...
+
+[4/4] Extracting mmap syscall stacks...
+Recorded do_mmap entries:
+57
+
+Call stacks from the mmap syscall path:
+setpriv   52980 [013] 13029.567948: lab2_mmap:entry: (ffffffff92111cd0)
+	ffffffff92111cd1 do_mmap+0x1 ([kernel.kallsyms])
+	ffffffff92110f79 ksys_mmap_pgoff+0x49 ([kernel.kallsyms])
+	ffffffff91ce80e3 __x64_sys_mmap+0x33 ([kernel.kallsyms])
+	ffffffff91c8bbea x64_sys_call+0x1eda ([kernel.kallsyms])
+	ffffffff92f95660 do_syscall_64+0x80 ([kernel.kallsyms])
+	ffffffff91a0012b entry_SYSCALL_64_after_hwframe+0x76 ([kernel.kallsyms])
+	    7a93a7e23d2c mmap64+0x2c (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e0a121 __minimal_malloc+0xb1 (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e0547c _dl_init_paths+0x8c (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e20177 dl_main+0x1687 (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e1cf46 _dl_sysdep_start+0x86 (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e1e75e _dl_start+0x58e (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e1d548 _dl_start_user+0x0 (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+
+setpriv   52980 [013] 13029.568010: lab2_mmap:entry: (ffffffff92111cd0)
+	ffffffff92111cd1 do_mmap+0x1 ([kernel.kallsyms])
+	ffffffff921110a7 ksys_mmap_pgoff+0x177 ([kernel.kallsyms])
+	ffffffff91ce80e3 __x64_sys_mmap+0x33 ([kernel.kallsyms])
+	ffffffff91c8bbea x64_sys_call+0x1eda ([kernel.kallsyms])
+	ffffffff92f95660 do_syscall_64+0x80 ([kernel.kallsyms])
+	ffffffff91a0012b entry_SYSCALL_64_after_hwframe+0x76 ([kernel.kallsyms])
+	    7a93a7e23d2c mmap64+0x2c (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e0a36d _dl_sysdep_read_whole_file+0x9d (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e14c28 _dl_load_cache_lookup+0x518 (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e077cb _dl_map_object+0x4db (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e00a2d openaux+0x3d (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7dff51c _dl_catch_exception+0x9c (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e00e67 _dl_map_object_deps+0x427 (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e2041c dl_main+0x192c (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e1cf46 _dl_sysdep_start+0x86 (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e1e75e _dl_start+0x58e (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e1d548 _dl_start_user+0x0 (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+
+setpriv   52980 [013] 13029.568056: lab2_mmap:entry: (ffffffff92111cd0)
+	ffffffff92111cd1 do_mmap+0x1 ([kernel.kallsyms])
+	ffffffff921110a7 ksys_mmap_pgoff+0x177 ([kernel.kallsyms])
+	ffffffff91ce80e3 __x64_sys_mmap+0x33 ([kernel.kallsyms])
+	ffffffff91c8bbea x64_sys_call+0x1eda ([kernel.kallsyms])
+	ffffffff92f95660 do_syscall_64+0x80 ([kernel.kallsyms])
+	ffffffff91a0012b entry_SYSCALL_64_after_hwframe+0x76 ([kernel.kallsyms])
+	    7a93a7e23d2c mmap64+0x2c (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e05e18 _dl_map_object_from_fd+0x3f8 (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e07529 _dl_map_object+0x239 (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e00a2d openaux+0x3d (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7dff51c _dl_catch_exception+0x9c (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e00e67 _dl_map_object_deps+0x427 (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e2041c dl_main+0x192c (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e1cf46 _dl_sysdep_start+0x86 (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e1e75e _dl_start+0x58e (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+	    7a93a7e1d548 _dl_start_user+0x0 (/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+
+
+Data file: logs/perf/do_mmap_probe.data
+Text file: logs/perf/do_mmap_probe_script.txt
+Recording complete.
+[Cleanup] Removing temporary probe...

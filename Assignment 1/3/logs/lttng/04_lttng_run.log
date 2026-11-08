@@ -1,0 +1,84 @@
+==================================
+Lab 3 - LTTng Futex Recording
+==================================
+Date: 2026-11-05T18:57:49+03:30
+Kernel: 6.17.0-40-generic
+Session: lab3_futex_112896
+
+[1] Checking required kernel events...
+[OK] sched_switch
+[OK] sched_wakeup
+[OK] sched_waking
+[OK] sched_process_fork
+[OK] sched_process_exit
+[OK] futex syscall
+
+[2] Creating LTTng session...
+Session lab3_futex_112896 created.
+Traces will be output to /home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab3/logs/lttng/04_futex_trace
+
+[3] Enabling futex syscalls...
+kernel event futex created in channel channel0
+
+[4] Enabling scheduling events...
+kernel event sched_switch created in channel channel0
+kernel event sched_wakeup created in channel channel0
+kernel event sched_waking created in channel channel0
+kernel event sched_process_fork created in channel channel0
+kernel event sched_process_exit created in channel channel0
+
+[5] Starting tracing...
+Tracing started for session lab3_futex_112896
+
+[6] Running deadlock_m (maximum 8 seconds)...
+Program command exit status: 124
+
+[7] Stopping tracing...
+Waiting for data availability.
+Tracing stopped for session lab3_futex_112896
+Destroying session lab3_futex_112896..
+Session lab3_futex_112896 destroyed
+
+[8] Preparing a readable copy for Trace Compass...
+
+[9] Exporting events with Babeltrace...
+
+========== FUTEX EVENT COUNTS ==========
+syscall_entry_futex          4858
+syscall_exit_futex           4856
+
+========== FUTEX EVENT PREVIEW ==========
+[18:57:49.737393864] (+0.001685200) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 4 }, { uaddr = 130620424371720, op = 129, val = 2147483647, utime = 0, uaddr2 = 7, val3 = 2589976576 }
+[18:57:49.737396411] (+0.000002547) elor-IdeaPad-Slim-3-15IRH10 syscall_exit_futex: { cpu_id = 4 }, { ret = 0, uaddr = 130620424371720, uaddr2 = 7 }
+[18:57:49.737445409] (+0.000003868) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 4 }, { uaddr = 130620424371720, op = 129, val = 2147483647, utime = 0, uaddr2 = 7, val3 = 2589976416 }
+[18:57:49.737446024] (+0.000000615) elor-IdeaPad-Slim-3-15IRH10 syscall_exit_futex: { cpu_id = 4 }, { ret = 0, uaddr = 130620424371720, uaddr2 = 7 }
+[18:57:49.737447219] (+0.000001195) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 4 }, { uaddr = 130620424371720, op = 129, val = 2147483647, utime = 0, uaddr2 = 7, val3 = 2589976480 }
+[18:57:49.737447476] (+0.000000257) elor-IdeaPad-Slim-3-15IRH10 syscall_exit_futex: { cpu_id = 4 }, { ret = 0, uaddr = 130620424371720, uaddr2 = 7 }
+[18:57:49.737448714] (+0.000001238) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 4 }, { uaddr = 130620424371720, op = 129, val = 2147483647, utime = 0, uaddr2 = 7, val3 = 2589976544 }
+[18:57:49.737448921] (+0.000000207) elor-IdeaPad-Slim-3-15IRH10 syscall_exit_futex: { cpu_id = 4 }, { ret = 0, uaddr = 130620424371720, uaddr2 = 7 }
+[18:57:49.737450007] (+0.000001086) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 4 }, { uaddr = 130620424371720, op = 129, val = 2147483647, utime = 0, uaddr2 = 7, val3 = 2589976608 }
+[18:57:49.737450218] (+0.000000211) elor-IdeaPad-Slim-3-15IRH10 syscall_exit_futex: { cpu_id = 4 }, { ret = 0, uaddr = 130620424371720, uaddr2 = 7 }
+[18:57:49.737471005] (+0.000020787) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 4 }, { uaddr = 130620424371720, op = 129, val = 2147483647, utime = 0, uaddr2 = 7, val3 = 2589976096 }
+[18:57:49.737471243] (+0.000000238) elor-IdeaPad-Slim-3-15IRH10 syscall_exit_futex: { cpu_id = 4 }, { ret = 0, uaddr = 130620424371720, uaddr2 = 7 }
+
+========== FINAL PROGRAM OUTPUT ==========
+Thread 2: Locked B
+Thread 1: Locked A
+Thread 2: Unlocked B
+Thread 2: Waiting for A
+Thread 1: Unlocked A
+Thread 1: Waiting for B
+Thread 1: Locked B
+Thread 2: Locked A
+Thread 1: Unlocked B
+Thread 1: Waiting for A
+Thread 2: Unlocked A
+Thread 2: Waiting for B
+Thread 2: Locked B
+Thread 1: Locked A
+Thread 2: Waiting for A
+Thread 1: Waiting for B
+
+========== TRACE FILES ==========
+4.0K	/home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab3/logs/lttng/04_futex_trace
+1.6M	/home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab3/logs/lttng/04_futex_trace_gui

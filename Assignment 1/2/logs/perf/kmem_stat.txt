@@ -1,0 +1,26 @@
+# started on Thu Nov  5 15:58:40 2026
+
+
+ Performance counter stats for 'setpriv --reuid=1000 --regid=1000 --init-groups -- ./src/program':
+
+               276      kmem:rss_stat                                                         
+                 0      kmem:mm_calculate_totalreserve_pages                                      
+                 0      kmem:mm_setup_per_zone_lowmem_reserve                                      
+                 0      kmem:mm_setup_per_zone_wmarks                                         
+                 0      kmem:mm_page_alloc_extfrag                                            
+                 0      kmem:mm_page_pcpu_drain                                               
+                63      kmem:mm_page_alloc_zone_locked                                        
+               117      kmem:mm_page_alloc                                                    
+                58      kmem:mm_page_free_batched                                             
+                66      kmem:mm_page_free                                                     
+               449      kmem:kmem_cache_free                                                  
+               125      kmem:kfree                                                            
+                55      kmem:kmalloc                                                          
+               618      kmem:kmem_cache_alloc                                                 
+
+       0.006493398 seconds time elapsed
+
+       0.000928000 seconds user
+       0.005570000 seconds sys
+
+

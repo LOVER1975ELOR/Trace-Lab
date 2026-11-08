@@ -1,0 +1,335 @@
+make -C /lib/modules/6.17.0-40-generic/build M=/home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab1/tools/lttng-modules-2.13.23/src \
+	CONFIG_LTTNG=m CONFIG_LTTNG_CLOCK_PLUGIN_TEST=m \
+	KCPPFLAGS='' \
+	modules
+make[1]: Entering directory '/usr/src/linux-headers-6.17.0-40-generic'
+make[2]: Entering directory '/home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab1/tools/lttng-modules-2.13.23/src'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: x86_64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+  You are using:           gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+probes/Kbuild:28: File /usr/src/linux-headers-6.17.0-40-generic/mm/slab.h not found. Probe "kmem" is disabled. Use full kernel source tree to enable it.
+probes/Kbuild:83: File /usr/src/linux-headers-6.17.0-40-generic/arch/x86/kvm/lapic.h not found. Probe "kvm" x86-specific is disabled. Use full kernel source tree to enable it.
+  CC [M]  lib/ringbuffer/ring_buffer_backend.o
+probes/Kbuild:190: Files /usr/src/linux-headers-6.17.0-40-generic/fs/btrfs/*.h not found. Probe "btrfs" is disabled. Use full kernel source tree to enable it.
+probes/Kbuild:210: Files /usr/src/linux-headers-6.17.0-40-generic/mm/internal.h not found. Probe "compaction" is disabled. Use full kernel source tree to enable it.
+probes/Kbuild:219: Files /usr/src/linux-headers-6.17.0-40-generic/fs/ext4/*.h not found. Probe "ext4" is disabled. Use full kernel source tree to enable it.
+probes/Kbuild:248: File /usr/src/linux-headers-6.17.0-40-generic/drivers/base/regmap/trace.h not found. Probe "regmap" is disabled. Need Linux 4.1+ kernel source tree to enable it.
+  CC [M]  probes/lttng-probe-sched.o
+  CC [M]  lib/ringbuffer/ring_buffer_frontend.o
+  CC [M]  probes/lttng-probe-irq.o
+  CC [M]  probes/lttng-probe-timer.o
+  CC [M]  lib/ringbuffer/ring_buffer_iterator.o
+  CC [M]  lib/ringbuffer/ring_buffer_vfs.o
+  CC [M]  probes/lttng-probe-module.o
+  CC [M]  lib/ringbuffer/ring_buffer_splice.o
+  CC [M]  probes/lttng-probe-power.o
+  CC [M]  lib/ringbuffer/ring_buffer_mmap.o
+  CC [M]  lib/prio_heap/lttng_prio_heap.o
+  CC [M]  probes/lttng-probe-statedump.o
+  CC [M]  lib/../wrapper/splice.o
+  CC [M]  lib/counter/counter.o
+  LD [M]  lib/lttng-lib-ring-buffer.o
+  LD [M]  lib/lttng-counter.o
+  CC [M]  tests/probes/lttng-test.o
+  CC [M]  probes/lttng-probe-9p.o
+  CC [M]  tests/clock-plugin/lttng-clock-plugin-test.o
+  CC [M]  probes/lttng-probe-i2c.o
+  LD [M]  tests/lttng-test.o
+  LD [M]  tests/lttng-clock-plugin-test.o
+  CC [M]  lttng-ring-buffer-client-discard.o
+  CC [M]  probes/lttng-probe-kvm.o
+  CC [M]  lttng-ring-buffer-client-overwrite.o
+  CC [M]  probes/lttng-probe-x86-irq-vectors.o
+  CC [M]  lttng-ring-buffer-metadata-client.o
+  CC [M]  probes/lttng-probe-signal.o
+  CC [M]  lttng-ring-buffer-client-mmap-discard.o
+  CC [M]  probes/lttng-probe-block.o
+  CC [M]  lttng-ring-buffer-client-mmap-overwrite.o
+  CC [M]  probes/lttng-probe-napi.o
+  CC [M]  lttng-ring-buffer-metadata-mmap-client.o
+  CC [M]  probes/lttng-probe-skb.o
+  CC [M]  probes/lttng-probe-net.o
+  CC [M]  probes/lttng-probe-sock.o
+  CC [M]  probes/lttng-probe-udp.o
+  CC [M]  probes/lttng-probe-asoc.o
+  CC [M]  probes/lttng-probe-gpio.o
+  CC [M]  probes/lttng-probe-jbd2.o
+  CC [M]  probes/lttng-probe-regulator.o
+  CC [M]  probes/lttng-probe-scsi.o
+  CC [M]  probes/lttng-probe-vmscan.o
+  CC [M]  probes/lttng-probe-printk.o
+  CC [M]  probes/lttng-probe-rcu.o
+  CC [M]  probes/lttng-probe-sunrpc.o
+  CC [M]  probes/lttng-probe-workqueue.o
+  CC [M]  probes/lttng-probe-writeback.o
+  CC [M]  probes/lttng-kprobes.o
+  CC [M]  probes/lttng-uprobes.o
+  CC [M]  probes/lttng-kretprobes.o
+  CC [M]  lttng-ring-buffer-event-notifier-client.o
+  CC [M]  lttng-counter-client-percpu-32-modular.o
+  CC [M]  lttng-counter-client-percpu-64-modular.o
+  CC [M]  lttng-clock.o
+  CC [M]  lib/msgpack/msgpack.o
+  CC [M]  lttng-events.o
+  CC [M]  lttng-abi.o
+  CC [M]  lttng-string-utils.o
+  CC [M]  lttng-probes.o
+  CC [M]  lttng-context.o
+  CC [M]  lttng-context-pid.o
+  CC [M]  lttng-context-procname.o
+  CC [M]  lttng-context-prio.o
+  CC [M]  lttng-context-nice.o
+  CC [M]  lttng-context-vpid.o
+  CC [M]  lttng-context-tid.o
+  CC [M]  lttng-context-vtid.o
+  CC [M]  lttng-context-ppid.o
+  CC [M]  lttng-context-vppid.o
+  CC [M]  lttng-context-cpu-id.o
+  CC [M]  lttng-context-uid.o
+  CC [M]  lttng-context-euid.o
+  CC [M]  lttng-context-suid.o
+  CC [M]  lttng-context-gid.o
+  CC [M]  lttng-context-egid.o
+  CC [M]  lttng-context-sgid.o
+  CC [M]  lttng-context-vuid.o
+  CC [M]  lttng-context-veuid.o
+  CC [M]  lttng-context-vsuid.o
+  CC [M]  lttng-context-vgid.o
+  CC [M]  lttng-context-vegid.o
+  CC [M]  lttng-context-vsgid.o
+  CC [M]  lttng-context-interruptible.o
+  CC [M]  lttng-context-need-reschedule.o
+  CC [M]  lttng-calibrate.o
+  CC [M]  lttng-context-hostname.o
+  CC [M]  lttng-context-callstack.o
+  CC [M]  probes/lttng.o
+  CC [M]  lttng-tracker-id.o
+  CC [M]  lttng-bytecode.o
+  CC [M]  lttng-bytecode-interpreter.o
+  CC [M]  lttng-bytecode-specialize.o
+  CC [M]  lttng-bytecode-validator.o
+  CC [M]  probes/lttng-probe-user.o
+  CC [M]  lttng-tp-mempool.o
+  CC [M]  lttng-event-notifier-notification.o
+  CC [M]  lttng-syscalls.o
+  CC [M]  lttng-syscalls-entry-table.o
+  CC [M]  lttng-syscalls-entry-compat-table.o
+  CC [M]  lttng-syscalls-exit-table.o
+  CC [M]  lttng-syscalls-exit-compat-table.o
+  CC [M]  lttng-syscalls-enum.o
+  CC [M]  lttng-context-perf-counters.o
+  CC [M]  lttng-tracepoint.o
+  CC [M]  lttng-context-cgroup-ns.o
+  CC [M]  lttng-context-ipc-ns.o
+  CC [M]  lttng-context-net-ns.o
+  CC [M]  lttng-context-pid-ns.o
+  CC [M]  lttng-context-user-ns.o
+  CC [M]  lttng-context-uts-ns.o
+  CC [M]  lttng-context-time-ns.o
+  CC [M]  wrapper/page_alloc.o
+  CC [M]  wrapper/random.o
+  CC [M]  wrapper/trace-clock.o
+  CC [M]  wrapper/kallsyms.o
+  CC [M]  wrapper/irqdesc.o
+  CC [M]  wrapper/fdtable.o
+  CC [M]  lttng-wrapper-impl.o
+  CC [M]  lttng-statedump-impl.o
+  LD [M]  lttng-tracer.o
+  LD [M]  lttng-wrapper.o
+  LD [M]  lttng-statedump.o
+  MODPOST Module.symvers
+  CC [M]  lttng-ring-buffer-client-discard.mod.o
+  CC [M]  .module-common.o
+  CC [M]  lttng-ring-buffer-client-overwrite.mod.o
+  CC [M]  lttng-ring-buffer-metadata-client.mod.o
+  CC [M]  lttng-ring-buffer-client-mmap-discard.mod.o
+  CC [M]  lttng-ring-buffer-client-mmap-overwrite.mod.o
+  CC [M]  lttng-ring-buffer-metadata-mmap-client.mod.o
+  CC [M]  lttng-ring-buffer-event-notifier-client.mod.o
+  CC [M]  lttng-counter-client-percpu-32-modular.mod.o
+  CC [M]  lttng-counter-client-percpu-64-modular.mod.o
+  CC [M]  lttng-clock.mod.o
+  CC [M]  lttng-tracer.mod.o
+  CC [M]  lttng-wrapper.mod.o
+  CC [M]  lttng-statedump.mod.o
+  CC [M]  probes/lttng-probe-sched.mod.o
+  CC [M]  probes/lttng-probe-irq.mod.o
+  CC [M]  probes/lttng-probe-timer.mod.o
+  CC [M]  probes/lttng-probe-module.mod.o
+  CC [M]  probes/lttng-probe-power.mod.o
+  CC [M]  probes/lttng-probe-statedump.mod.o
+  CC [M]  probes/lttng-probe-9p.mod.o
+  CC [M]  probes/lttng-probe-i2c.mod.o
+  CC [M]  probes/lttng-probe-kvm.mod.o
+  CC [M]  probes/lttng-probe-x86-irq-vectors.mod.o
+  CC [M]  probes/lttng-probe-signal.mod.o
+  CC [M]  probes/lttng-probe-block.mod.o
+  CC [M]  probes/lttng-probe-napi.mod.o
+  CC [M]  probes/lttng-probe-skb.mod.o
+  CC [M]  probes/lttng-probe-net.mod.o
+  CC [M]  probes/lttng-probe-sock.mod.o
+  CC [M]  probes/lttng-probe-udp.mod.o
+  CC [M]  probes/lttng-probe-asoc.mod.o
+  CC [M]  probes/lttng-probe-gpio.mod.o
+  CC [M]  probes/lttng-probe-jbd2.mod.o
+  CC [M]  probes/lttng-probe-regulator.mod.o
+  CC [M]  probes/lttng-probe-scsi.mod.o
+  CC [M]  probes/lttng-probe-vmscan.mod.o
+  CC [M]  probes/lttng-probe-printk.mod.o
+  CC [M]  probes/lttng-probe-rcu.mod.o
+  CC [M]  probes/lttng-probe-sunrpc.mod.o
+  CC [M]  probes/lttng-probe-workqueue.mod.o
+  CC [M]  probes/lttng-probe-writeback.mod.o
+  CC [M]  probes/lttng-kprobes.mod.o
+  CC [M]  probes/lttng-uprobes.mod.o
+  CC [M]  probes/lttng-kretprobes.mod.o
+  CC [M]  lib/lttng-lib-ring-buffer.mod.o
+  CC [M]  lib/lttng-counter.mod.o
+  CC [M]  tests/lttng-test.mod.o
+  CC [M]  tests/lttng-clock-plugin-test.mod.o
+  LD [M]  lttng-ring-buffer-client-discard.ko
+  BTF [M] lttng-ring-buffer-client-discard.ko
+Skipping BTF generation for lttng-ring-buffer-client-discard.ko due to unavailability of vmlinux
+  LD [M]  lttng-ring-buffer-client-overwrite.ko
+  BTF [M] lttng-ring-buffer-client-overwrite.ko
+Skipping BTF generation for lttng-ring-buffer-client-overwrite.ko due to unavailability of vmlinux
+  LD [M]  lttng-ring-buffer-metadata-client.ko
+  BTF [M] lttng-ring-buffer-metadata-client.ko
+Skipping BTF generation for lttng-ring-buffer-metadata-client.ko due to unavailability of vmlinux
+  LD [M]  lttng-ring-buffer-client-mmap-discard.ko
+  BTF [M] lttng-ring-buffer-client-mmap-discard.ko
+Skipping BTF generation for lttng-ring-buffer-client-mmap-discard.ko due to unavailability of vmlinux
+  LD [M]  lttng-ring-buffer-client-mmap-overwrite.ko
+  BTF [M] lttng-ring-buffer-client-mmap-overwrite.ko
+Skipping BTF generation for lttng-ring-buffer-client-mmap-overwrite.ko due to unavailability of vmlinux
+  LD [M]  lttng-ring-buffer-metadata-mmap-client.ko
+  BTF [M] lttng-ring-buffer-metadata-mmap-client.ko
+Skipping BTF generation for lttng-ring-buffer-metadata-mmap-client.ko due to unavailability of vmlinux
+  LD [M]  lttng-ring-buffer-event-notifier-client.ko
+  BTF [M] lttng-ring-buffer-event-notifier-client.ko
+Skipping BTF generation for lttng-ring-buffer-event-notifier-client.ko due to unavailability of vmlinux
+  LD [M]  lttng-counter-client-percpu-32-modular.ko
+  BTF [M] lttng-counter-client-percpu-32-modular.ko
+Skipping BTF generation for lttng-counter-client-percpu-32-modular.ko due to unavailability of vmlinux
+  LD [M]  lttng-counter-client-percpu-64-modular.ko
+  BTF [M] lttng-counter-client-percpu-64-modular.ko
+Skipping BTF generation for lttng-counter-client-percpu-64-modular.ko due to unavailability of vmlinux
+  LD [M]  lttng-clock.ko
+  BTF [M] lttng-clock.ko
+Skipping BTF generation for lttng-clock.ko due to unavailability of vmlinux
+  LD [M]  lttng-tracer.ko
+  BTF [M] lttng-tracer.ko
+Skipping BTF generation for lttng-tracer.ko due to unavailability of vmlinux
+  LD [M]  lttng-wrapper.ko
+  BTF [M] lttng-wrapper.ko
+Skipping BTF generation for lttng-wrapper.ko due to unavailability of vmlinux
+  LD [M]  lttng-statedump.ko
+  BTF [M] lttng-statedump.ko
+Skipping BTF generation for lttng-statedump.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-sched.ko
+  BTF [M] probes/lttng-probe-sched.ko
+Skipping BTF generation for probes/lttng-probe-sched.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-irq.ko
+  BTF [M] probes/lttng-probe-irq.ko
+Skipping BTF generation for probes/lttng-probe-irq.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-timer.ko
+  BTF [M] probes/lttng-probe-timer.ko
+Skipping BTF generation for probes/lttng-probe-timer.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-module.ko
+  BTF [M] probes/lttng-probe-module.ko
+Skipping BTF generation for probes/lttng-probe-module.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-power.ko
+  BTF [M] probes/lttng-probe-power.ko
+Skipping BTF generation for probes/lttng-probe-power.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-statedump.ko
+  BTF [M] probes/lttng-probe-statedump.ko
+Skipping BTF generation for probes/lttng-probe-statedump.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-9p.ko
+  BTF [M] probes/lttng-probe-9p.ko
+Skipping BTF generation for probes/lttng-probe-9p.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-i2c.ko
+  BTF [M] probes/lttng-probe-i2c.ko
+Skipping BTF generation for probes/lttng-probe-i2c.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-kvm.ko
+  BTF [M] probes/lttng-probe-kvm.ko
+Skipping BTF generation for probes/lttng-probe-kvm.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-x86-irq-vectors.ko
+  BTF [M] probes/lttng-probe-x86-irq-vectors.ko
+Skipping BTF generation for probes/lttng-probe-x86-irq-vectors.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-signal.ko
+  BTF [M] probes/lttng-probe-signal.ko
+Skipping BTF generation for probes/lttng-probe-signal.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-block.ko
+  LD [M]  probes/lttng-probe-napi.ko
+  BTF [M] probes/lttng-probe-block.ko
+Skipping BTF generation for probes/lttng-probe-block.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-skb.ko
+  BTF [M] probes/lttng-probe-napi.ko
+Skipping BTF generation for probes/lttng-probe-napi.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-net.ko
+  BTF [M] probes/lttng-probe-skb.ko
+Skipping BTF generation for probes/lttng-probe-skb.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-sock.ko
+  BTF [M] probes/lttng-probe-net.ko
+Skipping BTF generation for probes/lttng-probe-net.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-udp.ko
+  BTF [M] probes/lttng-probe-sock.ko
+Skipping BTF generation for probes/lttng-probe-sock.ko due to unavailability of vmlinux
+  BTF [M] probes/lttng-probe-udp.ko
+Skipping BTF generation for probes/lttng-probe-udp.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-asoc.ko
+  LD [M]  probes/lttng-probe-gpio.ko
+  BTF [M] probes/lttng-probe-gpio.ko
+Skipping BTF generation for probes/lttng-probe-gpio.ko due to unavailability of vmlinux
+  BTF [M] probes/lttng-probe-asoc.ko
+Skipping BTF generation for probes/lttng-probe-asoc.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-jbd2.ko
+  LD [M]  probes/lttng-probe-regulator.ko
+  BTF [M] probes/lttng-probe-jbd2.ko
+Skipping BTF generation for probes/lttng-probe-jbd2.ko due to unavailability of vmlinux
+  BTF [M] probes/lttng-probe-regulator.ko
+Skipping BTF generation for probes/lttng-probe-regulator.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-scsi.ko
+  LD [M]  probes/lttng-probe-vmscan.ko
+  BTF [M] probes/lttng-probe-scsi.ko
+Skipping BTF generation for probes/lttng-probe-scsi.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-printk.ko
+  BTF [M] probes/lttng-probe-vmscan.ko
+Skipping BTF generation for probes/lttng-probe-vmscan.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-rcu.ko
+  BTF [M] probes/lttng-probe-printk.ko
+Skipping BTF generation for probes/lttng-probe-printk.ko due to unavailability of vmlinux
+  BTF [M] probes/lttng-probe-rcu.ko
+Skipping BTF generation for probes/lttng-probe-rcu.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-sunrpc.ko
+  LD [M]  probes/lttng-probe-workqueue.ko
+  BTF [M] probes/lttng-probe-workqueue.ko
+Skipping BTF generation for probes/lttng-probe-workqueue.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-probe-writeback.ko
+  BTF [M] probes/lttng-probe-sunrpc.ko
+Skipping BTF generation for probes/lttng-probe-sunrpc.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-kprobes.ko
+  BTF [M] probes/lttng-kprobes.ko
+Skipping BTF generation for probes/lttng-kprobes.ko due to unavailability of vmlinux
+  BTF [M] probes/lttng-probe-writeback.ko
+Skipping BTF generation for probes/lttng-probe-writeback.ko due to unavailability of vmlinux
+  LD [M]  probes/lttng-uprobes.ko
+  LD [M]  probes/lttng-kretprobes.ko
+  BTF [M] probes/lttng-kretprobes.ko
+Skipping BTF generation for probes/lttng-kretprobes.ko due to unavailability of vmlinux
+  BTF [M] probes/lttng-uprobes.ko
+Skipping BTF generation for probes/lttng-uprobes.ko due to unavailability of vmlinux
+  LD [M]  lib/lttng-lib-ring-buffer.ko
+  LD [M]  lib/lttng-counter.ko
+  BTF [M] lib/lttng-counter.ko
+Skipping BTF generation for lib/lttng-counter.ko due to unavailability of vmlinux
+  LD [M]  tests/lttng-test.ko
+  BTF [M] lib/lttng-lib-ring-buffer.ko
+Skipping BTF generation for lib/lttng-lib-ring-buffer.ko due to unavailability of vmlinux
+  BTF [M] tests/lttng-test.ko
+Skipping BTF generation for tests/lttng-test.ko due to unavailability of vmlinux
+  LD [M]  tests/lttng-clock-plugin-test.ko
+  BTF [M] tests/lttng-clock-plugin-test.ko
+Skipping BTF generation for tests/lttng-clock-plugin-test.ko due to unavailability of vmlinux
+make[2]: Leaving directory '/home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab1/tools/lttng-modules-2.13.23/src'
+make[1]: Leaving directory '/usr/src/linux-headers-6.17.0-40-generic'

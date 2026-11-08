@@ -1,0 +1,46 @@
+=== Corrected ftrace mmap Analysis ===
+Kernel: 6.17.0-40-generic
+
+----------------------------------------
+File: logs/ftrace/10_mmap_syscalls_only.trace
+sys_mmap entries: 9
+sys_mmap exits:   9
+
+----------------------------------------
+File: logs/ftrace/11_mmap_no_pid_filter.trace
+sys_mmap entries: 178
+sys_mmap exits:   178
+
+=== Program's Last mmap Pair ===
+         program-61019   [012] ..... 14419.447749: sys_mmap(addr: 0, len: 1000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+         program-61019   [012] ..... 14419.447754: sys_mmap -> 0x77d749a74000
+
+=== mmap Events in Combined Function Graph ===
+930:  3)               |  /* sys_mmap(addr: 0, len: 2000, prot: 3, flags: 22, fd: ffffffff, off: 0) */
+998:  3)               |  /* sys_mmap -> 0x73006ab9a000 */
+1010:  3)               |  /* sys_mmap(addr: 0, len: 1fb3f, prot: 1, flags: 2, fd: 3, off: 0) */
+1139:  3)               |  /* sys_mmap -> 0x73006ab7a000 */
+1146:  3)               |  /* sys_mmap(addr: 0, len: 212d90, prot: 1, flags: 802, fd: 3, off: 0) */
+1239:  3)               |  /* sys_mmap -> 0x73006a800000 */
+1240:  3)               |  /* sys_mmap(addr: 73006a828000, len: 189000, prot: 5, flags: 812, fd: 3, off: 28000) */
+1463:  3)               |  /* sys_mmap -> 0x73006a828000 */
+1464:  3)               |  /* sys_mmap(addr: 73006a9b1000, len: 4f000, prot: 1, flags: 812, fd: 3, off: 1b1000) */
+1643:  3)               |  /* sys_mmap -> 0x73006a9b1000 */
+1644:  3)               |  /* sys_mmap(addr: 73006aa00000, len: 6000, prot: 3, flags: 812, fd: 3, off: 1ff000) */
+1877:  3)               |  /* sys_mmap -> 0x73006aa00000 */
+
+=== Kernel Tracepoint Format ===
+name: sys_enter_mmap
+ID: 100
+format:
+	field:unsigned short common_type;	offset:0;	size:2;	signed:0;
+	field:unsigned char common_flags;	offset:2;	size:1;	signed:0;
+	field:unsigned char common_preempt_count;	offset:3;	size:1;	signed:0;
+	field:int common_pid;	offset:4;	size:4;	signed:1;
+
+	field:int __syscall_nr;	offset:8;	size:4;	signed:1;
+	field:unsigned long addr;	offset:16;	size:8;	signed:0;
+	field:unsigned long len;	offset:24;	size:8;	signed:0;
+	field:unsigned long prot;	offset:32;	size:8;	signed:0;
+
+Analysis completed.

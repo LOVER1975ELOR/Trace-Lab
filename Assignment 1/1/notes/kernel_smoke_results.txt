@@ -1,0 +1,9 @@
+Experiment: LTTng Kernel Tracing Smoke Test
+Kernel: 6.17.0-40-generic
+LTTng Tools: 2.13.11
+LTTng Modules: 2.13.23
+Event: sched_switch
+Workload: 100 executions of /bin/true, followed by sleep 2
+Recorded sched_switch events: 30261
+Trace format: CTF
+Result: PASS

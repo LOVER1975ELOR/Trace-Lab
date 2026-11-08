@@ -1,0 +1,6 @@
+sys_enter_mmap            0
+sys_exit_mmap             0
+kmalloc                   11
+kmem_cache_alloc          106
+mm_page_alloc             49
+rss_stat                  127

@@ -1,0 +1,7 @@
+2026-11-05T12:06:35+03:30
+PRETTY_NAME="Ubuntu 24.04.5 LTS"
+7.0.0-42-generic
+Logical CPUs: 16
+strace -- version 6.8
+stress-ng, version 0.17.06 (gcc 13.2.0, x86_64 Linux 7.0.0-42-generic)
+lttng (LTTng Trace Control) 2.13.11 - Nordicité

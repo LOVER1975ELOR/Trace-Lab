@@ -1,0 +1,2 @@
+[ perf record: Woken up 2 times to write data ]
+[ perf record: Captured and wrote 0.397 MB logs/perf/mmap_memory.data (1204 samples) ]

@@ -1,0 +1,57 @@
+==================================
+Lab 3 - 30-Second LTTng Trace
+==================================
+Date: 2026-11-05T19:37:18+03:30
+Kernel: 6.17.0-40-generic
+Duration: 30 seconds
+
+[1] Creating LTTng session...
+Session lab3_30s_127534 created.
+Traces will be output to /home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab3/logs/lttng/07_futex_30s_trace
+
+[2] Enabling futex syscalls...
+kernel event futex created in channel channel0
+
+[3] Enabling scheduling events...
+kernel event sched_switch created in channel channel0
+kernel event sched_wakeup created in channel channel0
+kernel event sched_waking created in channel channel0
+kernel event sched_process_fork created in channel channel0
+kernel event sched_process_exit created in channel channel0
+
+[4] Starting trace...
+Tracing started for session lab3_30s_127534
+
+[5] Running deadlock_m for 30 seconds...
+
+Program exit status: 124
+
+[6] Stopping trace...
+Waiting for data availability.
+Tracing stopped for session lab3_30s_127534
+Destroying session lab3_30s_127534..
+Session lab3_30s_127534 destroyed
+
+[7] Preparing Trace Compass copy...
+
+========== LAST PROGRAM OUTPUT ==========
+Thread 1: Unlocked A
+Thread 1: Waiting for B
+Thread 1: Locked B
+Thread 2: Locked A
+Thread 1: Unlocked B
+Thread 1: Waiting for A
+Thread 2: Unlocked A
+Thread 2: Waiting for B
+Thread 2: Locked B
+Thread 1: Locked A
+Thread 2: Waiting for A
+Thread 1: Waiting for B
+
+========== TRACE SIZE ==========
+18M	/home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab3/logs/lttng/07_futex_30s_trace_gui
+
+========== RESULT ==========
+Trace recording completed.
+Trace Compass path:
+/home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab3/logs/lttng/07_futex_30s_trace_gui/kernel

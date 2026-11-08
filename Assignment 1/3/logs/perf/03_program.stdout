@@ -1,0 +1,60 @@
+Thread 1: Waiting for A
+Thread 1: Locked A
+Thread 2: Waiting for B
+Thread 2: Locked B
+Thread 2: Unlocked B
+Thread 2: Waiting for A
+Thread 1: Unlocked A
+Thread 1: Waiting for B
+Thread 1: Locked B
+Thread 2: Locked A
+Thread 1: Unlocked B
+Thread 1: Waiting for A
+Thread 2: Unlocked A
+Thread 2: Waiting for B
+Thread 2: Locked B
+Thread 1: Locked A
+Thread 2: Unlocked B
+Thread 2: Waiting for A
+Thread 1: Unlocked A
+Thread 1: Waiting for B
+Thread 1: Locked B
+Thread 2: Locked A
+Thread 1: Unlocked B
+Thread 1: Waiting for A
+Thread 2: Unlocked A
+Thread 2: Waiting for B
+Thread 2: Locked B
+Thread 1: Locked A
+Thread 2: Unlocked B
+Thread 2: Waiting for A
+Thread 1: Unlocked A
+Thread 1: Waiting for B
+Thread 1: Locked B
+Thread 2: Locked A
+Thread 1: Unlocked B
+Thread 1: Waiting for A
+Thread 2: Unlocked A
+Thread 2: Waiting for B
+Thread 2: Locked B
+Thread 1: Locked A
+Thread 2: Unlocked B
+Thread 2: Waiting for A
+Thread 1: Unlocked A
+Thread 1: Waiting for B
+Thread 1: Locked B
+Thread 2: Locked A
+Thread 1: Unlocked B
+Thread 1: Waiting for A
+Thread 2: Unlocked A
+Thread 2: Waiting for B
+Thread 2: Locked B
+Thread 1: Locked A
+Thread 2: Unlocked B
+Thread 2: Waiting for A
+Thread 1: Unlocked A
+Thread 1: Waiting for B
+Thread 1: Locked B
+Thread 2: Locked A
+Thread 1: Unlocked B
+Thread 1: Waiting for A

@@ -1,0 +1,38 @@
+Lab 3 report verification - 2026-11-05
+
+PASS: Header and identity lines
+PASS: No placeholder images or editorial comments
+PASS: No conclusion heading; the two complete-output appendices were added at the user's request
+PASS: Sequential figure numbering
+PASS: Image exists: screenshots/1.png
+PASS: Image exists: screenshots/9.png
+PASS: Image exists: screenshots/11.png
+PASS: Image exists: screenshots/12.png
+PASS: logs/baseline/02_program.stdout has 66 lines
+PASS: logs/baseline/02_program.stdout final waits
+PASS: logs/lttng/04_program.stdout has 66 lines
+PASS: logs/lttng/04_program.stdout final waits
+PASS: logs/lttng/07_program.stdout has 66 lines
+PASS: logs/lttng/07_program.stdout final waits
+PASS: logs/baseline/02_exit_status.txt is timeout status 124
+PASS: logs/perf/03_exit_status.txt is timeout status 124
+PASS: logs/lttng/07_program_exit_status.txt is timeout status 124
+PASS: All five Perf counters
+PASS: 8-second CTF export matches saved text
+PASS: All seven LTTng event counts
+PASS: Total LTTng events 35,580
+PASS: Futex operations at 94419365879872
+PASS: Futex operations at 94419365879936
+PASS: 8-second worker 112957
+PASS: 8-second worker 112958
+PASS: 8-second final address/TID/op associations
+PASS: 30-second worker 127568
+PASS: 30-second worker 127569
+PASS: 30-second final address/TID/op associations
+PASS: Supplied executable matches reference
+
+All 30 checks passed.
+All 12 screenshots were visually reviewed; report figures use 1.png, 9.png, 11.png, and 12.png.
+30-second final wait entries: 19:37:25.114525784 and 19:37:25.214470501; worker exits near 19:37:48.408. This supports the approximate 23-second overlapping interval.
+
+Complete-output update verified: both Markdown appendix blocks and both PDF appendix pages contain exactly the corresponding 66 original output lines. Main-text excerpt links point to the appendices. External source hyperlinks were subsequently removed for submission; repository and internal appendix links are retained.

@@ -1,0 +1,43 @@
+=== Lab 2: ftrace Preflight ===
+Date: 2026-11-05T16:19:01+03:30
+Kernel: 6.17.0-40-generic
+
+--- TraceFS ---
+TARGET              SOURCE  FSTYPE  OPTIONS
+/sys/kernel/tracing tracefs tracefs rw,nosuid,nodev,noexec,relatime
+
+--- Available Tracers ---
+timerlat osnoise hwlat blk mmiotrace function_graph wakeup_dl wakeup_rt wakeup function nop
+
+--- Current Configuration ---
+[current_tracer]
+nop
+
+[tracing_on]
+1
+
+[set_event]
+
+[set_ftrace_pid]
+no pid
+
+[set_event_pid]
+
+[set_graph_function]
+#### all functions enabled ####
+
+[set_ftrace_filter]
+#### all functions enabled ####
+
+--- do_mmap Availability ---
+do_mmap
+
+--- Required Event Tracepoints ---
+[OK] syscalls/sys_enter_mmap
+[OK] syscalls/sys_exit_mmap
+[OK] kmem/kmalloc
+[OK] kmem/kmem_cache_alloc
+[OK] kmem/mm_page_alloc
+[OK] kmem/rss_stat
+
+Preflight completed (no settings changed).

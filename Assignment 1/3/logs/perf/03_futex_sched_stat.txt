@@ -1,0 +1,17 @@
+# started on Thu Nov  5 18:54:20 2026
+
+
+ Performance counter stats for 'setpriv --reuid=1000 --regid=1000 --init-groups -- timeout --signal=TERM --kill-after=2s 6s stdbuf -o0 -e0 ./src/deadlock_m':
+
+                25      syscalls:sys_enter_futex                                              
+                25      syscalls:sys_exit_futex                                               
+                34      sched:sched_switch                                                    
+                 0      sched:sched_wakeup                                                    
+                49      sched:sched_waking                                                    
+
+       6.007407024 seconds time elapsed
+
+       0.002078000 seconds user
+       0.011684000 seconds sys
+
+

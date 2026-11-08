@@ -1,0 +1,172 @@
+=== Lab 2: ftrace Output Diagnosis ===
+Date: 2026-11-05T16:37:48+03:30
+Kernel: 6.17.0-40-generic
+
+========================================
+File: logs/ftrace/08_do_mmap_ftrace.trace
+========================================
+--- File size and line count ---
+  2274 134371 logs/ftrace/08_do_mmap_ftrace.trace
+
+--- First 30 lines ---
+# tracer: function_graph
+#
+# CPU  DURATION                  FUNCTION CALLS
+# |     |   |                     |   |   |   |
+  3)               |  finish_task_switch.isra.0() {
+  3)   0.482 us    |    _raw_spin_unlock();
+  3)               |    __mmdrop() {
+  3)               |      pgd_free() {
+  3)   0.186 us    |        _raw_spin_lock();
+  3)   0.133 us    |        _raw_spin_unlock();
+  3)               |        __lruvec_stat_mod_folio() {
+  3)   0.123 us    |          __rcu_read_lock();
+  3)   0.179 us    |          __mod_node_page_state();
+  3)               |          mod_memcg_lruvec_state() {
+  3)   0.126 us    |            css_rstat_updated();
+  3)   0.397 us    |          }
+  3)   0.134 us    |          __rcu_read_unlock();
+  3)   1.499 us    |        }
+  3)               |        __free_pages() {
+  3)               |          ___free_pages() {
+  3)               |            __free_frozen_pages() {
+  3)               |              __memcg_kmem_uncharge_page() {
+  3)               |                obj_cgroup_uncharge_pages() {
+  3)   0.121 us    |                  __rcu_read_lock();
+  3)   0.119 us    |                  __rcu_read_lock();
+  3)   0.134 us    |                  __rcu_read_unlock();
+  3)   0.135 us    |                  __rcu_read_unlock();
+  3)               |                  mod_memcg_state() {
+  3)   0.119 us    |                    css_rstat_updated();
+  3)   0.416 us    |                  }
+
+--- mmap-related matches ---
+194:  3)               |  do_mmap() {
+203:  3)               |      security_mmap_addr() {
+204:  3)   0.145 us    |        cap_mmap_addr();
+210:  3)               |    memfd_check_seals_mmap() {
+213:  3)               |    mmap_region() {
+214:  3)               |      __mmap_region() {
+215:  3)               |        __mmap_prepare() {
+218:  3)               |        ext4_file_mmap_prepare() {
+234:  3)               |        __mmap_new_vma() {
+268:  3)   0.118 us    |        perf_event_mmap();
+271:  3)   0.152 us    |        uprobe_mmap();
+281:  3)               |  do_mmap() {
+290:  3)               |      security_mmap_addr() {
+291:  3)   0.131 us    |        cap_mmap_addr();
+295:  3)               |    memfd_check_seals_mmap() {
+
+========================================
+File: logs/ftrace/10_mmap_syscalls_only.trace
+========================================
+--- File size and line count ---
+  30 2350 logs/ftrace/10_mmap_syscalls_only.trace
+
+--- First 30 lines ---
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 18/18   #P:16
+#
+#                                _-----=> irqs-off/BH-disabled
+#                               / _----=> need-resched
+#                              | / _---=> hardirq/softirq
+#                              || / _--=> preempt-depth
+#                              ||| / _-=> migrate-disable
+#                              |||| /     delay
+#           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||     |         |
+         program-61019   [012] ..... 14419.447409: sys_mmap(addr: 0, len: 2000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+         program-61019   [012] ..... 14419.447420: sys_mmap -> 0x77d749a75000
+         program-61019   [012] ..... 14419.447448: sys_mmap(addr: 0, len: 1fb3f, prot: 1, flags: 2, fd: 3, off: 0)
+         program-61019   [012] ..... 14419.447454: sys_mmap -> 0x77d749a55000
+         program-61019   [012] ..... 14419.447495: sys_mmap(addr: 0, len: 212d90, prot: 1, flags: 802, fd: 3, off: 0)
+         program-61019   [012] ..... 14419.447500: sys_mmap -> 0x77d749800000
+         program-61019   [012] ..... 14419.447501: sys_mmap(addr: 77d749828000, len: 189000, prot: 5, flags: 812, fd: 3, off: 28000)
+         program-61019   [012] ..... 14419.447511: sys_mmap -> 0x77d749828000
+         program-61019   [012] ..... 14419.447512: sys_mmap(addr: 77d7499b1000, len: 4f000, prot: 1, flags: 812, fd: 3, off: 1b1000)
+         program-61019   [012] ..... 14419.447520: sys_mmap -> 0x77d7499b1000
+         program-61019   [012] ..... 14419.447521: sys_mmap(addr: 77d749a00000, len: 6000, prot: 3, flags: 812, fd: 3, off: 1ff000)
+         program-61019   [012] ..... 14419.447528: sys_mmap -> 0x77d749a00000
+         program-61019   [012] ..... 14419.447535: sys_mmap(addr: 77d749a06000, len: cd90, prot: 3, flags: 32, fd: ffffffff, off: 0)
+         program-61019   [012] ..... 14419.447539: sys_mmap -> 0x77d749a06000
+         program-61019   [012] ..... 14419.447563: sys_mmap(addr: 0, len: 3000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+         program-61019   [012] ..... 14419.447572: sys_mmap -> 0x77d749a52000
+         program-61019   [012] ..... 14419.447749: sys_mmap(addr: 0, len: 1000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+         program-61019   [012] ..... 14419.447754: sys_mmap -> 0x77d749a74000
+
+--- mmap-related matches ---
+13:         program-61019   [012] ..... 14419.447409: sys_mmap(addr: 0, len: 2000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+14:         program-61019   [012] ..... 14419.447420: sys_mmap -> 0x77d749a75000
+15:         program-61019   [012] ..... 14419.447448: sys_mmap(addr: 0, len: 1fb3f, prot: 1, flags: 2, fd: 3, off: 0)
+16:         program-61019   [012] ..... 14419.447454: sys_mmap -> 0x77d749a55000
+17:         program-61019   [012] ..... 14419.447495: sys_mmap(addr: 0, len: 212d90, prot: 1, flags: 802, fd: 3, off: 0)
+18:         program-61019   [012] ..... 14419.447500: sys_mmap -> 0x77d749800000
+19:         program-61019   [012] ..... 14419.447501: sys_mmap(addr: 77d749828000, len: 189000, prot: 5, flags: 812, fd: 3, off: 28000)
+20:         program-61019   [012] ..... 14419.447511: sys_mmap -> 0x77d749828000
+21:         program-61019   [012] ..... 14419.447512: sys_mmap(addr: 77d7499b1000, len: 4f000, prot: 1, flags: 812, fd: 3, off: 1b1000)
+22:         program-61019   [012] ..... 14419.447520: sys_mmap -> 0x77d7499b1000
+23:         program-61019   [012] ..... 14419.447521: sys_mmap(addr: 77d749a00000, len: 6000, prot: 3, flags: 812, fd: 3, off: 1ff000)
+24:         program-61019   [012] ..... 14419.447528: sys_mmap -> 0x77d749a00000
+25:         program-61019   [012] ..... 14419.447535: sys_mmap(addr: 77d749a06000, len: cd90, prot: 3, flags: 32, fd: ffffffff, off: 0)
+26:         program-61019   [012] ..... 14419.447539: sys_mmap -> 0x77d749a06000
+27:         program-61019   [012] ..... 14419.447563: sys_mmap(addr: 0, len: 3000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+
+========================================
+File: logs/ftrace/11_mmap_no_pid_filter.trace
+========================================
+--- File size and line count ---
+  368 36875 logs/ftrace/11_mmap_no_pid_filter.trace
+
+--- First 30 lines ---
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 356/356   #P:16
+#
+#                                _-----=> irqs-off/BH-disabled
+#                               / _----=> need-resched
+#                              | / _---=> hardirq/softirq
+#                              || / _--=> preempt-depth
+#                              ||| / _-=> migrate-disable
+#                              |||| /     delay
+#           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||     |         |
+         timeout-61872   [014] ..... 14555.552170: sys_mmap(addr: 0, len: 2000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+         timeout-61872   [014] ..... 14555.552192: sys_mmap -> 0x749ff299f000
+         timeout-61872   [014] ..... 14555.552230: sys_mmap(addr: 0, len: 1fb3f, prot: 1, flags: 2, fd: 3, off: 0)
+         timeout-61872   [014] ..... 14555.552236: sys_mmap -> 0x749ff297f000
+         timeout-61872   [014] ..... 14555.552263: sys_mmap(addr: 0, len: 212d90, prot: 1, flags: 802, fd: 3, off: 0)
+         timeout-61872   [014] ..... 14555.552268: sys_mmap -> 0x749ff2600000
+         timeout-61872   [014] ..... 14555.552269: sys_mmap(addr: 749ff2628000, len: 189000, prot: 5, flags: 812, fd: 3, off: 28000)
+         timeout-61872   [014] ..... 14555.552278: sys_mmap -> 0x749ff2628000
+         timeout-61872   [014] ..... 14555.552279: sys_mmap(addr: 749ff27b1000, len: 4f000, prot: 1, flags: 812, fd: 3, off: 1b1000)
+         timeout-61872   [014] ..... 14555.552285: sys_mmap -> 0x749ff27b1000
+         timeout-61872   [014] ..... 14555.552286: sys_mmap(addr: 749ff2800000, len: 6000, prot: 3, flags: 812, fd: 3, off: 1ff000)
+         timeout-61872   [014] ..... 14555.552293: sys_mmap -> 0x749ff2800000
+         timeout-61872   [014] ..... 14555.552300: sys_mmap(addr: 749ff2806000, len: cd90, prot: 3, flags: 32, fd: ffffffff, off: 0)
+         timeout-61872   [014] ..... 14555.552304: sys_mmap -> 0x749ff2806000
+         timeout-61872   [014] ..... 14555.552330: sys_mmap(addr: 0, len: 3000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+         timeout-61872   [014] ..... 14555.552338: sys_mmap -> 0x749ff297c000
+         timeout-61872   [014] ..... 14555.552582: sys_mmap(addr: 0, len: 574500, prot: 1, flags: 2, fd: 3, off: 0)
+         timeout-61872   [014] ..... 14555.552589: sys_mmap -> 0x749ff2000000
+
+--- mmap-related matches ---
+13:         timeout-61872   [014] ..... 14555.552170: sys_mmap(addr: 0, len: 2000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+14:         timeout-61872   [014] ..... 14555.552192: sys_mmap -> 0x749ff299f000
+15:         timeout-61872   [014] ..... 14555.552230: sys_mmap(addr: 0, len: 1fb3f, prot: 1, flags: 2, fd: 3, off: 0)
+16:         timeout-61872   [014] ..... 14555.552236: sys_mmap -> 0x749ff297f000
+17:         timeout-61872   [014] ..... 14555.552263: sys_mmap(addr: 0, len: 212d90, prot: 1, flags: 802, fd: 3, off: 0)
+18:         timeout-61872   [014] ..... 14555.552268: sys_mmap -> 0x749ff2600000
+19:         timeout-61872   [014] ..... 14555.552269: sys_mmap(addr: 749ff2628000, len: 189000, prot: 5, flags: 812, fd: 3, off: 28000)
+20:         timeout-61872   [014] ..... 14555.552278: sys_mmap -> 0x749ff2628000
+21:         timeout-61872   [014] ..... 14555.552279: sys_mmap(addr: 749ff27b1000, len: 4f000, prot: 1, flags: 812, fd: 3, off: 1b1000)
+22:         timeout-61872   [014] ..... 14555.552285: sys_mmap -> 0x749ff27b1000
+23:         timeout-61872   [014] ..... 14555.552286: sys_mmap(addr: 749ff2800000, len: 6000, prot: 3, flags: 812, fd: 3, off: 1ff000)
+24:         timeout-61872   [014] ..... 14555.552293: sys_mmap -> 0x749ff2800000
+25:         timeout-61872   [014] ..... 14555.552300: sys_mmap(addr: 749ff2806000, len: cd90, prot: 3, flags: 32, fd: ffffffff, off: 0)
+26:         timeout-61872   [014] ..... 14555.552304: sys_mmap -> 0x749ff2806000
+27:         timeout-61872   [014] ..... 14555.552330: sys_mmap(addr: 0, len: 3000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+
+========================================
+Kernel tracepoint format
+========================================

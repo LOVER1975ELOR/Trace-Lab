@@ -1,0 +1,27 @@
+=== Lab 2: Explicit mmap Evidence ===
+
+[1] mmap syscall counts in combined trace
+Entries: 9
+Exits:   9
+
+[2] Extracting final complete mmap syscall interval
+Extracted file: notes/ftrace_explicit_mmap_segment.txt
+66 notes/ftrace_explicit_mmap_segment.txt
+
+[3] Important lines from the extracted interval
+  3)               |  /* sys_mmap(addr: 0, len: 1000, prot: 3, flags: 22, fd: ffffffff, off: 0) */
+  3)               |  do_mmap() {
+  3)               |    __get_unmapped_area() {
+  3)               |    mmap_region() {
+  3)               |      __mmap_region() {
+  3)               |        vma_merge_new_range() {
+  3)               |  /* sys_mmap -> 0x73006ab99000 */
+
+[4] Does this interval contain do_mmap?
+YES: do_mmap is present.
+
+[5] Program output from the same recording
+Memory mapped at address: 0x73006ab99000
+First byte of memory: A
+
+Evidence extraction completed.

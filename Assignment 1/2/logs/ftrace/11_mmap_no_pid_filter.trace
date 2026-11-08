@@ -1,0 +1,368 @@
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 356/356   #P:16
+#
+#                                _-----=> irqs-off/BH-disabled
+#                               / _----=> need-resched
+#                              | / _---=> hardirq/softirq
+#                              || / _--=> preempt-depth
+#                              ||| / _-=> migrate-disable
+#                              |||| /     delay
+#           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||     |         |
+         timeout-61872   [014] ..... 14555.552170: sys_mmap(addr: 0, len: 2000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+         timeout-61872   [014] ..... 14555.552192: sys_mmap -> 0x749ff299f000
+         timeout-61872   [014] ..... 14555.552230: sys_mmap(addr: 0, len: 1fb3f, prot: 1, flags: 2, fd: 3, off: 0)
+         timeout-61872   [014] ..... 14555.552236: sys_mmap -> 0x749ff297f000
+         timeout-61872   [014] ..... 14555.552263: sys_mmap(addr: 0, len: 212d90, prot: 1, flags: 802, fd: 3, off: 0)
+         timeout-61872   [014] ..... 14555.552268: sys_mmap -> 0x749ff2600000
+         timeout-61872   [014] ..... 14555.552269: sys_mmap(addr: 749ff2628000, len: 189000, prot: 5, flags: 812, fd: 3, off: 28000)
+         timeout-61872   [014] ..... 14555.552278: sys_mmap -> 0x749ff2628000
+         timeout-61872   [014] ..... 14555.552279: sys_mmap(addr: 749ff27b1000, len: 4f000, prot: 1, flags: 812, fd: 3, off: 1b1000)
+         timeout-61872   [014] ..... 14555.552285: sys_mmap -> 0x749ff27b1000
+         timeout-61872   [014] ..... 14555.552286: sys_mmap(addr: 749ff2800000, len: 6000, prot: 3, flags: 812, fd: 3, off: 1ff000)
+         timeout-61872   [014] ..... 14555.552293: sys_mmap -> 0x749ff2800000
+         timeout-61872   [014] ..... 14555.552300: sys_mmap(addr: 749ff2806000, len: cd90, prot: 3, flags: 32, fd: ffffffff, off: 0)
+         timeout-61872   [014] ..... 14555.552304: sys_mmap -> 0x749ff2806000
+         timeout-61872   [014] ..... 14555.552330: sys_mmap(addr: 0, len: 3000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+         timeout-61872   [014] ..... 14555.552338: sys_mmap -> 0x749ff297c000
+         timeout-61872   [014] ..... 14555.552582: sys_mmap(addr: 0, len: 574500, prot: 1, flags: 2, fd: 3, off: 0)
+         timeout-61872   [014] ..... 14555.552589: sys_mmap -> 0x749ff2000000
+         program-61873   [015] ..... 14555.553266: sys_mmap(addr: 0, len: 2000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+         program-61873   [015] ..... 14555.553275: sys_mmap -> 0x77026dee1000
+         program-61873   [015] ..... 14555.553310: sys_mmap(addr: 0, len: 1fb3f, prot: 1, flags: 2, fd: 3, off: 0)
+         program-61873   [015] ..... 14555.553317: sys_mmap -> 0x77026dec1000
+         program-61873   [015] ..... 14555.553347: sys_mmap(addr: 0, len: 212d90, prot: 1, flags: 802, fd: 3, off: 0)
+         program-61873   [015] ..... 14555.553352: sys_mmap -> 0x77026dc00000
+         program-61873   [015] ..... 14555.553353: sys_mmap(addr: 77026dc28000, len: 189000, prot: 5, flags: 812, fd: 3, off: 28000)
+         program-61873   [015] ..... 14555.553364: sys_mmap -> 0x77026dc28000
+         program-61873   [015] ..... 14555.553365: sys_mmap(addr: 77026ddb1000, len: 4f000, prot: 1, flags: 812, fd: 3, off: 1b1000)
+         program-61873   [015] ..... 14555.553372: sys_mmap -> 0x77026ddb1000
+         program-61873   [015] ..... 14555.553373: sys_mmap(addr: 77026de00000, len: 6000, prot: 3, flags: 812, fd: 3, off: 1ff000)
+         program-61873   [015] ..... 14555.553380: sys_mmap -> 0x77026de00000
+         program-61873   [015] ..... 14555.553387: sys_mmap(addr: 77026de06000, len: cd90, prot: 3, flags: 32, fd: ffffffff, off: 0)
+         program-61873   [015] ..... 14555.553392: sys_mmap -> 0x77026de06000
+         program-61873   [015] ..... 14555.553417: sys_mmap(addr: 0, len: 3000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+         program-61873   [015] ..... 14555.553426: sys_mmap -> 0x77026debe000
+         program-61873   [015] ..... 14555.553605: sys_mmap(addr: 0, len: 1000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+         program-61873   [015] ..... 14555.553609: sys_mmap -> 0x77026dee0000
+            sudo-61875   [000] ..... 14555.555345: sys_mmap(addr: 0, len: 2000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+            sudo-61875   [000] ..... 14555.555356: sys_mmap -> 0x747d35b66000
+            sudo-61875   [000] ..... 14555.555399: sys_mmap(addr: 0, len: 1fb3f, prot: 1, flags: 2, fd: 3, off: 0)
+            sudo-61875   [000] ..... 14555.555405: sys_mmap -> 0x747d35b46000
+            sudo-61875   [000] ..... 14555.555425: sys_mmap(addr: 0, len: 2d0b0, prot: 1, flags: 802, fd: 3, off: 0)
+            sudo-61875   [000] ..... 14555.555428: sys_mmap -> 0x747d35b18000
+            sudo-61875   [000] ..... 14555.555429: sys_mmap(addr: 747d35b1b000, len: 8000, prot: 5, flags: 812, fd: 3, off: 3000)
+            sudo-61875   [000] ..... 14555.555443: sys_mmap -> 0x747d35b1b000
+            sudo-61875   [000] ..... 14555.555443: sys_mmap(addr: 747d35b23000, len: 15000, prot: 1, flags: 812, fd: 3, off: b000)
+            sudo-61875   [000] ..... 14555.555449: sys_mmap -> 0x747d35b23000
+            sudo-61875   [000] ..... 14555.555450: sys_mmap(addr: 747d35b38000, len: 2000, prot: 3, flags: 812, fd: 3, off: 1f000)
+            sudo-61875   [000] ..... 14555.555464: sys_mmap -> 0x747d35b38000
+            sudo-61875   [000] ..... 14555.555468: sys_mmap(addr: 747d35b3a000, len: b0b0, prot: 3, flags: 32, fd: ffffffff, off: 0)
+            sudo-61875   [000] ..... 14555.555472: sys_mmap -> 0x747d35b3a000
+            sudo-61875   [000] ..... 14555.555495: sys_mmap(addr: 0, len: 2c6c8, prot: 1, flags: 802, fd: 3, off: 0)
+            sudo-61875   [000] ..... 14555.555499: sys_mmap -> 0x747d35aeb000
+            sudo-61875   [000] ..... 14555.555500: sys_mmap(addr: 747d35af1000, len: 1d000, prot: 5, flags: 812, fd: 3, off: 6000)
+            sudo-61875   [000] ..... 14555.555507: sys_mmap -> 0x747d35af1000
+            sudo-61875   [000] ..... 14555.555507: sys_mmap(addr: 747d35b0e000, len: 6000, prot: 1, flags: 812, fd: 3, off: 23000)
+            sudo-61875   [000] ..... 14555.555514: sys_mmap -> 0x747d35b0e000
+            sudo-61875   [000] ..... 14555.555515: sys_mmap(addr: 747d35b14000, len: 2000, prot: 3, flags: 812, fd: 3, off: 29000)
+            sudo-61875   [000] ..... 14555.555521: sys_mmap -> 0x747d35b14000
+            sudo-61875   [000] ..... 14555.555525: sys_mmap(addr: 747d35b16000, len: 16c8, prot: 3, flags: 32, fd: ffffffff, off: 0)
+            sudo-61875   [000] ..... 14555.555528: sys_mmap -> 0x747d35b16000
+            sudo-61875   [000] ..... 14555.555549: sys_mmap(addr: 0, len: 14390, prot: 1, flags: 802, fd: 3, off: 0)
+            sudo-61875   [000] ..... 14555.555552: sys_mmap -> 0x747d35ad6000
+            sudo-61875   [000] ..... 14555.555552: sys_mmap(addr: 747d35ad9000, len: a000, prot: 5, flags: 812, fd: 3, off: 3000)
+            sudo-61875   [000] ..... 14555.555561: sys_mmap -> 0x747d35ad9000
+            sudo-61875   [000] ..... 14555.555562: sys_mmap(addr: 747d35ae3000, len: 6000, prot: 1, flags: 812, fd: 3, off: d000)
+            sudo-61875   [000] ..... 14555.555567: sys_mmap -> 0x747d35ae3000
+            sudo-61875   [000] ..... 14555.555567: sys_mmap(addr: 747d35ae9000, len: 2000, prot: 3, flags: 812, fd: 3, off: 13000)
+            sudo-61875   [000] ..... 14555.555572: sys_mmap -> 0x747d35ae9000
+            sudo-61875   [000] ..... 14555.555591: sys_mmap(addr: 0, len: 20c70, prot: 1, flags: 802, fd: 3, off: 0)
+            sudo-61875   [000] ..... 14555.555593: sys_mmap -> 0x747d35ab5000
+            sudo-61875   [000] ..... 14555.555594: sys_mmap(addr: 747d35abb000, len: 14000, prot: 5, flags: 812, fd: 3, off: 6000)
+            sudo-61875   [000] ..... 14555.555599: sys_mmap -> 0x747d35abb000
+            sudo-61875   [000] ..... 14555.555599: sys_mmap(addr: 747d35acf000, len: 5000, prot: 1, flags: 812, fd: 3, off: 1a000)
+            sudo-61875   [000] ..... 14555.555603: sys_mmap -> 0x747d35acf000
+            sudo-61875   [000] ..... 14555.555604: sys_mmap(addr: 747d35ad4000, len: 2000, prot: 3, flags: 812, fd: 3, off: 1f000)
+            sudo-61875   [000] ..... 14555.555607: sys_mmap -> 0x747d35ad4000
+            sudo-61875   [000] ..... 14555.555632: sys_mmap(addr: 0, len: 212d90, prot: 1, flags: 802, fd: 3, off: 0)
+            sudo-61875   [000] ..... 14555.555636: sys_mmap -> 0x747d35800000
+            sudo-61875   [000] ..... 14555.555636: sys_mmap(addr: 747d35828000, len: 189000, prot: 5, flags: 812, fd: 3, off: 28000)
+            sudo-61875   [000] ..... 14555.555647: sys_mmap -> 0x747d35828000
+            sudo-61875   [000] ..... 14555.555647: sys_mmap(addr: 747d359b1000, len: 4f000, prot: 1, flags: 812, fd: 3, off: 1b1000)
+            sudo-61875   [000] ..... 14555.555652: sys_mmap -> 0x747d359b1000
+            sudo-61875   [000] ..... 14555.555653: sys_mmap(addr: 747d35a00000, len: 6000, prot: 3, flags: 812, fd: 3, off: 1ff000)
+            sudo-61875   [000] ..... 14555.555659: sys_mmap -> 0x747d35a00000
+            sudo-61875   [000] ..... 14555.555663: sys_mmap(addr: 747d35a06000, len: cd90, prot: 3, flags: 32, fd: ffffffff, off: 0)
+            sudo-61875   [000] ..... 14555.555666: sys_mmap -> 0x747d35a06000
+            sudo-61875   [000] ..... 14555.555691: sys_mmap(addr: 0, len: 2000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+            sudo-61875   [000] ..... 14555.555693: sys_mmap -> 0x747d35ab3000
+            sudo-61875   [000] ..... 14555.555697: sys_mmap(addr: 0, len: 7030, prot: 1, flags: 802, fd: 3, off: 0)
+            sudo-61875   [000] ..... 14555.555701: sys_mmap -> 0x747d35aab000
+            sudo-61875   [000] ..... 14555.555702: sys_mmap(addr: 747d35aad000, len: 3000, prot: 5, flags: 812, fd: 3, off: 2000)
+            sudo-61875   [000] ..... 14555.555711: sys_mmap -> 0x747d35aad000
+            sudo-61875   [000] ..... 14555.555711: sys_mmap(addr: 747d35ab0000, len: 1000, prot: 1, flags: 812, fd: 3, off: 5000)
+            sudo-61875   [000] ..... 14555.555716: sys_mmap -> 0x747d35ab0000
+            sudo-61875   [000] ..... 14555.555716: sys_mmap(addr: 747d35ab1000, len: 2000, prot: 3, flags: 812, fd: 3, off: 5000)
+            sudo-61875   [000] ..... 14555.555720: sys_mmap -> 0x747d35ab1000
+            sudo-61875   [000] ..... 14555.555748: sys_mmap(addr: 0, len: 99310, prot: 1, flags: 802, fd: 3, off: 0)
+            sudo-61875   [000] ..... 14555.555751: sys_mmap -> 0x747d35766000
+            sudo-61875   [000] ..... 14555.555751: sys_mmap(addr: 747d35768000, len: 6e000, prot: 5, flags: 812, fd: 3, off: 2000)
+            sudo-61875   [000] ..... 14555.555759: sys_mmap -> 0x747d35768000
+            sudo-61875   [000] ..... 14555.555759: sys_mmap(addr: 747d357d6000, len: 28000, prot: 1, flags: 812, fd: 3, off: 70000)
+            sudo-61875   [000] ..... 14555.555764: sys_mmap -> 0x747d357d6000
+            sudo-61875   [000] ..... 14555.555764: sys_mmap(addr: 747d357fe000, len: 2000, prot: 3, flags: 812, fd: 3, off: 97000)
+            sudo-61875   [000] ..... 14555.555769: sys_mmap -> 0x747d357fe000
+            sudo-61875   [000] ..... 14555.555795: sys_mmap(addr: 0, len: 513bd0, prot: 1, flags: 802, fd: 3, off: 0)
+            sudo-61875   [000] ..... 14555.555798: sys_mmap -> 0x747d35200000
+            sudo-61875   [000] ..... 14555.555798: sys_mmap(addr: 747d352b3000, len: 334000, prot: 5, flags: 812, fd: 3, off: b3000)
+            sudo-61875   [000] ..... 14555.555808: sys_mmap -> 0x747d352b3000
+            sudo-61875   [000] ..... 14555.555809: sys_mmap(addr: 747d355e7000, len: cb000, prot: 1, flags: 812, fd: 3, off: 3e7000)
+            sudo-61875   [000] ..... 14555.555814: sys_mmap -> 0x747d355e7000
+            sudo-61875   [000] ..... 14555.555814: sys_mmap(addr: 747d356b2000, len: 5f000, prot: 3, flags: 812, fd: 3, off: 4b1000)
+            sudo-61875   [000] ..... 14555.555820: sys_mmap -> 0x747d356b2000
+            sudo-61875   [000] ..... 14555.555824: sys_mmap(addr: 747d35711000, len: 2bd0, prot: 3, flags: 32, fd: ffffffff, off: 0)
+            sudo-61875   [000] ..... 14555.555827: sys_mmap -> 0x747d35711000
+            sudo-61875   [000] ..... 14555.555871: sys_mmap(addr: 0, len: 2000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+            sudo-61875   [000] ..... 14555.555875: sys_mmap -> 0x747d35aa9000
+            sudo-61875   [000] ..... 14555.556918: sys_mmap(addr: 0, len: 574500, prot: 1, flags: 2, fd: 3, off: 0)
+            sudo-61875   [000] ..... 14555.556923: sys_mmap -> 0x747d34c00000
+            sudo-61875   [000] ..... 14555.557667: sys_mmap(addr: 0, len: 8f788, prot: 1, flags: 802, fd: 3, off: 0)
+            sudo-61875   [000] ..... 14555.557675: sys_mmap -> 0x747d35a19000
+            sudo-61875   [000] ..... 14555.557677: sys_mmap(addr: 747d35a24000, len: 5e000, prot: 5, flags: 812, fd: 3, off: b000)
+            sudo-61875   [000] ..... 14555.557692: sys_mmap -> 0x747d35a24000
+            sudo-61875   [000] ..... 14555.557693: sys_mmap(addr: 747d35a82000, len: 20000, prot: 1, flags: 812, fd: 3, off: 69000)
+            sudo-61875   [000] ..... 14555.557697: sys_mmap -> 0x747d35a82000
+            sudo-61875   [000] ..... 14555.557698: sys_mmap(addr: 747d35aa2000, len: 7000, prot: 3, flags: 812, fd: 3, off: 89000)
+            sudo-61875   [000] ..... 14555.557702: sys_mmap -> 0x747d35aa2000
+            sudo-61875   [000] ..... 14555.557734: sys_mmap(addr: 0, len: 1fb3f, prot: 1, flags: 2, fd: 3, off: 0)
+            sudo-61875   [000] ..... 14555.557737: sys_mmap -> 0x747d35b46000
+            sudo-61875   [000] ..... 14555.557755: sys_mmap(addr: 0, len: 10010, prot: 1, flags: 802, fd: 3, off: 0)
+            sudo-61875   [000] ..... 14555.557759: sys_mmap -> 0x747d35755000
+            sudo-61875   [000] ..... 14555.557759: sys_mmap(addr: 747d35758000, len: 9000, prot: 5, flags: 812, fd: 3, off: 3000)
+            sudo-61875   [000] ..... 14555.557768: sys_mmap -> 0x747d35758000
+            sudo-61875   [000] ..... 14555.557769: sys_mmap(addr: 747d35761000, len: 3000, prot: 1, flags: 812, fd: 3, off: c000)
+            sudo-61875   [000] ..... 14555.557774: sys_mmap -> 0x747d35761000
+            sudo-61875   [000] ..... 14555.557774: sys_mmap(addr: 747d35764000, len: 2000, prot: 3, flags: 812, fd: 3, off: f000)
+            sudo-61875   [000] ..... 14555.557778: sys_mmap -> 0x747d35764000
+            sudo-61875   [000] ..... 14555.557801: sys_mmap(addr: 0, len: a9870, prot: 1, flags: 802, fd: 3, off: 0)
+            sudo-61875   [000] ..... 14555.557805: sys_mmap -> 0x747d34b56000
+            sudo-61875   [000] ..... 14555.557805: sys_mmap(addr: 747d34b74000, len: 62000, prot: 5, flags: 812, fd: 3, off: 1e000)
+            sudo-61875   [000] ..... 14555.557815: sys_mmap -> 0x747d34b74000
+            sudo-61875   [000] ..... 14555.557815: sys_mmap(addr: 747d34bd6000, len: 1c000, prot: 1, flags: 812, fd: 3, off: 80000)
+            sudo-61875   [000] ..... 14555.557819: sys_mmap -> 0x747d34bd6000
+            sudo-61875   [000] ..... 14555.557820: sys_mmap(addr: 747d34bf2000, len: e000, prot: 3, flags: 812, fd: 3, off: 9c000)
+            sudo-61875   [000] ..... 14555.557825: sys_mmap -> 0x747d34bf2000
+            sudo-61875   [000] ..... 14555.557853: sys_mmap(addr: 0, len: 1b098, prot: 1, flags: 802, fd: 3, off: 0)
+            sudo-61875   [000] ..... 14555.557856: sys_mmap -> 0x747d35739000
+            sudo-61875   [000] ..... 14555.557857: sys_mmap(addr: 747d3573b000, len: 12000, prot: 5, flags: 812, fd: 3, off: 2000)
+            sudo-61875   [000] ..... 14555.557867: sys_mmap -> 0x747d3573b000
+            sudo-61875   [000] ..... 14555.557868: sys_mmap(addr: 747d3574d000, len: 6000, prot: 1, flags: 812, fd: 3, off: 14000)
+            sudo-61875   [000] ..... 14555.557873: sys_mmap -> 0x747d3574d000
+            sudo-61875   [000] ..... 14555.557873: sys_mmap(addr: 747d35753000, len: 2000, prot: 3, flags: 812, fd: 3, off: 1a000)
+            sudo-61875   [000] ..... 14555.557877: sys_mmap -> 0x747d35753000
+            sudo-61875   [004] ..... 14555.559122: sys_mmap(addr: 0, len: 41000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+            sudo-61875   [004] ..... 14555.559139: sys_mmap -> 0x747d351bf000
+            sudo-61875   [004] ..... 14555.559145: sys_mmap(addr: 0, len: 41000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+            sudo-61875   [004] ..... 14555.559149: sys_mmap -> 0x747d3517e000
+            sudo-61875   [004] ..... 14555.559222: sys_mmap(addr: 0, len: 1fb3f, prot: 1, flags: 2, fd: 6, off: 0)
+            sudo-61875   [004] ..... 14555.559229: sys_mmap -> 0x747d35b46000
+            sudo-61875   [004] ..... 14555.559255: sys_mmap(addr: 0, len: 5ba30, prot: 1, flags: 802, fd: 6, off: 0)
+            sudo-61875   [004] ..... 14555.559259: sys_mmap -> 0x747d34afa000
+            sudo-61875   [004] ..... 14555.559260: sys_mmap(addr: 747d34b02000, len: 3f000, prot: 5, flags: 812, fd: 6, off: 8000)
+            sudo-61875   [004] ..... 14555.559275: sys_mmap -> 0x747d34b02000
+            sudo-61875   [004] ..... 14555.559275: sys_mmap(addr: 747d34b41000, len: 10000, prot: 1, flags: 812, fd: 6, off: 47000)
+            sudo-61875   [004] ..... 14555.559280: sys_mmap -> 0x747d34b41000
+            sudo-61875   [004] ..... 14555.559281: sys_mmap(addr: 747d34b51000, len: 5000, prot: 3, flags: 812, fd: 6, off: 56000)
+            sudo-61875   [004] ..... 14555.559285: sys_mmap -> 0x747d34b51000
+            sudo-61875   [004] ..... 14555.559314: sys_mmap(addr: 0, len: c048, prot: 1, flags: 802, fd: 6, off: 0)
+            sudo-61875   [004] ..... 14555.559319: sys_mmap -> 0x747d3572c000
+            sudo-61875   [004] ..... 14555.559319: sys_mmap(addr: 747d3572f000, len: 6000, prot: 5, flags: 812, fd: 6, off: 3000)
+            sudo-61875   [004] ..... 14555.559329: sys_mmap -> 0x747d3572f000
+            sudo-61875   [004] ..... 14555.559329: sys_mmap(addr: 747d35735000, len: 2000, prot: 1, flags: 812, fd: 6, off: 9000)
+            sudo-61875   [004] ..... 14555.559335: sys_mmap -> 0x747d35735000
+            sudo-61875   [004] ..... 14555.559335: sys_mmap(addr: 747d35737000, len: 2000, prot: 3, flags: 812, fd: 6, off: b000)
+            sudo-61875   [004] ..... 14555.559339: sys_mmap -> 0x747d35737000
+            sudo-61875   [004] ..... 14555.559359: sys_mmap(addr: 0, len: e8018, prot: 1, flags: 802, fd: 6, off: 0)
+            sudo-61875   [004] ..... 14555.559362: sys_mmap -> 0x747d34a11000
+            sudo-61875   [004] ..... 14555.559362: sys_mmap(addr: 747d34a21000, len: 7f000, prot: 5, flags: 812, fd: 6, off: 10000)
+            sudo-61875   [004] ..... 14555.559372: sys_mmap -> 0x747d34a21000
+            sudo-61875   [004] ..... 14555.559372: sys_mmap(addr: 747d34aa0000, len: 58000, prot: 1, flags: 812, fd: 6, off: 8f000)
+            sudo-61875   [004] ..... 14555.559382: sys_mmap -> 0x747d34aa0000
+            sudo-61875   [004] ..... 14555.559382: sys_mmap(addr: 747d34af8000, len: 2000, prot: 3, flags: 812, fd: 6, off: e7000)
+            sudo-61875   [004] ..... 14555.559386: sys_mmap -> 0x747d34af8000
+            sudo-61875   [004] ..... 14555.559634: sys_mmap(addr: 0, len: 1fb3f, prot: 1, flags: 2, fd: 6, off: 0)
+            sudo-61875   [004] ..... 14555.559638: sys_mmap -> 0x747d35b46000
+            sudo-61875   [004] ..... 14555.559655: sys_mmap(addr: 0, len: d468, prot: 1, flags: 802, fd: 6, off: 0)
+            sudo-61875   [004] ..... 14555.559660: sys_mmap -> 0x747d3571e000
+            sudo-61875   [004] ..... 14555.559661: sys_mmap(addr: 747d35720000, len: 8000, prot: 5, flags: 812, fd: 6, off: 2000)
+            sudo-61875   [004] ..... 14555.559671: sys_mmap -> 0x747d35720000
+            sudo-61875   [004] ..... 14555.559671: sys_mmap(addr: 747d35728000, len: 2000, prot: 1, flags: 812, fd: 6, off: a000)
+            sudo-61875   [004] ..... 14555.559676: sys_mmap -> 0x747d35728000
+            sudo-61875   [004] ..... 14555.559676: sys_mmap(addr: 747d3572a000, len: 2000, prot: 3, flags: 812, fd: 6, off: b000)
+            sudo-61875   [004] ..... 14555.559680: sys_mmap -> 0x747d3572a000
+            sudo-61875   [004] ..... 14555.560241: sys_mmap(addr: 0, len: 8010, prot: 1, flags: 802, fd: 7, off: 0)
+            sudo-61875   [004] ..... 14555.560246: sys_mmap -> 0x747d35b5d000
+            sudo-61875   [004] ..... 14555.560246: sys_mmap(addr: 747d35b5f000, len: 4000, prot: 5, flags: 812, fd: 7, off: 2000)
+            sudo-61875   [004] ..... 14555.560253: sys_mmap -> 0x747d35b5f000
+            sudo-61875   [004] ..... 14555.560253: sys_mmap(addr: 747d35b63000, len: 1000, prot: 1, flags: 812, fd: 7, off: 6000)
+            sudo-61875   [004] ..... 14555.560262: sys_mmap -> 0x747d35b63000
+            sudo-61875   [004] ..... 14555.560263: sys_mmap(addr: 747d35b64000, len: 2000, prot: 3, flags: 812, fd: 7, off: 6000)
+            sudo-61875   [004] ..... 14555.560267: sys_mmap -> 0x747d35b64000
+            sudo-61875   [004] ..... 14555.560330: sys_mmap(addr: 0, len: 5010, prot: 1, flags: 802, fd: 7, off: 0)
+            sudo-61875   [004] ..... 14555.560333: sys_mmap -> 0x747d35b57000
+            sudo-61875   [004] ..... 14555.560334: sys_mmap(addr: 747d35b58000, len: 2000, prot: 5, flags: 812, fd: 7, off: 1000)
+            sudo-61875   [004] ..... 14555.560338: sys_mmap -> 0x747d35b58000
+            sudo-61875   [004] ..... 14555.560339: sys_mmap(addr: 747d35b5a000, len: 1000, prot: 1, flags: 812, fd: 7, off: 3000)
+            sudo-61875   [004] ..... 14555.560343: sys_mmap -> 0x747d35b5a000
+            sudo-61875   [004] ..... 14555.560343: sys_mmap(addr: 747d35b5b000, len: 2000, prot: 3, flags: 812, fd: 7, off: 3000)
+            sudo-61875   [004] ..... 14555.560347: sys_mmap -> 0x747d35b5b000
+            sudo-61875   [004] ..... 14555.560403: sys_mmap(addr: 0, len: 1a068, prot: 1, flags: 802, fd: 8, off: 0)
+            sudo-61875   [004] ..... 14555.560406: sys_mmap -> 0x747d351e5000
+            sudo-61875   [004] ..... 14555.560406: sys_mmap(addr: 747d351e8000, len: 8000, prot: 5, flags: 812, fd: 8, off: 3000)
+            sudo-61875   [004] ..... 14555.560411: sys_mmap -> 0x747d351e8000
+            sudo-61875   [004] ..... 14555.560411: sys_mmap(addr: 747d351f0000, len: 2000, prot: 1, flags: 812, fd: 8, off: b000)
+            sudo-61875   [004] ..... 14555.560417: sys_mmap -> 0x747d351f0000
+            sudo-61875   [004] ..... 14555.560418: sys_mmap(addr: 747d351f2000, len: 2000, prot: 3, flags: 812, fd: 8, off: d000)
+            sudo-61875   [004] ..... 14555.560422: sys_mmap -> 0x747d351f2000
+            sudo-61875   [004] ..... 14555.560426: sys_mmap(addr: 747d351f4000, len: b068, prot: 3, flags: 32, fd: ffffffff, off: 0)
+            sudo-61875   [004] ..... 14555.560429: sys_mmap -> 0x747d351f4000
+            sudo-61875   [004] ..... 14555.560448: sys_mmap(addr: 0, len: 1fb3f, prot: 1, flags: 2, fd: 8, off: 0)
+            sudo-61875   [004] ..... 14555.560452: sys_mmap -> 0x747d351c5000
+            sudo-61875   [004] ..... 14555.560470: sys_mmap(addr: 0, len: 391a0, prot: 1, flags: 802, fd: 8, off: 0)
+            sudo-61875   [004] ..... 14555.560474: sys_mmap -> 0x747d3518b000
+            sudo-61875   [004] ..... 14555.560475: sys_mmap(addr: 747d3518d000, len: 15000, prot: 5, flags: 812, fd: 8, off: 2000)
+            sudo-61875   [004] ..... 14555.560485: sys_mmap -> 0x747d3518d000
+            sudo-61875   [004] ..... 14555.560485: sys_mmap(addr: 747d351a2000, len: 19000, prot: 1, flags: 812, fd: 8, off: 17000)
+            sudo-61875   [004] ..... 14555.560490: sys_mmap -> 0x747d351a2000
+            sudo-61875   [004] ..... 14555.560490: sys_mmap(addr: 747d351bb000, len: 2000, prot: 3, flags: 812, fd: 8, off: 2f000)
+            sudo-61875   [004] ..... 14555.560495: sys_mmap -> 0x747d351bb000
+            sudo-61875   [004] ..... 14555.560499: sys_mmap(addr: 747d351bd000, len: 71a0, prot: 3, flags: 32, fd: ffffffff, off: 0)
+            sudo-61875   [004] ..... 14555.560502: sys_mmap -> 0x747d351bd000
+            sudo-61875   [004] ..... 14555.560606: sys_mmap(addr: 0, len: 10320, prot: 1, flags: 802, fd: 8, off: 0)
+            sudo-61875   [004] ..... 14555.560609: sys_mmap -> 0x747d35b46000
+            sudo-61875   [004] ..... 14555.560610: sys_mmap(addr: 747d35b49000, len: a000, prot: 5, flags: 812, fd: 8, off: 3000)
+            sudo-61875   [004] ..... 14555.560618: sys_mmap -> 0x747d35b49000
+            sudo-61875   [004] ..... 14555.560619: sys_mmap(addr: 747d35b53000, len: 2000, prot: 1, flags: 812, fd: 8, off: d000)
+            sudo-61875   [004] ..... 14555.560622: sys_mmap -> 0x747d35b53000
+            sudo-61875   [004] ..... 14555.560623: sys_mmap(addr: 747d35b55000, len: 2000, prot: 3, flags: 812, fd: 8, off: e000)
+            sudo-61875   [004] ..... 14555.560626: sys_mmap -> 0x747d35b55000
+            sudo-61875   [004] ..... 14555.560685: sys_mmap(addr: 0, len: 4010, prot: 1, flags: 802, fd: 8, off: 0)
+            sudo-61875   [004] ..... 14555.560692: sys_mmap -> 0x747d35a14000
+            sudo-61875   [004] ..... 14555.560692: sys_mmap(addr: 747d35a15000, len: 1000, prot: 5, flags: 812, fd: 8, off: 1000)
+            sudo-61875   [004] ..... 14555.560696: sys_mmap -> 0x747d35a15000
+            sudo-61875   [004] ..... 14555.560697: sys_mmap(addr: 747d35a16000, len: 1000, prot: 1, flags: 812, fd: 8, off: 2000)
+            sudo-61875   [004] ..... 14555.560700: sys_mmap -> 0x747d35a16000
+            sudo-61875   [004] ..... 14555.560701: sys_mmap(addr: 747d35a17000, len: 2000, prot: 3, flags: 812, fd: 8, off: 2000)
+            sudo-61875   [004] ..... 14555.560704: sys_mmap -> 0x747d35a17000
+            sudo-61875   [004] ..... 14555.560731: sys_mmap(addr: 0, len: 4010, prot: 1, flags: 802, fd: 8, off: 0)
+            sudo-61875   [004] ..... 14555.560737: sys_mmap -> 0x747d35719000
+            sudo-61875   [004] ..... 14555.560738: sys_mmap(addr: 747d3571a000, len: 1000, prot: 5, flags: 812, fd: 8, off: 1000)
+            sudo-61875   [004] ..... 14555.560742: sys_mmap -> 0x747d3571a000
+            sudo-61875   [004] ..... 14555.560742: sys_mmap(addr: 747d3571b000, len: 1000, prot: 1, flags: 812, fd: 8, off: 2000)
+            sudo-61875   [004] ..... 14555.560746: sys_mmap -> 0x747d3571b000
+            sudo-61875   [004] ..... 14555.560746: sys_mmap(addr: 747d3571c000, len: 2000, prot: 3, flags: 812, fd: 8, off: 2000)
+            sudo-61875   [004] ..... 14555.560750: sys_mmap -> 0x747d3571c000
+            sudo-61875   [004] ..... 14555.560790: sys_mmap(addr: 0, len: 5010, prot: 1, flags: 802, fd: 8, off: 0)
+            sudo-61875   [004] ..... 14555.560793: sys_mmap -> 0x747d351df000
+            sudo-61875   [004] ..... 14555.560794: sys_mmap(addr: 747d351e0000, len: 2000, prot: 5, flags: 812, fd: 8, off: 1000)
+            sudo-61875   [004] ..... 14555.560803: sys_mmap -> 0x747d351e0000
+            sudo-61875   [004] ..... 14555.560803: sys_mmap(addr: 747d351e2000, len: 1000, prot: 1, flags: 812, fd: 8, off: 3000)
+            sudo-61875   [004] ..... 14555.560807: sys_mmap -> 0x747d351e2000
+            sudo-61875   [004] ..... 14555.560807: sys_mmap(addr: 747d351e3000, len: 2000, prot: 3, flags: 812, fd: 8, off: 3000)
+            sudo-61875   [004] ..... 14555.560810: sys_mmap -> 0x747d351e3000
+            sudo-61875   [004] ..... 14555.560871: sys_mmap(addr: 0, len: 4010, prot: 1, flags: 802, fd: 8, off: 0)
+            sudo-61875   [004] ..... 14555.560874: sys_mmap -> 0x747d35714000
+            sudo-61875   [004] ..... 14555.560875: sys_mmap(addr: 747d35715000, len: 1000, prot: 5, flags: 812, fd: 8, off: 1000)
+            sudo-61875   [004] ..... 14555.560884: sys_mmap -> 0x747d35715000
+            sudo-61875   [004] ..... 14555.560884: sys_mmap(addr: 747d35716000, len: 1000, prot: 1, flags: 812, fd: 8, off: 2000)
+            sudo-61875   [004] ..... 14555.560888: sys_mmap -> 0x747d35716000
+            sudo-61875   [004] ..... 14555.560888: sys_mmap(addr: 747d35717000, len: 2000, prot: 3, flags: 812, fd: 8, off: 2000)
+            sudo-61875   [004] ..... 14555.560892: sys_mmap -> 0x747d35717000
+            sudo-61875   [004] ..... 14555.560943: sys_mmap(addr: 0, len: 4010, prot: 1, flags: 802, fd: 8, off: 0)
+            sudo-61875   [004] ..... 14555.560946: sys_mmap -> 0x747d351da000
+            sudo-61875   [004] ..... 14555.560946: sys_mmap(addr: 747d351db000, len: 1000, prot: 5, flags: 812, fd: 8, off: 1000)
+            sudo-61875   [004] ..... 14555.560953: sys_mmap -> 0x747d351db000
+            sudo-61875   [004] ..... 14555.560954: sys_mmap(addr: 747d351dc000, len: 1000, prot: 1, flags: 812, fd: 8, off: 2000)
+            sudo-61875   [004] ..... 14555.560957: sys_mmap -> 0x747d351dc000
+            sudo-61875   [004] ..... 14555.560958: sys_mmap(addr: 747d351dd000, len: 2000, prot: 3, flags: 812, fd: 8, off: 2000)
+            sudo-61875   [004] ..... 14555.560961: sys_mmap -> 0x747d351dd000
+            sudo-61875   [004] ..... 14555.561062: sys_mmap(addr: 0, len: 4010, prot: 1, flags: 802, fd: 8, off: 0)
+            sudo-61875   [004] ..... 14555.561068: sys_mmap -> 0x747d351d5000
+            sudo-61875   [004] ..... 14555.561069: sys_mmap(addr: 747d351d6000, len: 1000, prot: 5, flags: 812, fd: 8, off: 1000)
+            sudo-61875   [004] ..... 14555.561073: sys_mmap -> 0x747d351d6000
+            sudo-61875   [004] ..... 14555.561073: sys_mmap(addr: 747d351d7000, len: 1000, prot: 1, flags: 812, fd: 8, off: 2000)
+            sudo-61875   [004] ..... 14555.561076: sys_mmap -> 0x747d351d7000
+            sudo-61875   [004] ..... 14555.561077: sys_mmap(addr: 747d351d8000, len: 2000, prot: 3, flags: 812, fd: 8, off: 2000)
+            sudo-61875   [004] ..... 14555.561080: sys_mmap -> 0x747d351d8000
+            sudo-61875   [004] ..... 14555.561101: sys_mmap(addr: 0, len: 1fb3f, prot: 1, flags: 2, fd: 8, off: 0)
+            sudo-61875   [004] ..... 14555.561109: sys_mmap -> 0x747d349f1000
+            sudo-61875   [004] ..... 14555.561132: sys_mmap(addr: 0, len: 7140, prot: 1, flags: 802, fd: 8, off: 0)
+            sudo-61875   [004] ..... 14555.561136: sys_mmap -> 0x747d351cd000
+            sudo-61875   [004] ..... 14555.561137: sys_mmap(addr: 747d351cf000, len: 3000, prot: 5, flags: 812, fd: 8, off: 2000)
+            sudo-61875   [004] ..... 14555.561142: sys_mmap -> 0x747d351cf000
+            sudo-61875   [004] ..... 14555.561143: sys_mmap(addr: 747d351d2000, len: 1000, prot: 1, flags: 812, fd: 8, off: 5000)
+            sudo-61875   [004] ..... 14555.561147: sys_mmap -> 0x747d351d2000
+            sudo-61875   [004] ..... 14555.561147: sys_mmap(addr: 747d351d3000, len: 2000, prot: 3, flags: 812, fd: 8, off: 6000)
+            sudo-61875   [004] ..... 14555.561151: sys_mmap -> 0x747d351d3000
+            sudo-61875   [004] ..... 14555.561187: sys_mmap(addr: 0, len: f0b0, prot: 1, flags: 802, fd: 8, off: 0)
+            sudo-61875   [004] ..... 14555.561191: sys_mmap -> 0x747d3517b000
+            sudo-61875   [004] ..... 14555.561191: sys_mmap(addr: 747d3517f000, len: 4000, prot: 5, flags: 812, fd: 8, off: 4000)
+            sudo-61875   [004] ..... 14555.561199: sys_mmap -> 0x747d3517f000
+            sudo-61875   [004] ..... 14555.561200: sys_mmap(addr: 747d35183000, len: 2000, prot: 1, flags: 812, fd: 8, off: 8000)
+            sudo-61875   [004] ..... 14555.561203: sys_mmap -> 0x747d35183000
+            sudo-61875   [004] ..... 14555.561203: sys_mmap(addr: 747d35185000, len: 2000, prot: 3, flags: 812, fd: 8, off: a000)
+            sudo-61875   [004] ..... 14555.561207: sys_mmap -> 0x747d35185000
+            sudo-61875   [004] ..... 14555.561211: sys_mmap(addr: 747d35187000, len: 30b0, prot: 3, flags: 32, fd: ffffffff, off: 0)
+            sudo-61875   [004] ..... 14555.561214: sys_mmap -> 0x747d35187000
+            sudo-61875   [004] ..... 14555.561363: sys_mmap(addr: 0, len: 7010, prot: 1, flags: 802, fd: 8, off: 0)
+            sudo-61875   [004] ..... 14555.561366: sys_mmap -> 0x747d351c5000
+            sudo-61875   [004] ..... 14555.561366: sys_mmap(addr: 747d351c7000, len: 3000, prot: 5, flags: 812, fd: 8, off: 2000)
+            sudo-61875   [004] ..... 14555.561371: sys_mmap -> 0x747d351c7000
+            sudo-61875   [004] ..... 14555.561371: sys_mmap(addr: 747d351ca000, len: 1000, prot: 1, flags: 812, fd: 8, off: 5000)
+            sudo-61875   [004] ..... 14555.561375: sys_mmap -> 0x747d351ca000
+            sudo-61875   [004] ..... 14555.561375: sys_mmap(addr: 747d351cb000, len: 2000, prot: 3, flags: 812, fd: 8, off: 6000)
+            sudo-61875   [004] ..... 14555.561378: sys_mmap -> 0x747d351cb000
+            sudo-61875   [004] ..... 14555.561457: sys_mmap(addr: 0, len: 84398, prot: 1, flags: 802, fd: 8, off: 0)
+            sudo-61875   [004] ..... 14555.561461: sys_mmap -> 0x747d3498c000
+            sudo-61875   [004] ..... 14555.561461: sys_mmap(addr: 747d34997000, len: 5a000, prot: 5, flags: 812, fd: 8, off: b000)
+            sudo-61875   [004] ..... 14555.561469: sys_mmap -> 0x747d34997000
+            sudo-61875   [004] ..... 14555.561470: sys_mmap(addr: 747d349f1000, len: 18000, prot: 1, flags: 812, fd: 8, off: 65000)
+            sudo-61875   [004] ..... 14555.561474: sys_mmap -> 0x747d349f1000
+            sudo-61875   [004] ..... 14555.561475: sys_mmap(addr: 747d34a09000, len: 7000, prot: 3, flags: 812, fd: 8, off: 7c000)
+            sudo-61875   [004] ..... 14555.561482: sys_mmap -> 0x747d34a09000
+            sudo-61875   [004] ..... 14555.561486: sys_mmap(addr: 747d34a10000, len: 398, prot: 3, flags: 32, fd: ffffffff, off: 0)
+            sudo-61875   [004] ..... 14555.561489: sys_mmap -> 0x747d34a10000
+            sudo-61875   [004] ..... 14555.561509: sys_mmap(addr: 0, len: 1fb3f, prot: 1, flags: 2, fd: 8, off: 0)
+            sudo-61875   [004] ..... 14555.561513: sys_mmap -> 0x747d3496c000
+            sudo-61875   [004] ..... 14555.561536: sys_mmap(addr: 0, len: 6050, prot: 1, flags: 802, fd: 8, off: 0)
+            sudo-61875   [004] ..... 14555.561539: sys_mmap -> 0x747d34965000
+            sudo-61875   [004] ..... 14555.561540: sys_mmap(addr: 747d34967000, len: 2000, prot: 5, flags: 812, fd: 8, off: 2000)
+            sudo-61875   [004] ..... 14555.561549: sys_mmap -> 0x747d34967000
+            sudo-61875   [004] ..... 14555.561550: sys_mmap(addr: 747d34969000, len: 1000, prot: 1, flags: 812, fd: 8, off: 4000)
+            sudo-61875   [004] ..... 14555.561553: sys_mmap -> 0x747d34969000
+            sudo-61875   [004] ..... 14555.561554: sys_mmap(addr: 747d3496a000, len: 2000, prot: 3, flags: 812, fd: 8, off: 4000)
+            sudo-61875   [004] ..... 14555.561557: sys_mmap -> 0x747d3496a000
+            sudo-61875   [004] ..... 14555.562914: sys_mmap(addr: 0, len: 6994, prot: 1, flags: 1, fd: e, off: 0)
+            sudo-61875   [004] ..... 14555.562924: sys_mmap -> 0x747d34985000
+             tee-61878   [012] ..... 14555.564875: sys_mmap(addr: 0, len: 2000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+             tee-61878   [012] ..... 14555.564885: sys_mmap -> 0x7738d8656000
+             tee-61878   [012] ..... 14555.564919: sys_mmap(addr: 0, len: 1fb3f, prot: 1, flags: 2, fd: 3, off: 0)
+             tee-61878   [012] ..... 14555.564925: sys_mmap -> 0x7738d8636000
+             tee-61878   [012] ..... 14555.564954: sys_mmap(addr: 0, len: 212d90, prot: 1, flags: 802, fd: 3, off: 0)
+             tee-61878   [012] ..... 14555.564960: sys_mmap -> 0x7738d8400000
+             tee-61878   [012] ..... 14555.564960: sys_mmap(addr: 7738d8428000, len: 189000, prot: 5, flags: 812, fd: 3, off: 28000)
+             tee-61878   [012] ..... 14555.564973: sys_mmap -> 0x7738d8428000
+             tee-61878   [012] ..... 14555.564974: sys_mmap(addr: 7738d85b1000, len: 4f000, prot: 1, flags: 812, fd: 3, off: 1b1000)
+             tee-61878   [012] ..... 14555.564982: sys_mmap -> 0x7738d85b1000
+             tee-61878   [012] ..... 14555.564982: sys_mmap(addr: 7738d8600000, len: 6000, prot: 3, flags: 812, fd: 3, off: 1ff000)
+             tee-61878   [012] ..... 14555.564991: sys_mmap -> 0x7738d8600000
+             tee-61878   [012] ..... 14555.564999: sys_mmap(addr: 7738d8606000, len: cd90, prot: 3, flags: 32, fd: ffffffff, off: 0)
+             tee-61878   [012] ..... 14555.565004: sys_mmap -> 0x7738d8606000
+             tee-61878   [012] ..... 14555.565031: sys_mmap(addr: 0, len: 3000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+             tee-61878   [012] ..... 14555.565040: sys_mmap -> 0x7738d8633000
+             tee-61878   [012] ..... 14555.565293: sys_mmap(addr: 0, len: 574500, prot: 1, flags: 2, fd: 3, off: 0)
+             tee-61878   [012] ..... 14555.565300: sys_mmap -> 0x7738d7e00000
+             tee-61878   [012] ..... 14555.565483: sys_mmap(addr: 0, len: 265, prot: 1, flags: 2, fd: 3, off: 0)
+             tee-61878   [012] ..... 14555.565495: sys_mmap -> 0x7738d8655000

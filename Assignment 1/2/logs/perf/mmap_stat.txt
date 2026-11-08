@@ -1,0 +1,12 @@
+
+ Performance counter stats for 'setpriv --reuid=1000 --regid=1000 --init-groups -- ./src/program':
+
+                41      syscalls:sys_enter_mmap                                               
+                41      syscalls:sys_exit_mmap                                                
+
+       0.008515857 seconds time elapsed
+
+       0.001835000 seconds user
+       0.004589000 seconds sys
+
+

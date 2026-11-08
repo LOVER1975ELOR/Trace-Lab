@@ -1,0 +1,24 @@
+=== Lab 2: mmap Without PID Filter ===
+Enabled events:
+syscalls:sys_exit_mmap
+syscalls:sys_enter_mmap
+
+PID filter (should be empty):
+
+Starting tracing...
+
+Program exit code: 0
+
+sys_enter_mmap count:
+0
+sys_exit_mmap count:
+0
+
+First mmap events:
+
+Program output:
+Memory mapped at address: 0x77026dee0000
+First byte of memory: A
+
+Trace saved: logs/ftrace/11_mmap_no_pid_filter.trace
+Temporary instance removed.

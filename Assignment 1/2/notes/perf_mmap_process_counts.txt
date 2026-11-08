@@ -1,0 +1,4 @@
+      9 program enter
+      9 program exit
+     32 setpriv enter
+     32 setpriv exit

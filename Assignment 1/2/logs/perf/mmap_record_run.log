@@ -1,0 +1,16 @@
+==================================
+Lab 2 - Perf Memory Recording
+==================================
+Date: 2026-11-05T15:59:38+03:30
+Kernel: 6.17.0-40-generic
+Events: syscalls:sys_enter_mmap,syscalls:sys_exit_mmap,kmem:kmalloc,kmem:kmem_cache_alloc,kmem:mm_page_alloc,kmem:rss_stat
+
+[1/2] Recording events...
+Perf recording: SUCCESS
+[2/2] Exporting perf script...
+
+Recording completed.
+Data: logs/perf/mmap_memory.data
+Script: logs/perf/mmap_memory_script.txt
+-rw------- 1 root root 458K Nov  5 15:59 logs/perf/mmap_memory.data
+28009 logs/perf/mmap_memory_script.txt

@@ -1,0 +1,16 @@
+=== ftrace Instance Capability Check ===
+Kernel: 6.17.0-40-generic
+Main tracer: nop
+
+[AVAILABLE] current_tracer
+[AVAILABLE] available_tracers
+[MISSING]   set_graph_function
+[AVAILABLE] set_ftrace_pid
+[AVAILABLE] set_event_pid
+[AVAILABLE] tracing_on
+[AVAILABLE] trace
+[AVAILABLE] events/syscalls/sys_enter_mmap/enable
+
+Capability check completed.
+
+Removing temporary instance...

@@ -1,0 +1,4 @@
+[12:56:04.266338115] (+0.000031626) elor-IdeaPad-Slim-3-15IRH10 sched_process_exit: { cpu_id = 10 }, { vpid = 8748, vtid = 8748, procname = "stress-ng-matri", prio = 20 }, { comm = "stress-ng-matri", tid = 8748, prio = 20, group_dead = 1 }
+[12:56:04.267110360] (+0.000509398) elor-IdeaPad-Slim-3-15IRH10 sched_process_exit: { cpu_id = 3 }, { vpid = 8749, vtid = 8749, procname = "stress-ng-matri", prio = 20 }, { comm = "stress-ng-matri", tid = 8749, prio = 20, group_dead = 1 }
+[12:56:04.267404173] (+0.000000168) elor-IdeaPad-Slim-3-15IRH10 sched_process_exit: { cpu_id = 4 }, { vpid = 8750, vtid = 8750, procname = "stress-ng-matri", prio = 20 }, { comm = "stress-ng-matri", tid = 8750, prio = 20, group_dead = 1 }
+[12:56:04.267548280] (+0.000013409) elor-IdeaPad-Slim-3-15IRH10 sched_process_exit: { cpu_id = 6 }, { vpid = 8747, vtid = 8747, procname = "stress-ng-matri", prio = 20 }, { comm = "stress-ng-matri", tid = 8747, prio = 20, group_dead = 1 }

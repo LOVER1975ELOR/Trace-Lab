@@ -1,0 +1,34 @@
+Worker Scheduler State Analysis
+=======================================================
+
+Worker TID: 8747
+Schedule-ins: 85
+Schedule-outs: 85
+Previous states: {0: 82, 1: 2, 32: 1}
+Waking events: 2
+Wakeup events: 2
+Wakeup-new events: 1
+
+Worker TID: 8748
+Schedule-ins: 14
+Schedule-outs: 14
+Previous states: {0: 11, 1: 2, 32: 1}
+Waking events: 2
+Wakeup events: 2
+Wakeup-new events: 1
+
+Worker TID: 8749
+Schedule-ins: 36
+Schedule-outs: 36
+Previous states: {0: 33, 1: 2, 32: 1}
+Waking events: 2
+Wakeup events: 2
+Wakeup-new events: 1
+
+Worker TID: 8750
+Schedule-ins: 34
+Schedule-outs: 34
+Previous states: {0: 31, 1: 2, 32: 1}
+Waking events: 2
+Wakeup events: 2
+Wakeup-new events: 1

@@ -1,0 +1,134 @@
+LAB 3 - SUBMISSION CONTENTS AND REPRODUCTION
+
+Name: Mahdi Davoodzadeh
+SN: 405725536
+
+Start with Lab_3_Futex_Deadlock_Tracing_Report.pdf. Its two appendices contain
+the complete original 8-second and 30-second program outputs (66 lines each).
+
+Contents
+  src/deadlock_m: supplied precompiled x86-64 executable.
+  scripts/: all seven original preparation, recording, and analysis scripts.
+  logs/baseline/: initial execution, original output, and exit status.
+  logs/perf/: futex/scheduler counters, program output, and run log.
+  logs/lttng/: recording logs, program outputs, 8-second Babeltrace export,
+              and both complete user-readable CTF traces.
+  notes/: configuration, thread identification, address analysis, and checks.
+  LICENSE: license from the assignment repository for the supplied executable.
+  SHA256SUMS: checksums of every other packaged file.
+
+Verify the archive
+  From the extracted lab3 directory:
+
+    sha256sum -c SHA256SUMS
+
+Reopen the original recordings in Trace Compass
+  Import these directories as separate LTTng kernel traces:
+
+    logs/lttng/04_futex_trace_gui/kernel/
+    logs/lttng/07_futex_30s_trace_gui/kernel/
+
+  Each contains metadata, all 16 CPU streams, and their 16 stream indexes.
+  Keep the complete directory together when importing. The user-readable
+  copies contain the recorded trace data; duplicate root-owned directories
+  are excluded from the archive.
+
+  Open Views > Futex Contention Analysis > Uaddr vs Waiter and zoom out to
+  the full trace. Use a Trace Compass installation with Futex Contention
+  Analysis available, as in the report's screenshots.
+
+  Original 8-second recording:
+    Main PID: 112956. Worker TIDs: 112957 and 112958.
+    uaddr 94419365879872: early short waits; final long wait by 112958.
+    uaddr 94419365879936: final long wait by 112957.
+
+  Original 30-second recording:
+    Main PID: 127567. Worker TIDs: 127568 and 127569.
+    uaddr 95635432890432: early short waits; final long wait by 127569.
+    uaddr 95635432890496: final long wait by 127568.
+    The final waits overlap for approximately 23 seconds.
+
+  Read either trace without recording new events:
+
+    babeltrace logs/lttng/04_futex_trace_gui/kernel > /tmp/lab3-8s-events.txt
+    babeltrace logs/lttng/07_futex_30s_trace_gui/kernel > /tmp/lab3-30s-events.txt
+
+  Script 06 reproduces the saved address analysis for the original 8-second
+  export. Script 05 also checks the duplicate original trace directory, so
+  its archived output is supplied; during a fresh experiment, script 04
+  creates both directories required by script 05.
+
+Environment for a fresh experiment
+  Original system: Ubuntu 24.04.5 LTS, x86-64, kernel 6.17.0-40-generic,
+  perf 6.17.13, LTTng Tools 2.13 and compatible LTTng kernel modules.
+  The machine used LTTng Modules 2.13.23 built for this kernel in Lab 1.
+
+  Required tools: Bash, sudo, matching perf, lttng, Babeltrace (the babeltrace
+  command), binutils (nm), file, util-linux (setpriv), coreutils, grep, and awk.
+  TraceFS must be mounted at /sys/kernel/tracing. The required futex syscall
+  and scheduler tracepoints must be available. Confirm before recording:
+
+    uname -r
+    perf --version
+    lttng --version
+    sudo lttng list -k
+    findmnt /sys/kernel/tracing
+
+  Install the tools and kernel-compatible LTTng modules before running the
+  scripts. The toolchain and operating system are external prerequisites.
+  Run the scripts as your normal user with sudo access; they elevate the
+  tracing commands and run deadlock_m as the normal user.
+
+Preserve the submission and create a fresh run
+  From the extracted lab3 directory, in Bash:
+
+    lab3_package="$PWD"
+    lab3_rerun=$(mktemp -d "$lab3_package/../lab3-rerun-XXXXXX")
+    cp -a scripts src "$lab3_rerun/"
+    mkdir -p "$lab3_rerun/reference/Lab 3/src" "$lab3_rerun/logs/runs" "$lab3_rerun/notes"
+    cp "$lab3_package/src/deadlock_m" "$lab3_rerun/reference/Lab 3/src/deadlock_m"
+    cd "$lab3_rerun"
+    chmod u+x src/deadlock_m
+
+  This supplies the reference copy required by script 02's binary comparison.
+  The archive checksum verifies the original supplied executable. Script 01
+  is retained as the original repository-download/preparation record; the
+  packaged executable allows a fresh run to begin directly with script 02.
+
+Run the baseline, Perf, and both LTTng experiments
+  Continue in the same terminal and fresh directory:
+
+    (
+      set -euo pipefail
+      sudo -v
+      for lab3_script in scripts/02_*.sh scripts/03_*.sh scripts/04_*.sh scripts/05_*.sh scripts/07_*.sh; do
+        lab3_label=$(basename "$lab3_script" .sh)
+        bash "$lab3_script" 2>&1 | tee "logs/runs/${lab3_label}.log"
+      done
+    )
+
+  The baseline lasts up to 8 seconds, Perf up to 6 seconds, and the two LTTng
+  runs up to 8 and 30 seconds. Exit status 124 records timeout termination.
+  Scripts 04 and 07 stop and destroy their own LTTng sessions and retain
+  user-readable trace copies. Inspect each run log for successful completion.
+
+Analyze a fresh run
+  Import the two new GUI trace directories into Trace Compass. Obtain the
+  new PID and worker TIDs from sched_process_fork records mentioning
+  deadlock_m. Locate those worker TIDs in Uaddr vs Waiter to identify the
+  new futex addresses and compare the short and long wait intervals.
+
+  Script 06 has the ORIGINAL addresses in ADDR_A and ADDR_B. Update those two
+  variables in the fresh copy of scripts/06_analyze_futex_addresses.sh with
+  the addresses from the new 8-second trace, then run:
+
+    bash scripts/06_analyze_futex_addresses.sh
+
+  Fresh executions have their own PIDs, addresses, timing, and event counts.
+  Compare the behavior and relationships within each execution. The report
+  and saved analysis files describe the original captured executions.
+
+Packaging
+  Screenshots are embedded in the PDF. Markdown source, separate screenshots,
+  full reference repositories, duplicate traces, temporary files, and other
+  archives are excluded. Both complete CTF recordings are included.

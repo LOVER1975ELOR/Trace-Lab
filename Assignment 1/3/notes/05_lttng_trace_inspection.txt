@@ -1,0 +1,53 @@
+=== Lab 3 - LTTng Trace Inspection ===
+
+[1] Trace sizes
+1.6M	logs/lttng/04_futex_trace_gui
+1.6M	logs/lttng/04_futex_trace
+
+[2] Event counts
+syscall_entry_futex          4858
+syscall_exit_futex           4856
+sched_switch                 12862
+sched_wakeup                 6443
+sched_waking                 6444
+sched_process_fork           60
+sched_process_exit           57
+
+[3] Scheduling events mentioning deadlock_m
+[18:57:49.754751567] (+0.000211763) elor-IdeaPad-Slim-3-15IRH10 sched_process_fork: { cpu_id = 14 }, { parent_comm = "deadlock_m", parent_tid = 112956, parent_pid = 112956, parent_ns_inum = 4026531836, child_comm = "deadlock_m", child_tid = 112957, _vtids_length = 1, vtids = [ [0] = 112957 ], child_pid = 112956, child_ns_inum = 4026531836 }
+[18:57:49.754767579] (+0.000016012) elor-IdeaPad-Slim-3-15IRH10 sched_switch: { cpu_id = 15 }, { prev_comm = "swapper/15", prev_tid = 0, prev_prio = 20, prev_state = 0, next_comm = "deadlock_m", next_tid = 112957, next_prio = 20 }
+[18:57:49.754799190] (+0.000031611) elor-IdeaPad-Slim-3-15IRH10 sched_process_fork: { cpu_id = 14 }, { parent_comm = "deadlock_m", parent_tid = 112956, parent_pid = 112956, parent_ns_inum = 4026531836, child_comm = "deadlock_m", child_tid = 112958, _vtids_length = 1, vtids = [ [0] = 112958 ], child_pid = 112956, child_ns_inum = 4026531836 }
+[18:57:49.754820782] (+0.000002732) elor-IdeaPad-Slim-3-15IRH10 sched_switch: { cpu_id = 14 }, { prev_comm = "deadlock_m", prev_tid = 112956, prev_prio = 20, prev_state = 1, next_comm = "swapper/14", next_tid = 0, next_prio = 20 }
+[18:57:49.754839171] (+0.000017079) elor-IdeaPad-Slim-3-15IRH10 sched_switch: { cpu_id = 13 }, { prev_comm = "swapper/13", prev_tid = 0, prev_prio = 20, prev_state = 0, next_comm = "deadlock_m", next_tid = 112958, next_prio = 20 }
+[18:57:49.754858150] (+0.000018979) elor-IdeaPad-Slim-3-15IRH10 sched_switch: { cpu_id = 15 }, { prev_comm = "deadlock_m", prev_tid = 112957, prev_prio = 20, prev_state = 1, next_comm = "swapper/15", next_tid = 0, next_prio = 20 }
+[18:57:49.754887112] (+0.000028962) elor-IdeaPad-Slim-3-15IRH10 sched_switch: { cpu_id = 13 }, { prev_comm = "deadlock_m", prev_tid = 112958, prev_prio = 20, prev_state = 1, next_comm = "swapper/13", next_tid = 0, next_prio = 20 }
+[18:57:50.055106073] (+0.006401652) elor-IdeaPad-Slim-3-15IRH10 sched_waking: { cpu_id = 13 }, { comm = "deadlock_m", tid = 112958, prio = 20, target_cpu = 13 }
+[18:57:50.055136777] (+0.000030704) elor-IdeaPad-Slim-3-15IRH10 sched_wakeup: { cpu_id = 13 }, { comm = "deadlock_m", tid = 112958, prio = 20, target_cpu = 13 }
+[18:57:50.055160542] (+0.000023765) elor-IdeaPad-Slim-3-15IRH10 sched_switch: { cpu_id = 13 }, { prev_comm = "swapper/13", prev_tid = 0, prev_prio = 20, prev_state = 0, next_comm = "deadlock_m", next_tid = 112958, next_prio = 20 }
+[18:57:50.055324168] (+0.000031669) elor-IdeaPad-Slim-3-15IRH10 sched_switch: { cpu_id = 13 }, { prev_comm = "deadlock_m", prev_tid = 112958, prev_prio = 20, prev_state = 1, next_comm = "swapper/13", next_tid = 0, next_prio = 20 }
+[18:57:50.354913215] (+0.002328071) elor-IdeaPad-Slim-3-15IRH10 sched_waking: { cpu_id = 15 }, { comm = "deadlock_m", tid = 112957, prio = 20, target_cpu = 15 }
+
+[4] Last scheduling events mentioning deadlock_m
+[18:57:57.753358168] (+0.000009007) elor-IdeaPad-Slim-3-15IRH10 sched_process_exit: { cpu_id = 14 }, { comm = "deadlock_m", tid = 112956, prio = 20, group_dead = 0 }
+[18:57:57.753372578] (+0.000014410) elor-IdeaPad-Slim-3-15IRH10 sched_wakeup: { cpu_id = 15 }, { comm = "deadlock_m", tid = 112957, prio = 20, target_cpu = 15 }
+[18:57:57.753378664] (+0.000006086) elor-IdeaPad-Slim-3-15IRH10 sched_switch: { cpu_id = 15 }, { prev_comm = "swapper/15", prev_tid = 0, prev_prio = 20, prev_state = 0, next_comm = "deadlock_m", next_tid = 112957, next_prio = 20 }
+[18:57:57.753390391] (+0.000003864) elor-IdeaPad-Slim-3-15IRH10 sched_process_exit: { cpu_id = 15 }, { comm = "deadlock_m", tid = 112957, prio = 20, group_dead = 0 }
+[18:57:57.753429569] (+0.000039178) elor-IdeaPad-Slim-3-15IRH10 sched_wakeup: { cpu_id = 4 }, { comm = "deadlock_m", tid = 112958, prio = 20, target_cpu = 4 }
+[18:57:57.753441206] (+0.000011637) elor-IdeaPad-Slim-3-15IRH10 sched_switch: { cpu_id = 14 }, { prev_comm = "deadlock_m", prev_tid = 112956, prev_prio = 20, prev_state = 32, next_comm = "swapper/14", next_tid = 0, next_prio = 20 }
+[18:57:57.753464812] (+0.000023606) elor-IdeaPad-Slim-3-15IRH10 sched_switch: { cpu_id = 15 }, { prev_comm = "deadlock_m", prev_tid = 112957, prev_prio = 20, prev_state = 16, next_comm = "swapper/15", next_tid = 0, next_prio = 20 }
+[18:57:57.753500785] (+0.000028033) elor-IdeaPad-Slim-3-15IRH10 sched_switch: { cpu_id = 4 }, { prev_comm = "swapper/4", prev_tid = 0, prev_prio = 20, prev_state = 0, next_comm = "deadlock_m", next_tid = 112958, next_prio = 20 }
+[18:57:57.753537855] (+0.000021512) elor-IdeaPad-Slim-3-15IRH10 sched_process_exit: { cpu_id = 4 }, { comm = "deadlock_m", tid = 112958, prio = 20, group_dead = 1 }
+[18:57:57.753991328] (+0.000021225) elor-IdeaPad-Slim-3-15IRH10 sched_switch: { cpu_id = 4 }, { prev_comm = "deadlock_m", prev_tid = 112958, prev_prio = 20, prev_state = 16, next_comm = "swapper/4", next_tid = 0, next_prio = 20 }
+
+[5] Sample futex events
+[18:57:49.737393864] (+0.001685200) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 4 }, { uaddr = 130620424371720, op = 129, val = 2147483647, utime = 0, uaddr2 = 7, val3 = 2589976576 }
+[18:57:49.737445409] (+0.000003868) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 4 }, { uaddr = 130620424371720, op = 129, val = 2147483647, utime = 0, uaddr2 = 7, val3 = 2589976416 }
+[18:57:49.737447219] (+0.000001195) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 4 }, { uaddr = 130620424371720, op = 129, val = 2147483647, utime = 0, uaddr2 = 7, val3 = 2589976480 }
+[18:57:49.737448714] (+0.000001238) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 4 }, { uaddr = 130620424371720, op = 129, val = 2147483647, utime = 0, uaddr2 = 7, val3 = 2589976544 }
+[18:57:49.737450007] (+0.000001086) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 4 }, { uaddr = 130620424371720, op = 129, val = 2147483647, utime = 0, uaddr2 = 7, val3 = 2589976608 }
+[18:57:49.737471005] (+0.000020787) elor-IdeaPad-Slim-3-15IRH10 syscall_entry_futex: { cpu_id = 4 }, { uaddr = 130620424371720, op = 129, val = 2147483647, utime = 0, uaddr2 = 7, val3 = 2589976096 }
+
+[6] Total exported event lines
+35580 logs/lttng/04_babeltrace_events.txt
+
+Inspection completed.

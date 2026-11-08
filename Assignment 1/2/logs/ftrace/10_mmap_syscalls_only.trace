@@ -1,0 +1,30 @@
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 18/18   #P:16
+#
+#                                _-----=> irqs-off/BH-disabled
+#                               / _----=> need-resched
+#                              | / _---=> hardirq/softirq
+#                              || / _--=> preempt-depth
+#                              ||| / _-=> migrate-disable
+#                              |||| /     delay
+#           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||     |         |
+         program-61019   [012] ..... 14419.447409: sys_mmap(addr: 0, len: 2000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+         program-61019   [012] ..... 14419.447420: sys_mmap -> 0x77d749a75000
+         program-61019   [012] ..... 14419.447448: sys_mmap(addr: 0, len: 1fb3f, prot: 1, flags: 2, fd: 3, off: 0)
+         program-61019   [012] ..... 14419.447454: sys_mmap -> 0x77d749a55000
+         program-61019   [012] ..... 14419.447495: sys_mmap(addr: 0, len: 212d90, prot: 1, flags: 802, fd: 3, off: 0)
+         program-61019   [012] ..... 14419.447500: sys_mmap -> 0x77d749800000
+         program-61019   [012] ..... 14419.447501: sys_mmap(addr: 77d749828000, len: 189000, prot: 5, flags: 812, fd: 3, off: 28000)
+         program-61019   [012] ..... 14419.447511: sys_mmap -> 0x77d749828000
+         program-61019   [012] ..... 14419.447512: sys_mmap(addr: 77d7499b1000, len: 4f000, prot: 1, flags: 812, fd: 3, off: 1b1000)
+         program-61019   [012] ..... 14419.447520: sys_mmap -> 0x77d7499b1000
+         program-61019   [012] ..... 14419.447521: sys_mmap(addr: 77d749a00000, len: 6000, prot: 3, flags: 812, fd: 3, off: 1ff000)
+         program-61019   [012] ..... 14419.447528: sys_mmap -> 0x77d749a00000
+         program-61019   [012] ..... 14419.447535: sys_mmap(addr: 77d749a06000, len: cd90, prot: 3, flags: 32, fd: ffffffff, off: 0)
+         program-61019   [012] ..... 14419.447539: sys_mmap -> 0x77d749a06000
+         program-61019   [012] ..... 14419.447563: sys_mmap(addr: 0, len: 3000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+         program-61019   [012] ..... 14419.447572: sys_mmap -> 0x77d749a52000
+         program-61019   [012] ..... 14419.447749: sys_mmap(addr: 0, len: 1000, prot: 3, flags: 22, fd: ffffffff, off: 0)
+         program-61019   [012] ..... 14419.447754: sys_mmap -> 0x77d749a74000

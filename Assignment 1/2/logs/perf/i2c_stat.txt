@@ -1,0 +1,16 @@
+# started on Thu Nov  5 15:58:41 2026
+
+
+ Performance counter stats for 'setpriv --reuid=1000 --regid=1000 --init-groups -- ./src/program':
+
+                 0      i2c:i2c_result                                                        
+                 0      i2c:i2c_reply                                                         
+                 0      i2c:i2c_read                                                          
+                 0      i2c:i2c_write                                                         
+
+       0.004014131 seconds time elapsed
+
+       0.000000000 seconds user
+       0.004023000 seconds sys
+
+

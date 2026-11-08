@@ -1,0 +1,36 @@
+# started on Thu Nov  5 15:58:40 2026
+
+
+ Performance counter stats for 'setpriv --reuid=1000 --regid=1000 --init-groups -- ./src/program':
+
+                 0      tcp:tcp_ao_rcv_sne_update                                             
+                 0      tcp:tcp_ao_snd_sne_update                                             
+                 0      tcp:tcp_ao_synack_no_key                                              
+                 0      tcp:tcp_ao_rnext_request                                              
+                 0      tcp:tcp_ao_key_not_found                                              
+                 0      tcp:tcp_ao_mismatch                                                   
+                 0      tcp:tcp_ao_wrong_maclen                                               
+                 0      tcp:tcp_ao_handshake_failure                                          
+                 0      tcp:tcp_hash_ao_required                                              
+                 0      tcp:tcp_hash_md5_mismatch                                             
+                 0      tcp:tcp_hash_md5_unexpected                                           
+                 0      tcp:tcp_hash_md5_required                                             
+                 0      tcp:tcp_hash_bad_header                                               
+                 0      tcp:tcp_cong_state_set                                                
+                 0      tcp:tcp_bad_csum                                                      
+                 0      tcp:tcp_probe                                                         
+                 0      tcp:tcp_sendmsg_locked                                                
+                 0      tcp:tcp_retransmit_synack                                             
+                 0      tcp:tcp_rcvbuf_grow                                                   
+                 0      tcp:tcp_rcv_space_adjust                                              
+                 0      tcp:tcp_destroy_sock                                                  
+                 0      tcp:tcp_receive_reset                                                 
+                 0      tcp:tcp_send_reset                                                    
+                 0      tcp:tcp_retransmit_skb                                                
+
+       0.003859123 seconds time elapsed
+
+       0.001940000 seconds user
+       0.001940000 seconds sys
+
+
