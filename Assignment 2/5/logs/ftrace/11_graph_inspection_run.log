@@ -1,0 +1,135 @@
+=== Lab 5 - Fragmentation Function Graph Analysis ===
+Kernel: 6.17.0-40-generic
+
+[1] Function occurrence counts
+ip_fragment.constprop.0() {          2
+ip_do_fragment() {                   2
+ip_fraglist_init() {                 2
+ip_fraglist_prepare() {              2
+ip_frag_next() {                     0
+ip_finish_output2() {                4
+__dev_queue_xmit() {                 4
+dev_hard_start_xmit() {              4
+veth_xmit [veth]() {                 4
+
+[2] Relevant functions and line numbers
+5: 14)               |  ip_fragment.constprop.0() {
+6: 14)               |    ip_do_fragment() {
+9: 14)               |      ip_fraglist_init() {
+12: 14)               |      ip_fraglist_prepare() {
+16: 14)               |      ip_finish_output2() {
+41: 14)               |          __dev_queue_xmit() {
+52: 14)               |            dev_hard_start_xmit() {
+53: 14)               |              veth_xmit [veth]() {
+652: 14)               |      ip_finish_output2() {
+658: 14)               |          __dev_queue_xmit() {
+669: 14)               |            dev_hard_start_xmit() {
+670: 14)               |              veth_xmit [veth]() {
+953: 14)               |                                                      ip_fragment.constprop.0() {
+954: 14)               |                                                        ip_do_fragment() {
+957: 14)               |                                                          ip_fraglist_init() {
+960: 14)               |                                                          ip_fraglist_prepare() {
+964: 14)               |                                                          ip_finish_output2() {
+989: 14)               |                                                              __dev_queue_xmit() {
+1000: 14)               |                                                                dev_hard_start_xmit() {
+1001: 14)               |                                                                  veth_xmit [veth]() {
+1030: 14)               |                                                          ip_finish_output2() {
+1036: 14)               |                                                              __dev_queue_xmit() {
+1047: 14)               |                                                                dev_hard_start_xmit() {
+1048: 14)               |                                                                  veth_xmit [veth]() {
+
+[3] First fragmentation call - opening section
+ 14)               |  ip_fragment.constprop.0() {
+ 14)               |    ip_do_fragment() {
+ 14)   0.586 us    |      __rcu_read_lock();
+ 14)   0.278 us    |      __rcu_read_unlock();
+ 14)               |      ip_fraglist_init() {
+ 14)   0.268 us    |        ip_send_check();
+ 14)   0.824 us    |      }
+ 14)               |      ip_fraglist_prepare() {
+ 14)   0.356 us    |        ip_copy_metadata();
+ 14)   0.252 us    |        ip_send_check();
+ 14)   1.460 us    |      }
+ 14)               |      ip_finish_output2() {
+ 14)   0.243 us    |        __rcu_read_lock();
+ 14)               |        neigh_resolve_output() {
+ 14)               |          __neigh_event_send() {
+ 14)   0.260 us    |            _raw_write_lock_bh();
+ 14)   0.241 us    |            neigh_del_timer();
+ 14)               |            neigh_add_timer() {
+ 14)               |              mod_timer() {
+ 14)               |                lock_timer_base() {
+ 14)   0.372 us    |                  _raw_spin_lock_irqsave();
+ 14)   0.913 us    |                }
+ 14)   0.264 us    |                detach_if_pending();
+ 14)   0.243 us    |                _raw_spin_unlock();
+ 14)   0.262 us    |                _raw_spin_lock();
+ 14)   0.285 us    |                calc_wheel_index();
+ 14)   0.400 us    |                enqueue_timer();
+ 14)   0.260 us    |                _raw_spin_unlock_irqrestore();
+ 14)   5.001 us    |              }
+ 14)   5.599 us    |            }
+ 14)   0.251 us    |            _raw_write_unlock();
+ 14)   0.263 us    |            __local_bh_enable_ip();
+ 14)   8.648 us    |          }
+ 14)               |          eth_header() {
+ 14)   0.242 us    |            skb_push();
+ 14)   1.115 us    |          }
+ 14)               |          __dev_queue_xmit() {
+ 14)   0.285 us    |            qdisc_pkt_len_init();
+ 14)   0.268 us    |            dst_release();
+ 14)   0.274 us    |            netdev_core_pick_tx();
+ 14)               |            validate_xmit_skb() {
+ 14)               |              netif_skb_features() {
+ 14)   0.243 us    |                passthru_features_check();
+
+[4] Second fragmentation call - opening section
+ 14)               |                                                  ip_finish_output() {
+ 14)               |                                                    __ip_finish_output() {
+ 14)   0.307 us    |                                                      __rcu_read_lock();
+ 14)   0.308 us    |                                                      __rcu_read_unlock();
+ 14)               |                                                      ip_fragment.constprop.0() {
+ 14)               |                                                        ip_do_fragment() {
+ 14)   0.312 us    |                                                          __rcu_read_lock();
+ 14)   0.307 us    |                                                          __rcu_read_unlock();
+ 14)               |                                                          ip_fraglist_init() {
+ 14)   0.337 us    |                                                            ip_send_check();
+ 14)   0.986 us    |                                                          }
+ 14)               |                                                          ip_fraglist_prepare() {
+ 14)   0.343 us    |                                                            ip_copy_metadata();
+ 14)   0.320 us    |                                                            ip_send_check();
+ 14)   1.706 us    |                                                          }
+ 14)               |                                                          ip_finish_output2() {
+ 14)   0.296 us    |                                                            __rcu_read_lock();
+ 14)               |                                                            neigh_resolve_output() {
+ 14)               |                                                              __neigh_event_send() {
+ 14)   0.341 us    |                                                                _raw_write_lock_bh();
+ 14)   0.367 us    |                                                                neigh_del_timer();
+ 14)               |                                                                neigh_add_timer() {
+ 14)               |                                                                  mod_timer() {
+ 14)               |                                                                    lock_timer_base() {
+ 14)   0.399 us    |                                                                      _raw_spin_lock_irqsave();
+ 14)   1.035 us    |                                                                    }
+ 14)   0.315 us    |                                                                    detach_if_pending();
+ 14)   0.310 us    |                                                                    _raw_spin_unlock();
+ 14)   0.325 us    |                                                                    _raw_spin_lock();
+ 14)   0.314 us    |                                                                    calc_wheel_index();
+ 14)   0.314 us    |                                                                    enqueue_timer();
+ 14)   0.312 us    |                                                                    _raw_spin_unlock_irqrestore();
+ 14)   5.593 us    |                                                                  }
+ 14)   6.333 us    |                                                                }
+ 14)   0.316 us    |                                                                _raw_write_unlock();
+ 14)   0.335 us    |                                                                __local_bh_enable_ip();
+ 14)   9.958 us    |                                                              }
+ 14)               |                                                              eth_header() {
+ 14)   0.310 us    |                                                                skb_push();
+ 14)   0.951 us    |                                                              }
+ 14)               |                                                              __dev_queue_xmit() {
+ 14)   0.310 us    |                                                                qdisc_pkt_len_init();
+ 14)   0.332 us    |                                                                dst_release();
+ 14)   0.352 us    |                                                                netdev_core_pick_tx();
+
+[5] Saved graph size
+  1398 106147 logs/ftrace/10_ip_fragment.graph
+
+Analysis completed.

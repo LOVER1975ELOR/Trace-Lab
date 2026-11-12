@@ -1,0 +1,8 @@
+[main] memlockall(): No such device
+Warning: can't disable memory paging!
+
+--- 8.8.8.8 hping statistic ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 273.7/285.1/297.2 ms
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 1.752 MB logs/perf/05_udp_perf.data (86 samples) ]

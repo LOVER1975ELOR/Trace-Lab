@@ -1,0 +1,56 @@
+=== Lab 4 - SYN vs UDP Comparison ===
+Kernel: 6.17.0-40-generic
+Target: 8.8.8.8
+Port: 53
+
+[1] Selected event: tcp:tcp_send_reset
+
+syn:
+  Total TCP reset events: 3
+  Resets targeting 8.8.8.8:53: 3
+
+udp:
+  Total TCP reset events: 0
+  Resets targeting 8.8.8.8:53: 0
+
+[2] TCP reset event details from SYN scan
+
+irq/171-iwlwifi     705 [009]  9099.586026:    tcp:tcp_send_reset: skbaddr=0xffff8c04e5fc4300 skaddr=(nil) src=192.168.100.10:2435 dest=8.8.8.8:53 state=UNKNOWN reason=NO_SOCKET
+irq/163-iwlwifi     697 [001]  9100.097810:    tcp:tcp_send_reset: skbaddr=0xffff8c068e4e3300 skaddr=(nil) src=192.168.100.10:2436 dest=8.8.8.8:53 state=UNKNOWN reason=NO_SOCKET
+irq/166-iwlwifi     700 [004]  9100.610993:    tcp:tcp_send_reset: skbaddr=0xffff8c031ad12b00 skaddr=(nil) src=192.168.100.10:2437 dest=8.8.8.8:53 state=UNKNOWN reason=NO_SOCKET
+
+[3] First observed TCP reset call stack
+
+irq/171-iwlwifi     705 [009]  9099.586026:    tcp:tcp_send_reset: skbaddr=0xffff8c04e5fc4300 skaddr=(nil) src=192.168.100.10:2435 dest=8.8.8.8:53 state=UNKNOWN reason=NO_SOCKET
+	ffffffffaeb1da29 perf_trace_tcp_send_reset+0x9 ([kernel.kallsyms])
+	ffffffffaebcad8a tcp_v4_send_reset+0x77a ([kernel.kallsyms])
+	ffffffffaebccebe tcp_v4_rcv+0x7fe ([kernel.kallsyms])
+	ffffffffaeb8b3ac ip_protocol_deliver_rcu+0x3c ([kernel.kallsyms])
+	ffffffffaeb8b62a ip_local_deliver_finish+0x8a ([kernel.kallsyms])
+	ffffffffaeb8b72d ip_local_deliver+0x6d ([kernel.kallsyms])
+	ffffffffaeb8b867 ip_sublist_rcv_finish+0x77 ([kernel.kallsyms])
+	ffffffffaeb8ba14 ip_sublist_rcv+0x184 ([kernel.kallsyms])
+	ffffffffaeb8be92 ip_list_rcv+0x102 ([kernel.kallsyms])
+	ffffffffaeab23bb __netif_receive_skb_list_core+0x22b ([kernel.kallsyms])
+	ffffffffaeab2a3b netif_receive_skb_list_internal+0x1db ([kernel.kallsyms])
+	ffffffffaeab2cac napi_complete_done+0x7c ([kernel.kallsyms])
+	ffffffffc0b01377 iwl_pcie_napi_poll_msix+0xc7 ([kernel.kallsyms])
+	ffffffffaeab2e20 __napi_poll+0x30 ([kernel.kallsyms])
+	ffffffffaeab35cb net_rx_action+0x20b ([kernel.kallsyms])
+	ffffffffadb8b1f4 handle_softirqs+0xe4 ([kernel.kallsyms])
+	ffffffffaedaef10 __do_softirq+0x10 ([kernel.kallsyms])
+	ffffffffadb8ab6f do_softirq.part.0+0x3f ([kernel.kallsyms])
+	ffffffffadb8b60e __local_bh_enable_ip+0x6e ([kernel.kallsyms])
+	ffffffffc0b01eab iwl_pcie_irq_rx_msix_handler+0xdb ([kernel.kallsyms])
+	ffffffffadc56111 irq_thread_fn+0x21 ([kernel.kallsyms])
+
+[4] Comparing other network event counts
+
+Event                              SYN      UDP
+net:net_dev_queue                   10       27
+net:net_dev_xmit                    10       27
+net:netif_receive_skb                8       29
+skb:kfree_skb                        3        3
+tcp:tcp_send_reset                   3        0
+
+Comparison completed.

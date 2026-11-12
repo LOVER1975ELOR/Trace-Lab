@@ -1,0 +1,66 @@
+==================================
+Lab 5 - Packet Tracing Preflight
+==================================
+Date: 2026-11-12T15:10:09+03:30
+Kernel: 6.17.0-40-generic
+
+[1] Checking tracing and packet tools...
+[OK] ping: /usr/bin/ping
+[OK] ip: /usr/sbin/ip
+[OK] lttng: /usr/bin/lttng
+[OK] babeltrace: /usr/bin/babeltrace
+[OK] tcpdump: /usr/bin/tcpdump
+[MISSING] wireshark
+[MISSING] tshark
+
+[2] Checking tcpdump version...
+tcpdump version 4.99.4
+libpcap version 1.10.4 (with TPACKET_V3)
+OpenSSL 3.0.13 30 Jan 2024
+
+[3] Checking experimental namespaces...
+lab5_mtu_rx (id: 3)
+lab5_mtu_tx (id: 2)
+
+[4] Checking virtual interfaces and MTU...
+--- Transmitter ---
+19: l5veth_tx@if18: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000
+    link/ether 72:1f:e3:d6:10:bd brd ff:ff:ff:ff:ff:ff link-netns lab5_mtu_rx
+
+--- Receiver ---
+18: l5veth_rx@if19: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000
+    link/ether b6:ac:2b:a2:04:1e brd ff:ff:ff:ff:ff:ff link-netns lab5_mtu_tx
+
+[5] Checking IPv4 route...
+10.205.0.2 dev l5veth_tx src 10.205.0.1 uid 0 
+    cache 
+
+[6] Listing LTTng-supported syscalls...
+Saved syscall list: notes/06_lttng_available_syscalls.txt
+
+      socket [32/64-bit]
+      sendto [32/64-bit]
+      recvfrom [32/64-bit]
+      sendmsg [32/64-bit]
+      recvmsg [32/64-bit]
+      socketpair [32/64-bit]
+      setsockopt [32/64-bit]
+      recvmmsg [32/64-bit]
+      sendmmsg [32/64-bit]
+      socketcall [32-bit]
+      recvmmsg_time32 [32-bit]
+
+[7] Checking useful LTTng network events...
+[AVAILABLE] net_dev_queue
+[AVAILABLE] net_dev_xmit
+[NOT LISTED] net_dev_start_xmit
+[NOT LISTED] netif_receive_skb
+[AVAILABLE] sched_switch
+[AVAILABLE] sched_wakeup
+[AVAILABLE] sched_process_fork
+
+==================================
+Preflight completed.
+No packets were sent.
+No network settings were modified.
+==================================

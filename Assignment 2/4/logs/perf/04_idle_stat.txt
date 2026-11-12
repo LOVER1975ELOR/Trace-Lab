@@ -1,0 +1,16 @@
+# started on Thu Nov 12 12:51:44 2026
+
+
+ Performance counter stats for 'system wide':
+
+                 4      net:net_dev_queue                                                     
+                 4      net:net_dev_start_xmit                                                
+                 4      net:net_dev_xmit                                                      
+                 5      net:netif_receive_skb                                                 
+                 0      skb:kfree_skb                                                         
+                 0      tcp:tcp_send_reset                                                    
+                 0      udp:udp_fail_queue_rcv_skb                                            
+                 0      sock:inet_sock_set_state                                              
+
+       2.004006518 seconds time elapsed
+

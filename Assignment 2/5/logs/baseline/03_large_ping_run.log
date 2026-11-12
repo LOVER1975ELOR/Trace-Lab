@@ -1,0 +1,45 @@
+==================================
+Lab 5 - Oversized Ping Test
+==================================
+Date: 2026-11-12T14:18:58+03:30
+Target: 10.205.0.2
+Interface MTU: 1500 bytes
+ICMP data payload: 2000 bytes
+Expected IPv4 packet size: 2028 bytes
+
+[1] Verifying the MTU...
+19: l5veth_tx@if18: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000
+    link/ether 72:1f:e3:d6:10:bd brd ff:ff:ff:ff:ff:ff link-netns lab5_mtu_rx
+
+[2] Ping with fragmentation prohibited (-M do)...
+Exit status: 1
+--- STDOUT ---
+PING 10.205.0.2 (10.205.0.2) 2000(2028) bytes of data.
+
+--- 10.205.0.2 ping statistics ---
+2 packets transmitted, 0 received, +2 errors, 100% packet loss, time 1013ms
+
+--- STDERR ---
+ping: local error: message too long, mtu=1500
+ping: local error: message too long, mtu=1500
+
+[3] Ping with fragmentation allowed (-M dont)...
+Exit status: 0
+--- STDOUT ---
+PING 10.205.0.2 (10.205.0.2) 2000(2028) bytes of data.
+2008 bytes from 10.205.0.2: icmp_seq=1 ttl=64 time=0.086 ms
+2008 bytes from 10.205.0.2: icmp_seq=2 ttl=64 time=0.118 ms
+
+--- 10.205.0.2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1064ms
+rtt min/avg/max/mdev = 0.086/0.102/0.118/0.016 ms
+--- STDERR ---
+
+==================================
+Test summary
+==================================
+Fragmentation prohibited: exit 1
+Fragmentation allowed:    exit 0
+
+Oversized Ping succeeded with fragmentation allowed.
+Fragmentation itself will be verified using LTTng.

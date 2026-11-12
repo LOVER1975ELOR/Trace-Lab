@@ -1,0 +1,162 @@
+LAB 5 — SAVED EVIDENCE AND REPRODUCTION
+
+Name: Mahdi Davoodzadeh
+SN: 405725536
+
+Start with Lab_5_MTU_IP_Fragmentation_Tracing_Report.pdf.
+
+CONTENTS
+  scripts/        All eleven original experiment and cleanup scripts.
+  logs/baseline/  Network setup, ping outputs, statuses and preflight logs.
+  logs/lttng/     Three complete CTF recordings, Babeltrace exports and logs.
+  logs/pcap/      Original PCAP, tcpdump output and TShark header export.
+  logs/ftrace/    Fragmentation function graph, ping output and analysis logs.
+  notes/         Tool/event checks, trace configuration and analysis results.
+  SHA256SUMS      Checksums of every other packaged file.
+
+VERIFY AND REOPEN THE ORIGINAL TRACES
+  Run from this folder:
+
+    sha256sum -c SHA256SUMS
+
+  In Trace Compass, create a tracing project and import each of these
+  directories as a separate LTTng kernel trace:
+
+    logs/lttng/04_small_trace_gui/kernel/
+    logs/lttng/04_large_trace_gui/kernel/
+    logs/lttng/08_packet_trace_gui/kernel/
+
+  Each directory includes metadata, all 16 CPU channel files, and all 16
+  index files. These are complete copies of the original recordings. Keep
+  each directory together. Trace Compass regenerates its analysis caches.
+
+  Open the Events view, filter the event type for net_dev_queue and select
+  the l5veth_tx interface in Contents. Expand Content > network_header > ipv4
+  in Properties. Compare these original events:
+
+    Small trace: ID 0x3C2B; frame 98 B; IPv4 84 B; frag_off=0.
+    Large trace: ID 0x413A; frames 1514/562 B; IPv4 1500/548 B;
+                 frag_off=8192/185, giving MF=1/0 and offset 0/1480 B.
+
+  In the coordinated trace, filter PID 124906 and procname="ping".
+  Earlier records under the same PID belong to the ip namespace command.
+  Locate sendto(len=2008), request fragments with ID 0x9E55, sendto(ret=2008),
+  and recvmsg(ret=2028). The recorded local time was 15:22:10 on 2026-11-12
+  in Asia/Tehran (UTC+03:30). Adjust the viewer timezone or use packet fields
+  if another machine displays a different wall-clock time.
+
+  Decode CTF without a new experiment:
+
+    TZ=Asia/Tehran babeltrace logs/lttng/04_small_trace_gui/kernel > /tmp/lab5-small.txt
+    TZ=Asia/Tehran babeltrace logs/lttng/04_large_trace_gui/kernel > /tmp/lab5-large.txt
+    TZ=Asia/Tehran babeltrace logs/lttng/08_packet_trace_gui/kernel > /tmp/lab5-packet.txt
+
+  The original exports contain 52, 66 and 14234 events, respectively.
+  The first pair only contains net_dev_queue and net_dev_xmit events.
+  The coordinated recording additionally includes syscalls and scheduling.
+
+  Open logs/pcap/08_ping_2000.pcap with Wireshark. There are four frames:
+  two request fragments (ID 0x9E55), followed by two reply fragments
+  (ID 0xA982). Select frame 2 to inspect the 2008-byte reassembled ICMP
+  message. The original Ping data is 2000 bytes and the IPv4 datagram is
+  2028 bytes. Display the saved fields from the actual PCAP with:
+
+    tshark -r logs/pcap/08_ping_2000.pcap -T fields -E header=y -E separator=, -e frame.number -e ip.src -e ip.dst -e ip.id -e ip.len -e ip.flags.mf -e ip.frag_offset -e icmp.type
+
+  TShark exports offset 185 in eight-byte units; Wireshark displays 1480 B.
+  Open logs/ftrace/10_ip_fragment.graph in a text editor. The graph contains
+  two ip_do_fragment entries and four veth_xmit entries. The saved analysis
+  is notes/11_fragmentation_graph_summary.txt. This graph is a separate run
+  from the coordinated LTTng/PCAP capture.
+
+ENVIRONMENT FOR A FRESH EXPERIMENT
+  Original environment: Ubuntu 24.04.5 LTS, x86-64, kernel 6.17.0-40-generic,
+  LTTng Tools 2.13, LTTng Modules 2.13.23 (recorded in CTF metadata),
+  tcpdump 4.99.4, Wireshark/TShark 4.2.2. Install Trace Compass with LTTng
+  kernel support to inspect events and decoded packet properties.
+
+  Required commands: bash, sudo, ip, ping, lttng, babeltrace (Babeltrace 1
+  command), tcpdump, tshark, coreutils, grep, awk, and findmnt. Typical
+  Ubuntu packages include iproute2, iputils-ping, lttng-tools, babeltrace,
+  tcpdump, wireshark, tshark, and LTTng modules compatible with the running
+  kernel. Linux tools and kernel modules are external prerequisites.
+
+  The original modules were built for kernel 6.17.0-40-generic. Verify the
+  installed module/kernel combination before recording. The scripts check
+  required events and, for ftrace, the exact function symbol:
+
+    uname -r
+    lttng --version
+    sudo lttng list -k
+    findmnt /sys/kernel/tracing
+    sudo grep -F 'ip_fragment' /sys/kernel/tracing/available_filter_functions
+
+  If TraceFS is absent:
+
+    sudo mount -t tracefs tracefs /sys/kernel/tracing
+
+  Script 10 uses ip_fragment.constprop.0 as its graph root. On another
+  kernel, inspect script 09's results and adjust that symbol in the fresh
+  script copy if necessary. Script 11 counts the same symbol. Compatible
+  tracing support is needed for rerunning; the packaged traces can be
+  analyzed independently of the recording kernel.
+
+CREATE A FRESH RUN
+  From this folder, in Bash:
+
+    lab5_package="$PWD"
+    lab5_rerun=$(mktemp -d "$lab5_package/../lab5-rerun-XXXXXX")
+    cp -a scripts "$lab5_rerun/"
+    mkdir -p "$lab5_rerun/logs/runs" "$lab5_rerun/notes"
+    cd "$lab5_rerun"
+
+  Use a normal user with sudo access. The two names lab5_mtu_tx and
+  lab5_mtu_rx must be free. Script 02 creates those namespaces and a veth
+  link with addresses 10.205.0.1/30 and 10.205.0.2/30 and MTU 1500.
+  It refuses to replace an existing setup. Script 05 removes only this
+  verified setup after checking that its namespaces contain no processes.
+
+  Run in the same terminal:
+
+    (
+      set -euo pipefail
+      sudo -v
+      for lab5_step in 01 02 03 04 06 07 08 09 10 11; do
+        for lab5_script in scripts/${lab5_step}_*.sh; do
+          lab5_label=$(basename "$lab5_script" .sh)
+          bash "$lab5_script" 2>&1 | tee "logs/runs/${lab5_label}.log"
+        done
+      done
+    )
+
+  Script 05 is deliberately LAST, after the experiments needing the network:
+
+    (set -o pipefail; bash scripts/05_cleanup_mtu_network.sh 2>&1 | tee logs/runs/05_cleanup.log)
+
+  Steps 01-04 perform the required MTU/fragmentation experiment. Steps 06-08
+  add the coordinated syscall/network/PCAP recording; 09-11 add ftrace.
+  Script 07 creates and destroys a temporary capability-check session.
+  Scripts 04 and 08 stop and destroy their recording sessions and produce
+  readable *_gui CTF copies. Ping and tcpdump have bounded execution times.
+  Script 10 uses a cleanup trap to restore the main tracer settings and
+  refuses to replace an unexpected active tracer configuration.
+
+  On failure, inspect the run log and existing lab resources before retrying.
+  After completion, inspect tracing status with:
+
+    sudo lttng list
+    sudo cat /sys/kernel/tracing/current_tracer
+    sudo cat /sys/kernel/tracing/set_event
+    sudo ip netns list
+
+  Compare the new results by protocol fields and process names. PIDs, IP
+  IDs, timestamps, timings and system-wide event counts vary between runs.
+  The expected fragment sizes remain 1500 and 548 bytes at MTU 1500 for the
+  2000-byte Ping payload with these IPv4/ICMP headers.
+
+PACKAGING
+  The three *_gui directories retain the full CTF data. Duplicate root-owned
+  trace directories, separate screenshots already embedded in the PDF,
+  Markdown source, GUI caches and the previous unrelated ftrace buffer are
+  excluded. Original scripts are preserved; rerun commands keep new outputs
+  separate from the submitted evidence.

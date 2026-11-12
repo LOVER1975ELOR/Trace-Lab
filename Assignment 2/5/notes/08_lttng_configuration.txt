@@ -1,0 +1,47 @@
+Recording session lab5_packet_1000_124829: [inactive]
+    Trace output: /home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab5/logs/lttng/08_packet_trace
+
+=== Domain: Linux kernel ===
+
+Tracked process attributes
+  Process IDs:          all
+  Virtual process IDs:  all
+  User IDs:             all
+  Virtual user IDs:     all
+  Group IDs:            all
+  Virtual group IDs:    all
+
+Channels:
+-------------
+- channel0: [disabled]
+
+    Attributes:
+      Event-loss mode:  discard
+      Sub-buffer size:  1048576 bytes
+      Sub-buffer count: 4
+      Switch timer:     inactive
+      Read timer:       200000 us
+      Monitor timer:    1000000 us
+      Blocking timeout: 0 us
+      Trace file count: 1 per stream
+      Trace file size:  unlimited
+      Output mode:      splice
+
+    Statistics:
+      Discarded events: 0
+
+    Recording event rules:
+      setsockopt (type:syscall) [enabled]
+      recvmsg (type:syscall) [enabled]
+      recvfrom (type:syscall) [enabled]
+      sendmsg (type:syscall) [enabled]
+      sendto (type:syscall) [enabled]
+      socket (type:syscall) [enabled]
+      sched_waking (loglevel: TRACE_EMERG (0)) (type: tracepoint) [enabled]
+      sched_wakeup (loglevel: TRACE_EMERG (0)) (type: tracepoint) [enabled]
+      sched_switch (loglevel: TRACE_EMERG (0)) (type: tracepoint) [enabled]
+      netif_receive_skb (loglevel: TRACE_EMERG (0)) (type: tracepoint) [enabled]
+      net_dev_start_xmit (loglevel: TRACE_EMERG (0)) (type: tracepoint) [enabled]
+      net_dev_xmit (loglevel: TRACE_EMERG (0)) (type: tracepoint) [enabled]
+      net_dev_queue (loglevel: TRACE_EMERG (0)) (type: tracepoint) [enabled]
+

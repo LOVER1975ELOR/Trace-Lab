@@ -1,0 +1,64 @@
+==================================
+Lab 5 - Optional LTTng Event Check
+==================================
+Kernel: 6.17.0-40-generic
+Session: lab5_optional_1000_122923
+
+[1] Checking TraceFS availability...
+[TRACEFS OK] net_dev_start_xmit
+[TRACEFS OK] netif_receive_skb
+
+[2] Creating temporary session...
+Session lab5_optional_1000_122923 created.
+
+[3] Testing event activation...
+
+Testing: net_dev_start_xmit
+kernel event net_dev_start_xmit created in channel channel0
+[ENABLE SUCCEEDED] net_dev_start_xmit
+
+Testing: netif_receive_skb
+kernel event netif_receive_skb created in channel channel0
+[ENABLE SUCCEEDED] netif_receive_skb
+
+[4] Inspecting session configuration...
+Recording session lab5_optional_1000_122923: [inactive]
+=== Domain: Linux kernel ===
+
+Tracked process attributes
+  Process IDs:          all
+  Virtual process IDs:  all
+  User IDs:             all
+  Virtual user IDs:     all
+  Group IDs:            all
+  Virtual group IDs:    all
+
+Channels:
+-------------
+- channel0: [disabled]
+
+    Attributes:
+      Event-loss mode:  discard
+      Sub-buffer size:  1048576 bytes
+      Sub-buffer count: 4
+      Switch timer:     inactive
+      Read timer:       200000 us
+      Monitor timer:    1000000 us
+      Blocking timeout: 0 us
+      Trace file count: 1 per stream
+      Trace file size:  unlimited
+      Output mode:      splice
+
+    Statistics:
+      Discarded events: 0
+
+    Recording event rules:
+      netif_receive_skb (loglevel: TRACE_EMERG (0)) (type: tracepoint) [enabled]
+      net_dev_start_xmit (loglevel: TRACE_EMERG (0)) (type: tracepoint) [enabled]
+
+
+Capability check completed.
+Actual event recording has not been tested.
+
+[Cleanup] Removing temporary LTTng session...
+Session lab5_optional_1000_122923 destroyed

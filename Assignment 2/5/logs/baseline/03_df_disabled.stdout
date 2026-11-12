@@ -1,0 +1,5 @@
+PING 10.205.0.2 (10.205.0.2) 2000(2028) bytes of data.
+
+--- 10.205.0.2 ping statistics ---
+2 packets transmitted, 0 received, +2 errors, 100% packet loss, time 1013ms
+

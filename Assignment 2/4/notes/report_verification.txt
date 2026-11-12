@@ -1,0 +1,41 @@
+Lab 4 report verification — 2026-11-12
+
+PASS: Tracepoint group directory counts: {'net': 16, 'skb': 3, 'tcp': 24, 'udp': 1, 'sock': 7}
+PASS: Kernel version recorded: True
+PASS: Perf version recorded: True
+PASS: syn complete baseline stdout in report: True
+PASS: syn reply RTTs: ['219.0', '229.5', '242.2']
+PASS: syn average RTT: 230.3
+PASS: syn packet summary: True
+PASS: syn successful exit: 0
+PASS: All three baseline SYN replies carry SA flags: 3
+PASS: udp complete baseline stdout in report: True
+PASS: udp reply RTTs: ['190.9', '201.5', '214.4']
+PASS: udp average RTT: 202.3
+PASS: udp packet summary: True
+PASS: udp successful exit: 0
+PASS: DNS query length: 29
+PASS: DNS header: (4660, 256, 1, 0, 0, 0)
+PASS: DNS question for example.com A IN: b'\x07example\x03com\x00\x00\x01\x00\x01'
+PASS: idle Perf stat counts: {'net:net_dev_queue': 4, 'net:net_dev_start_xmit': 4, 'net:net_dev_xmit': 4, 'net:netif_receive_skb': 5, 'skb:kfree_skb': 0, 'tcp:tcp_send_reset': 0, 'udp:udp_fail_queue_rcv_skb': 0, 'sock:inet_sock_set_state': 0}
+PASS: idle duration rounded to milliseconds: 2.004
+PASS: syn Perf stat counts: {'net:net_dev_queue': 6, 'net:net_dev_start_xmit': 6, 'net:net_dev_xmit': 6, 'net:netif_receive_skb': 3, 'skb:kfree_skb': 3, 'tcp:tcp_send_reset': 3, 'udp:udp_fail_queue_rcv_skb': 0, 'sock:inet_sock_set_state': 0}
+PASS: syn duration rounded to milliseconds: 1.271
+PASS: udp Perf stat counts: {'net:net_dev_queue': 6, 'net:net_dev_start_xmit': 6, 'net:net_dev_xmit': 6, 'net:netif_receive_skb': 3, 'skb:kfree_skb': 3, 'tcp:tcp_send_reset': 0, 'udp:udp_fail_queue_rcv_skb': 0, 'sock:inet_sock_set_state': 0}
+PASS: udp duration rounded to milliseconds: 1.340
+PASS: syn Perf recorded event counts: {'net:net_dev_queue': 10, 'net:net_dev_xmit': 10, 'net:netif_receive_skb': 8, 'tcp:tcp_send_reset': 3, 'skb:kfree_skb': 3}
+PASS: syn exported line count: 1151
+PASS: Three reset destinations and reasons: 3
+PASS: Reset source ports: ['2435', '2436', '2437']
+PASS: IRQ thread attribution: True
+PASS: Report call-stack excerpt follows raw stack order: 13
+PASS: udp Perf recorded event counts: {'net:net_dev_queue': 27, 'net:net_dev_xmit': 27, 'net:netif_receive_skb': 29, 'skb:kfree_skb': 3}
+PASS: udp exported line count: 3688
+PASS: Figure numbering: ['1', '2', '3', '4', '5', '6']
+PASS: All six screenshot paths resolve: 6
+PASS: Repository is the only external URL: ['https://github.com/deep-observability-lab/Linux-Kernel-Tracing/tree/main/LABS/LAB1']
+PASS: No screenshot placeholders: False
+
+All 35 checks passed against saved logs, Perf text exports, and the DNS query payload.
+The root-owned binary Perf recordings were preserved; this check uses their saved text exports.
+All seven supplied screenshots were viewed. The comparison and call-stack screenshots are byte-identical, so only one is used.

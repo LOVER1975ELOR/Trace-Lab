@@ -1,0 +1,11 @@
+Package verification — 2026-11-12
+
+Original evidence copied byte-for-byte; 153 original files checked.
+All original scripts passed bash -n. Fresh privileged experiments were not
+rerun during packaging; REPRODUCE.txt documents prerequisites and sequence.
+Both PDFs retain the intended assignment repository as their external link.
+All three included CTF recordings decoded successfully with Babeltrace.
+Each contains metadata, 16 CPU streams and 16 index files. Regenerated text
+exactly matches the original saved exports: 52, 66 and 14234 events.
+The PCAP regenerates the exact saved TShark CSV (four frames).
+All eleven scripts, ftrace graph, outputs and analysis are included.

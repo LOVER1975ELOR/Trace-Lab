@@ -1,0 +1,14 @@
+Package verification — 2026-11-12
+
+Original evidence copied byte-for-byte; 39 original files checked.
+All original scripts passed bash -n. Fresh privileged experiments were not
+rerun during packaging; REPRODUCE.txt documents prerequisites and sequence.
+Both PDFs retain the intended assignment repository as their external link.
+Both included Perf binaries were decoded successfully with perf script.
+SYN: 34 event records; 1151 lines; raw call-frame addresses match.
+UDP: 86 event records; 3688 lines; raw call-frame addresses match.
+Event timestamps/counts and non-symbolized payload fields match.
+Kernel symbols, module attribution and symbolized location fields differ
+in unprivileged decoding. The original symbolized exports are preserved
+for complete call-stack analysis. No decoder warnings were emitted.
+DNS payload, six scripts, baseline/perf outputs and analysis are included.

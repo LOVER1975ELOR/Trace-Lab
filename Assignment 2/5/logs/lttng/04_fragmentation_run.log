@@ -1,0 +1,123 @@
+==================================
+Lab 5 - LTTng Fragmentation Trace
+==================================
+Date: 2026-11-12T14:23:56+03:30
+Kernel: 6.17.0-40-generic
+
+[1] Verifying the experimental network...
+19: l5veth_tx@if18: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000
+    link/ether 72:1f:e3:d6:10:bd brd ff:ff:ff:ff:ff:ff link-netns lab5_mtu_rx
+
+[2] Checking LTTng network events...
+[AVAILABLE] net_dev_queue
+[MISSING] net_dev_start_xmit
+[AVAILABLE] net_dev_xmit
+[MISSING] netif_receive_skb
+
+[3] Checking previous output files...
+
+[4] Recording normal Ping...
+
+==================================
+Recording: small
+Payload: 56 bytes
+IPv4 packet: 84 bytes
+==================================
+Session lab5_mtu_small_103104 created.
+Traces will be output to /home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab5/logs/lttng/04_small_trace
+kernel event net_dev_queue created in channel channel0
+kernel event net_dev_xmit created in channel channel0
+Tracing started for session lab5_mtu_small_103104
+Running Ping...
+Ping: SUCCESS
+Waiting for data availability.
+Tracing stopped for session lab5_mtu_small_103104
+Destroying session lab5_mtu_small_103104..
+Session lab5_mtu_small_103104 destroyed
+Preparing Trace Compass copy...
+Exporting Babeltrace events...
+
+--- Ping output ---
+PING 10.205.0.2 (10.205.0.2) 56(84) bytes of data.
+64 bytes from 10.205.0.2: icmp_seq=1 ttl=64 time=0.044 ms
+64 bytes from 10.205.0.2: icmp_seq=2 ttl=64 time=0.084 ms
+
+--- 10.205.0.2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1007ms
+rtt min/avg/max/mdev = 0.044/0.064/0.084/0.020 ms
+
+--- Trace event counts ---
+net_dev_queue             26
+net_dev_start_xmit        0
+net_dev_xmit              26
+netif_receive_skb         0
+
+--- First network queue events ---
+[14:23:56.738497094] (+?.?????????) elor-IdeaPad-Slim-3-15IRH10 net_dev_queue: { cpu_id = 14 }, { skbaddr = 0xFFFF8C0328E5EA00, len = 98, name = "l5veth_tx", network_header_type = ( "_ipv4" : container = 1 ), network_header = { ipv4 = { version = 4, ihl = 5, tos = 0, tot_len = 84, id = 0x3C2B, frag_off = 0, ttl = 64, protocol = ( "_icmp" : container = 1 ), checksum = 0x28E2, saddr_padding = { }, saddr = [ [0] = 10, [1] = 205, [2] = 0, [3] = 1 ], daddr_padding = { }, daddr = [ [0] = 10, [1] = 205, [2] = 0, [3] = 2 ], transport_header_type = ( "_icmp" : container = 3 ), transport_header = { icmp = { type = 8, code = 0, checksum = 12777, gateway = 2465726465 } } } } }
+[14:23:56.738521964] (+0.000018907) elor-IdeaPad-Slim-3-15IRH10 net_dev_queue: { cpu_id = 14 }, { skbaddr = 0xFFFF8C0328E5FA00, len = 98, name = "l5veth_rx", network_header_type = ( "_ipv4" : container = 1 ), network_header = { ipv4 = { version = 4, ihl = 5, tos = 0, tot_len = 84, id = 0xD254, frag_off = 0, ttl = 64, protocol = ( "_icmp" : container = 1 ), checksum = 0x92B8, saddr_padding = { }, saddr = [ [0] = 10, [1] = 205, [2] = 0, [3] = 2 ], daddr_padding = { }, daddr = [ [0] = 10, [1] = 205, [2] = 0, [3] = 1 ], transport_header_type = ( "_icmp" : container = 3 ), transport_header = { icmp = { type = 0, code = 0, checksum = 14825, gateway = 2465726465 } } } } }
+[14:23:57.212777804] (+0.474254203) elor-IdeaPad-Slim-3-15IRH10 net_dev_queue: { cpu_id = 15 }, { skbaddr = 0xFFFF8C06198EFCE8, len = 94, name = "lo", network_header_type = ( "_ipv4" : container = 1 ), network_header = { ipv4 = { version = 4, ihl = 5, tos = 0, tot_len = 80, id = 0x280E, frag_off = 16384, ttl = 64, protocol = ( "_tcp" : container = 6 ), checksum = 0x1498, saddr_padding = { }, saddr = [ [0] = 127, [1] = 0, [2] = 0, [3] = 1 ], daddr_padding = { }, daddr = [ [0] = 127, [1] = 0, [2] = 0, [3] = 1 ], transport_header_type = ( "_tcp" : container = 1 ), transport_header = { tcp = { source_port = 12334, dest_port = 41424, seq = 3343992277, ack_seq = 2762213125, data_offset = 8, reserved = 0, flags = 0x18, window_size = 97, checksum = 0xFE44, urg_ptr = 0 } } } } }
+[14:23:57.213252464] (+0.000463239) elor-IdeaPad-Slim-3-15IRH10 net_dev_queue: { cpu_id = 13 }, { skbaddr = 0xFFFF8C04F1BEE8E8, len = 98, name = "lo", network_header_type = ( "_ipv4" : container = 1 ), network_header = { ipv4 = { version = 4, ihl = 5, tos = 0, tot_len = 84, id = 0x8750, frag_off = 16384, ttl = 64, protocol = ( "_tcp" : container = 6 ), checksum = 0xB551, saddr_padding = { }, saddr = [ [0] = 127, [1] = 0, [2] = 0, [3] = 1 ], daddr_padding = { }, daddr = [ [0] = 127, [1] = 0, [2] = 0, [3] = 1 ], transport_header_type = ( "_tcp" : container = 1 ), transport_header = { tcp = { source_port = 41424, dest_port = 12334, seq = 2762213125, ack_seq = 3343992305, data_offset = 8, reserved = 0, flags = 0x18, window_size = 93, checksum = 0xFE48, urg_ptr = 0 } } } } }
+[14:23:57.213290817] (+0.000031869) elor-IdeaPad-Slim-3-15IRH10 net_dev_queue: { cpu_id = 13 }, { skbaddr = 0xFFFF8C03BE160900, len = 66, name = "lo", network_header_type = ( "_ipv4" : container = 1 ), network_header = { ipv4 = { version = 4, ihl = 5, tos = 0, tot_len = 52, id = 0x280F, frag_off = 16384, ttl = 64, protocol = ( "_tcp" : container = 6 ), checksum = 0x14B3, saddr_padding = { }, saddr = [ [0] = 127, [1] = 0, [2] = 0, [3] = 1 ], daddr_padding = { }, daddr = [ [0] = 127, [1] = 0, [2] = 0, [3] = 1 ], transport_header_type = ( "_tcp" : container = 1 ), transport_header = { tcp = { source_port = 12334, dest_port = 41424, seq = 3343992305, ack_seq = 2762213157, data_offset = 8, reserved = 0, flags = 0x10, window_size = 97, checksum = 0xFE28, urg_ptr = 0 } } } } }
+[14:23:57.213486508] (+0.000193005) elor-IdeaPad-Slim-3-15IRH10 net_dev_queue: { cpu_id = 14 }, { skbaddr = 0xFFFF8C0286A006E8, len = 132, name = "wlp0s20f3", network_header_type = ( "_ipv4" : container = 1 ), network_header = { ipv4 = { version = 4, ihl = 5, tos = 0, tot_len = 118, id = 0x7297, frag_off = 16384, ttl = 64, protocol = ( "_tcp" : container = 6 ), checksum = 0x8B14, saddr_padding = { }, saddr = [ [0] = 192, [1] = 168, [2] = 100, [3] = 10 ], daddr_padding = { }, daddr = [ [0] = 87, [1] = 107, [2] = 192, [3] = 184 ], transport_header_type = ( "_tcp" : container = 1 ), transport_header = { tcp = { source_port = 59000, dest_port = 6372, seq = 874994823, ack_seq = 4210069019, data_offset = 8, reserved = 0, flags = 0x18, window_size = 58, checksum = 0x3D3F, urg_ptr = 0 } } } } }
+[14:23:57.416034521] (+0.202499652) elor-IdeaPad-Slim-3-15IRH10 net_dev_queue: { cpu_id = 1 }, { skbaddr = 0xFFFF8C03A60F4C00, len = 66, name = "wlp0s20f3", network_header_type = ( "_ipv4" : container = 1 ), network_header = { ipv4 = { version = 4, ihl = 5, tos = 0, tot_len = 52, id = 0x6A66, frag_off = 16384, ttl = 64, protocol = ( "_tcp" : container = 6 ), checksum = 0x9387, saddr_padding = { }, saddr = [ [0] = 192, [1] = 168, [2] = 100, [3] = 10 ], daddr_padding = { }, daddr = [ [0] = 87, [1] = 107, [2] = 192, [3] = 184 ], transport_header_type = ( "_tcp" : container = 1 ), transport_header = { tcp = { source_port = 41970, dest_port = 6372, seq = 909716978, ack_seq = 710891003, data_offset = 8, reserved = 0, flags = 0x10, window_size = 61, checksum = 0x3CFD, urg_ptr = 0 } } } } }
+[14:23:57.416323375] (+0.000234557) elor-IdeaPad-Slim-3-15IRH10 net_dev_queue: { cpu_id = 10 }, { skbaddr = 0xFFFF8C03C53BECE8, len = 90, name = "lo", network_header_type = ( "_ipv4" : container = 1 ), network_header = { ipv4 = { version = 4, ihl = 5, tos = 0, tot_len = 76, id = 0x5EF4, frag_off = 16384, ttl = 64, protocol = ( "_tcp" : container = 6 ), checksum = 0xDDB5, saddr_padding = { }, saddr = [ [0] = 127, [1] = 0, [2] = 0, [3] = 1 ], daddr_padding = { }, daddr = [ [0] = 127, [1] = 0, [2] = 0, [3] = 1 ], transport_header_type = ( "_tcp" : container = 1 ), transport_header = { tcp = { source_port = 12334, dest_port = 44930, seq = 2183702228, ack_seq = 781581238, data_offset = 8, reserved = 0, flags = 0x18, window_size = 112, checksum = 0xFE40, urg_ptr = 0 } } } } }
+
+--- Trace files ---
+152K	/home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab5/logs/lttng/04_small_trace_gui
+52 /home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab5/logs/lttng/04_small_events.txt
+Trace Compass path: /home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab5/logs/lttng/04_small_trace_gui/kernel
+
+[5] Recording oversized Ping...
+
+==================================
+Recording: large
+Payload: 2000 bytes
+IPv4 packet: 2028 bytes
+==================================
+Session lab5_mtu_large_103104 created.
+Traces will be output to /home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab5/logs/lttng/04_large_trace
+kernel event net_dev_queue created in channel channel0
+kernel event net_dev_xmit created in channel channel0
+Tracing started for session lab5_mtu_large_103104
+Running Ping...
+Ping: SUCCESS
+Waiting for data availability.
+Tracing stopped for session lab5_mtu_large_103104
+Destroying session lab5_mtu_large_103104..
+Session lab5_mtu_large_103104 destroyed
+Preparing Trace Compass copy...
+Exporting Babeltrace events...
+
+--- Ping output ---
+PING 10.205.0.2 (10.205.0.2) 2000(2028) bytes of data.
+2008 bytes from 10.205.0.2: icmp_seq=1 ttl=64 time=0.065 ms
+2008 bytes from 10.205.0.2: icmp_seq=2 ttl=64 time=0.302 ms
+
+--- 10.205.0.2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1057ms
+rtt min/avg/max/mdev = 0.065/0.183/0.302/0.118 ms
+
+--- Trace event counts ---
+net_dev_queue             33
+net_dev_start_xmit        0
+net_dev_xmit              33
+netif_receive_skb         0
+
+--- First network queue events ---
+[14:23:58.735542633] (+?.?????????) elor-IdeaPad-Slim-3-15IRH10 net_dev_queue: { cpu_id = 15 }, { skbaddr = 0xFFFF8C051DD7D900, len = 1514, name = "l5veth_tx", network_header_type = ( "_ipv4" : container = 1 ), network_header = { ipv4 = { version = 4, ihl = 5, tos = 0, tot_len = 1500, id = 0x413A, frag_off = 8192, ttl = 64, protocol = ( "_icmp" : container = 1 ), checksum = 0xFE4A, saddr_padding = { }, saddr = [ [0] = 10, [1] = 205, [2] = 0, [3] = 1 ], daddr_padding = { }, daddr = [ [0] = 10, [1] = 205, [2] = 0, [3] = 2 ], transport_header_type = ( "_icmp" : container = 3 ), transport_header = { icmp = { type = 8, code = 0, checksum = 28062, gateway = 2469986305 } } } } }
+[14:23:58.735569408] (+0.000020135) elor-IdeaPad-Slim-3-15IRH10 net_dev_queue: { cpu_id = 15 }, { skbaddr = 0xFFFF8C051DD7D300, len = 562, name = "l5veth_tx", network_header_type = ( "_ipv4" : container = 1 ), network_header = { ipv4 = { version = 4, ihl = 5, tos = 0, tot_len = 548, id = 0x413A, frag_off = 185, ttl = 64, protocol = ( "_icmp" : container = 1 ), checksum = 0x214A, saddr_padding = { }, saddr = [ [0] = 10, [1] = 205, [2] = 0, [3] = 1 ], daddr_padding = { }, daddr = [ [0] = 10, [1] = 205, [2] = 0, [3] = 2 ], transport_header_type = ( "_icmp" : container = 3 ), transport_header = { icmp = { type = 192, code = 193, checksum = 49859, gateway = 3301295815 } } } } }
+[14:23:58.735586851] (+0.000016073) elor-IdeaPad-Slim-3-15IRH10 net_dev_queue: { cpu_id = 15 }, { skbaddr = 0xFFFF8C051DD7D900, len = 1514, name = "l5veth_rx", network_header_type = ( "_ipv4" : container = 1 ), network_header = { ipv4 = { version = 4, ihl = 5, tos = 0, tot_len = 1500, id = 0xD87E, frag_off = 8192, ttl = 64, protocol = ( "_icmp" : container = 1 ), checksum = 0x6706, saddr_padding = { }, saddr = [ [0] = 10, [1] = 205, [2] = 0, [3] = 2 ], daddr_padding = { }, daddr = [ [0] = 10, [1] = 205, [2] = 0, [3] = 1 ], transport_header_type = ( "_icmp" : container = 3 ), transport_header = { icmp = { type = 0, code = 0, checksum = 30110, gateway = 2469986305 } } } } }
+[14:23:58.735588919] (+0.000000776) elor-IdeaPad-Slim-3-15IRH10 net_dev_queue: { cpu_id = 15 }, { skbaddr = 0xFFFF8C051DD7CF00, len = 562, name = "l5veth_rx", network_header_type = ( "_ipv4" : container = 1 ), network_header = { ipv4 = { version = 4, ihl = 5, tos = 0, tot_len = 548, id = 0xD87E, frag_off = 185, ttl = 64, protocol = ( "_icmp" : container = 1 ), checksum = 0x8A05, saddr_padding = { }, saddr = [ [0] = 10, [1] = 205, [2] = 0, [3] = 2 ], daddr_padding = { }, daddr = [ [0] = 10, [1] = 205, [2] = 0, [3] = 1 ], transport_header_type = ( "_icmp" : container = 3 ), transport_header = { icmp = { type = 192, code = 193, checksum = 49859, gateway = 3301295815 } } } } }
+[14:23:58.849566912] (+0.113977311) elor-IdeaPad-Slim-3-15IRH10 net_dev_queue: { cpu_id = 5 }, { skbaddr = 0xFFFF8C061B0D4600, len = 66, name = "wlp0s20f3", network_header_type = ( "_ipv4" : container = 1 ), network_header = { ipv4 = { version = 4, ihl = 5, tos = 0, tot_len = 52, id = 0xF529, frag_off = 16384, ttl = 64, protocol = ( "_tcp" : container = 6 ), checksum = 0x8C4, saddr_padding = { }, saddr = [ [0] = 192, [1] = 168, [2] = 100, [3] = 10 ], daddr_padding = { }, daddr = [ [0] = 87, [1] = 107, [2] = 192, [3] = 184 ], transport_header_type = ( "_tcp" : container = 1 ), transport_header = { tcp = { source_port = 56784, dest_port = 6372, seq = 2403761984, ack_seq = 1584903172, data_offset = 8, reserved = 0, flags = 0x10, window_size = 62, checksum = 0x3CFD, urg_ptr = 0 } } } } }
+[14:23:58.849616187] (+0.000031422) elor-IdeaPad-Slim-3-15IRH10 net_dev_queue: { cpu_id = 2 }, { skbaddr = 0xFFFF8C02B67B5AE8, len = 665, name = "lo", network_header_type = ( "_ipv4" : container = 1 ), network_header = { ipv4 = { version = 4, ihl = 5, tos = 0, tot_len = 651, id = 0x869F, frag_off = 16384, ttl = 64, protocol = ( "_tcp" : container = 6 ), checksum = 0xB3CB, saddr_padding = { }, saddr = [ [0] = 127, [1] = 0, [2] = 0, [3] = 1 ], daddr_padding = { }, daddr = [ [0] = 127, [1] = 0, [2] = 0, [3] = 1 ], transport_header_type = ( "_tcp" : container = 1 ), transport_header = { tcp = { source_port = 12334, dest_port = 60304, seq = 148556679, ack_seq = 2820222411, data_offset = 8, reserved = 0, flags = 0x18, window_size = 90, checksum = 0x80, urg_ptr = 0 } } } } }
+[14:23:58.849631834] (+0.000012342) elor-IdeaPad-Slim-3-15IRH10 net_dev_queue: { cpu_id = 2 }, { skbaddr = 0xFFFF8C0595197C00, len = 66, name = "lo", network_header_type = ( "_ipv4" : container = 1 ), network_header = { ipv4 = { version = 4, ihl = 5, tos = 0, tot_len = 52, id = 0xD459, frag_off = 16384, ttl = 64, protocol = ( "_tcp" : container = 6 ), checksum = 0x6868, saddr_padding = { }, saddr = [ [0] = 127, [1] = 0, [2] = 0, [3] = 1 ], daddr_padding = { }, daddr = [ [0] = 127, [1] = 0, [2] = 0, [3] = 1 ], transport_header_type = ( "_tcp" : container = 1 ), transport_header = { tcp = { source_port = 60304, dest_port = 12334, seq = 2820222411, ack_seq = 148557278, data_offset = 8, reserved = 0, flags = 0x10, window_size = 77, checksum = 0xFE28, urg_ptr = 0 } } } } }
+[14:23:58.849646462] (+0.000014079) elor-IdeaPad-Slim-3-15IRH10 net_dev_queue: { cpu_id = 10 }, { skbaddr = 0xFFFF8C03C53BC8E8, len = 94, name = "lo", network_header_type = ( "_ipv4" : container = 1 ), network_header = { ipv4 = { version = 4, ihl = 5, tos = 0, tot_len = 80, id = 0x8D73, frag_off = 16384, ttl = 64, protocol = ( "_tcp" : container = 6 ), checksum = 0xAF32, saddr_padding = { }, saddr = [ [0] = 127, [1] = 0, [2] = 0, [3] = 1 ], daddr_padding = { }, daddr = [ [0] = 127, [1] = 0, [2] = 0, [3] = 1 ], transport_header_type = ( "_tcp" : container = 1 ), transport_header = { tcp = { source_port = 12334, dest_port = 41470, seq = 4233803678, ack_seq = 2226146541, data_offset = 8, reserved = 0, flags = 0x18, window_size = 205, checksum = 0xFE44, urg_ptr = 0 } } } } }
+
+--- Trace files ---
+152K	/home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab5/logs/lttng/04_large_trace_gui
+66 /home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab5/logs/lttng/04_large_events.txt
+Trace Compass path: /home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab5/logs/lttng/04_large_trace_gui/kernel
+
+==================================
+Both LTTng recordings completed.
+==================================

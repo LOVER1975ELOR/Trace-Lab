@@ -1,0 +1,4 @@
+HPING 8.8.8.8 (wlp0s20f3 8.8.8.8): S set, 40 headers + 0 data bytes
+len=44 ip=8.8.8.8 ttl=114 DF id=0 sport=53 flags=SA seq=0 win=65535 rtt=194.8 ms
+len=44 ip=8.8.8.8 ttl=114 DF id=0 sport=53 flags=SA seq=1 win=65535 rtt=206.8 ms
+len=44 ip=8.8.8.8 ttl=114 DF id=0 sport=53 flags=SA seq=2 win=65535 rtt=217.6 ms

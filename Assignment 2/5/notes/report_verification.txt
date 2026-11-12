@@ -1,0 +1,59 @@
+Lab 5 report verification — 2026-11-12
+Read-only checks of original saved evidence; experiments were not rerun.
+
+PASS small: net_dev_queue count 26
+PASS small: net_dev_xmit count 26
+PASS large: net_dev_queue count 33
+PASS large: net_dev_xmit count 33
+PASS normal packet: 98 Ethernet bytes, 84 IPv4 bytes, ID 0x3C2B, offset zero
+PASS large request fragment 1 lengths/ID/offset
+PASS large request fragment 2 lengths/ID/offset
+PASS coordinated event total 14234
+PASS coordinated sched_switch total 5596
+PASS timeline 173320854 syscall_entry_sendto
+PASS timeline 173342520 net_dev_queue
+PASS timeline 173354483 net_dev_xmit
+PASS timeline 173372770 net_dev_queue
+PASS timeline 173375500 net_dev_xmit
+PASS timeline 173470456 syscall_exit_sendto
+PASS timeline 173497864 syscall_entry_recvmsg
+PASS timeline 173505264 syscall_exit_recvmsg
+PASS queue intervals 21.666 and 51.916 microseconds
+PASS raw socket entry and return fd 3
+PASS coordinated net_dev_queue count 19
+PASS coordinated net_dev_xmit count 19
+PASS ftrace ip_fragment.constprop.0: 2
+PASS ftrace ip_do_fragment: 2
+PASS ftrace ip_fraglist_init: 2
+PASS ftrace ip_fraglist_prepare: 2
+PASS ftrace ip_frag_next: 0
+PASS ftrace ip_finish_output2: 4
+PASS ftrace __dev_queue_xmit: 4
+PASS ftrace dev_hard_start_xmit: 4
+PASS ftrace veth_xmit [veth]: 4
+PASS ftrace 1398 lines and 106147 bytes
+PASS ftrace echo reply processing before second fragmentation entry
+PASS 03_df_allowed exit status 0
+PASS 03_df_disabled exit status 1
+PASS prohibited fragmentation: two MTU errors
+PASS allowed fragmentation: replies and RTT
+PASS both interfaces configured MTU 1500
+PASS PCAP little-endian format
+PASS PCAP exactly four complete frames
+PASS PCAP frame 1 lengths ID flags offset endpoints
+PASS PCAP frame 2 lengths ID flags offset endpoints
+PASS PCAP frame 3 lengths ID flags offset endpoints
+PASS PCAP frame 4 lengths ID flags offset endpoints
+PASS original sizes from fragments
+PASS 12 sequential figures, unique existing files
+PASS only intended repository hyperlink
+PASS no placeholder comments or administrative appendices
+
+47 checks passed.
+
+Screenshot review: all 17 supplied PNGs inspected. Report selects 12 unique views.
+Formatting omits setup/comparison screenshot placeholders; those results remain as text/table evidence.
+Raw-socket receive semantics checked against Linux raw(7); report has no external documentation hyperlinks.
+
+PDF validation: 14 A4 pages; 12 embedded images and sequential captions; only the intended repository URL.
+Selected rendered pages visually checked for layout, equations, tables and figures.

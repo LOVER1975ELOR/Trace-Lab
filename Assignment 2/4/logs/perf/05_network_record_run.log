@@ -1,0 +1,69 @@
+==================================
+Lab 4 - Perf Network Recording
+==================================
+Date: 2026-11-12T12:55:11+03:30
+Kernel: 6.17.0-40-generic
+Target: 8.8.8.8:53
+
+[1/2] TCP SYN recording...
+
+----------------------------------
+Recording: syn
+----------------------------------
+Exporting perf events...
+Data file: logs/perf/05_syn_perf.data
+Text file: logs/perf/05_syn_perf_script.txt
+
+Recorded event counts:
+net:net_dev_queue              10
+net:net_dev_xmit               10
+net:netif_receive_skb          8
+skb:kfree_skb                  3
+tcp:tcp_send_reset             3
+
+TCP reset event preview:
+irq/171-iwlwifi     705 [009]  9099.586026:    tcp:tcp_send_reset: skbaddr=0xffff8c04e5fc4300 skaddr=(nil) src=192.168.100.10:2435 dest=8.8.8.8:53 state=UNKNOWN reason=NO_SOCKET
+irq/163-iwlwifi     697 [001]  9100.097810:    tcp:tcp_send_reset: skbaddr=0xffff8c068e4e3300 skaddr=(nil) src=192.168.100.10:2436 dest=8.8.8.8:53 state=UNKNOWN reason=NO_SOCKET
+irq/166-iwlwifi     700 [004]  9100.610993:    tcp:tcp_send_reset: skbaddr=0xffff8c031ad12b00 skaddr=(nil) src=192.168.100.10:2437 dest=8.8.8.8:53 state=UNKNOWN reason=NO_SOCKET
+
+hping3 output:
+HPING 8.8.8.8 (wlp0s20f3 8.8.8.8): S set, 40 headers + 0 data bytes
+len=44 ip=8.8.8.8 ttl=114 DF id=0 sport=53 flags=SA seq=0 win=65535 rtt=189.8 ms
+len=44 ip=8.8.8.8 ttl=114 DF id=0 sport=53 flags=SA seq=1 win=65535 rtt=201.4 ms
+len=44 ip=8.8.8.8 ttl=114 DF id=0 sport=53 flags=SA seq=2 win=65535 rtt=214.0 ms
+
+File sizes:
+-rw------- 1 root root 1.8M Nov 12 12:55 logs/perf/05_syn_perf.data
+1151 logs/perf/05_syn_perf_script.txt
+
+[2/2] UDP recording...
+
+----------------------------------
+Recording: udp
+----------------------------------
+Exporting perf events...
+Data file: logs/perf/05_udp_perf.data
+Text file: logs/perf/05_udp_perf_script.txt
+
+Recorded event counts:
+net:net_dev_queue              27
+net:net_dev_xmit               27
+net:netif_receive_skb          29
+skb:kfree_skb                  3
+tcp:tcp_send_reset             0
+
+TCP reset event preview:
+
+hping3 output:
+HPING 8.8.8.8 (wlp0s20f3 8.8.8.8): udp mode set, 28 headers + 29 data bytes
+len=89 ip=8.8.8.8 ttl=114 id=41408 seq=0 rtt=273.7 ms
+len=89 ip=8.8.8.8 ttl=114 id=12845 seq=1 rtt=284.4 ms
+len=89 ip=8.8.8.8 ttl=114 id=59580 seq=2 rtt=297.2 ms
+
+File sizes:
+-rw------- 1 root root 1.8M Nov 12 12:55 logs/perf/05_udp_perf.data
+3688 logs/perf/05_udp_perf_script.txt
+
+==================================
+Both recordings completed.
+==================================

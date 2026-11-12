@@ -1,0 +1,6 @@
+[main] memlockall(): No such device
+Warning: can't disable memory paging!
+
+--- 8.8.8.8 hping statistic ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 190.9/202.3/214.4 ms

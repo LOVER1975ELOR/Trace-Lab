@@ -1,0 +1,180 @@
+======================================
+Lab 5 - IPv4 Fragmentation Function Graph
+======================================
+Date: 2026-11-12T16:01:04+03:30
+Kernel: 6.17.0-40-generic
+Target function: ip_fragment.constprop.0
+
+[1] Checking the tracing environment...
+
+[2] Checking the main ftrace configuration...
+Main tracer configuration is safe to use.
+
+[3] Checking experimental network...
+
+[4] Preserving the existing trace buffer...
+
+[5] Configuring function_graph...
+Current tracer:
+function_graph
+Graph root:
+ip_fragment.constprop.0
+
+[6] Starting tracing...
+
+[7] Running one oversized Ping...
+
+[8] Stopping and exporting the trace...
+
+========== PING OUTPUT ==========
+PING 10.205.0.2 (10.205.0.2) 2000(2028) bytes of data.
+2008 bytes from 10.205.0.2: icmp_seq=1 ttl=64 time=0.547 ms
+
+--- 10.205.0.2 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.547/0.547/0.547/0.000 ms
+
+========== PING ERRORS ==========
+
+========== TRACE DETAILS ==========
+  1398 106147 logs/ftrace/10_ip_fragment.graph
+
+========== MATCHING FUNCTIONS ==========
+5: 14)               |  ip_fragment.constprop.0() {
+6: 14)               |    ip_do_fragment() {
+9: 14)               |      ip_fraglist_init() {
+12: 14)               |      ip_fraglist_prepare() {
+16: 14)               |      ip_finish_output2() {
+41: 14)               |          __dev_queue_xmit() {
+652: 14)               |      ip_finish_output2() {
+658: 14)               |          __dev_queue_xmit() {
+949: 14)               |                                                  ip_finish_output() {
+950: 14)               |                                                    __ip_finish_output() {
+953: 14)               |                                                      ip_fragment.constprop.0() {
+954: 14)               |                                                        ip_do_fragment() {
+957: 14)               |                                                          ip_fraglist_init() {
+960: 14)               |                                                          ip_fraglist_prepare() {
+964: 14)               |                                                          ip_finish_output2() {
+989: 14)               |                                                              __dev_queue_xmit() {
+1030: 14)               |                                                          ip_finish_output2() {
+1036: 14)               |                                                              __dev_queue_xmit() {
+
+========== FUNCTION GRAPH PREVIEW ==========
+# tracer: function_graph
+#
+# CPU  DURATION                  FUNCTION CALLS
+# |     |   |                     |   |   |   |
+ 14)               |  ip_fragment.constprop.0() {
+ 14)               |    ip_do_fragment() {
+ 14)   0.586 us    |      __rcu_read_lock();
+ 14)   0.278 us    |      __rcu_read_unlock();
+ 14)               |      ip_fraglist_init() {
+ 14)   0.268 us    |        ip_send_check();
+ 14)   0.824 us    |      }
+ 14)               |      ip_fraglist_prepare() {
+ 14)   0.356 us    |        ip_copy_metadata();
+ 14)   0.252 us    |        ip_send_check();
+ 14)   1.460 us    |      }
+ 14)               |      ip_finish_output2() {
+ 14)   0.243 us    |        __rcu_read_lock();
+ 14)               |        neigh_resolve_output() {
+ 14)               |          __neigh_event_send() {
+ 14)   0.260 us    |            _raw_write_lock_bh();
+ 14)   0.241 us    |            neigh_del_timer();
+ 14)               |            neigh_add_timer() {
+ 14)               |              mod_timer() {
+ 14)               |                lock_timer_base() {
+ 14)   0.372 us    |                  _raw_spin_lock_irqsave();
+ 14)   0.913 us    |                }
+ 14)   0.264 us    |                detach_if_pending();
+ 14)   0.243 us    |                _raw_spin_unlock();
+ 14)   0.262 us    |                _raw_spin_lock();
+ 14)   0.285 us    |                calc_wheel_index();
+ 14)   0.400 us    |                enqueue_timer();
+ 14)   0.260 us    |                _raw_spin_unlock_irqrestore();
+ 14)   5.001 us    |              }
+ 14)   5.599 us    |            }
+ 14)   0.251 us    |            _raw_write_unlock();
+ 14)   0.263 us    |            __local_bh_enable_ip();
+ 14)   8.648 us    |          }
+ 14)               |          eth_header() {
+ 14)   0.242 us    |            skb_push();
+ 14)   1.115 us    |          }
+ 14)               |          __dev_queue_xmit() {
+ 14)   0.285 us    |            qdisc_pkt_len_init();
+ 14)   0.268 us    |            dst_release();
+ 14)   0.274 us    |            netdev_core_pick_tx();
+ 14)               |            validate_xmit_skb() {
+ 14)               |              netif_skb_features() {
+ 14)   0.243 us    |                passthru_features_check();
+ 14)   0.286 us    |                skb_network_protocol();
+ 14)   1.886 us    |              }
+ 14)   0.270 us    |              validate_xmit_xfrm();
+ 14)   3.482 us    |            }
+ 14)               |            dev_hard_start_xmit() {
+ 14)               |              veth_xmit [veth]() {
+ 14)   0.242 us    |                __rcu_read_lock();
+ 14)               |                skb_clone_tx_timestamp() {
+ 14)   0.243 us    |                  __rcu_read_lock();
+ 14)   0.240 us    |                  __rcu_read_unlock();
+ 14)   1.396 us    |                }
+ 14)               |                __dev_forward_skb() {
+ 14)               |                  __dev_forward_skb2() {
+ 14)   0.285 us    |                    skb_scrub_packet();
+ 14)   0.531 us    |                    eth_type_trans();
+ 14)   1.923 us    |                  }
+ 14)   2.561 us    |                }
+ 14)               |                __netif_rx() {
+ 14)               |                  netif_rx_internal() {
+ 14)   0.482 us    |                    ktime_get_with_offset();
+ 14)               |                    enqueue_to_backlog() {
+ 14)   0.295 us    |                      _raw_spin_lock_irqsave();
+ 14)   0.249 us    |                      __raise_softirq_irqoff();
+ 14)   0.239 us    |                      _raw_spin_unlock_irqrestore();
+ 14)   2.156 us    |                    }
+ 14)   3.628 us    |                  }
+ 14)   4.264 us    |                }
+ 14)   0.268 us    |                irq_enter_rcu();
+ 14)               |                __common_interrupt() {
+ 14)               |                  handle_edge_irq() {
+ 14)   0.260 us    |                    _raw_spin_lock();
+ 14)   0.252 us    |                    irq_can_handle_pm();
+ 14)               |                    irq_chip_ack_parent() {
+ 14)   0.374 us    |                      apic_ack_irq();
+ 14)   0.959 us    |                    }
+ 14)               |                    handle_irq_event() {
+ 14)   0.240 us    |                      _raw_spin_unlock();
+ 14)               |                      __handle_irq_event_percpu() {
+ 14)               |                        gen11_irq_handler [i915]() {
+ 14)               |                          gen11_gt_irq_handler [i915]() {
+ 14)   0.270 us    |                            _raw_spin_lock();
+ 14)   0.240 us    |                            _raw_spin_unlock();
+ 14)   1.318 us    |                          }
+ 14)               |                          gen11_display_irq_handler [i915]() {
+ 14)   0.368 us    |                            intel_display_rpm_assert_block [i915]();
+ 14)   0.252 us    |                            intel_dmc_wl_get [i915]();
+ 14)   0.243 us    |                            to_intel_uncore [i915]();
+ 14)               |                            fwtable_read32 [i915]() {
+ 14)   0.252 us    |                              _raw_spin_lock_irqsave();
+ 14)   0.251 us    |                              _raw_spin_unlock_irqrestore();
+ 14)   1.800 us    |                            }
+ 14)   0.265 us    |                            intel_dmc_wl_put [i915]();
+ 14)   0.260 us    |                            intel_dmc_wl_get [i915]();
+ 14)   0.241 us    |                            to_intel_uncore [i915]();
+ 14)               |                            fwtable_write32 [i915]() {
+ 14)   0.251 us    |                              _raw_spin_lock_irqsave();
+ 14)   0.253 us    |                              _raw_spin_unlock_irqrestore();
+ 14)   1.572 us    |                            }
+ 14)   0.241 us    |                            intel_dmc_wl_put [i915]();
+ 14)               |                            gen8_de_irq_handler [i915]() {
+ 14)   0.244 us    |                              intel_dmc_wl_get [i915]();
+ 14)   0.237 us    |                              to_intel_uncore [i915]();
+ 14)               |                              fwtable_read32 [i915]() {
+
+Ping exit status: 0
+
+Function graph recording completed.
+Trace file: logs/ftrace/10_ip_fragment.graph
+
+[Cleanup] Restoring main ftrace settings...
+Restoration attempted.

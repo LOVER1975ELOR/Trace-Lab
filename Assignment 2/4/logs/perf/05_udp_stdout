@@ -1,0 +1,4 @@
+HPING 8.8.8.8 (wlp0s20f3 8.8.8.8): udp mode set, 28 headers + 29 data bytes
+len=89 ip=8.8.8.8 ttl=114 id=41408 seq=0 rtt=273.7 ms
+len=89 ip=8.8.8.8 ttl=114 id=12845 seq=1 rtt=284.4 ms
+len=89 ip=8.8.8.8 ttl=114 id=59580 seq=2 rtt=297.2 ms

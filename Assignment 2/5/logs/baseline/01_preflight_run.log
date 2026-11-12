@@ -1,0 +1,71 @@
+==================================
+Lab 5 - MTU Preflight
+==================================
+Date: 2026-11-12T14:11:43+03:30
+Kernel: 6.17.0-40-generic
+
+[1] Checking required tools...
+[OK] ping: /usr/bin/ping
+[OK] ip: /usr/sbin/ip
+[OK] lttng: /usr/bin/lttng
+[OK] babeltrace: /usr/bin/babeltrace
+
+[2] Checking network interfaces and MTU...
+lo               UNKNOWN        00:00:00:00:00:00 <LOOPBACK,UP,LOWER_UP> 
+wlp0s20f3        UP             b8:f7:75:15:66:57 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+br-236d8764a890  UP             2e:f8:a3:81:af:af <BROADCAST,MULTICAST,UP,LOWER_UP> 
+br-4c9097ef30e4  DOWN           d6:b8:26:23:db:fc <NO-CARRIER,BROADCAST,MULTICAST,UP> 
+br-6aedb6ab0072  DOWN           da:32:ec:42:a8:6a <NO-CARRIER,BROADCAST,MULTICAST,UP> 
+br-767841c9f93e  DOWN           2a:7e:eb:aa:47:7e <NO-CARRIER,BROADCAST,MULTICAST,UP> 
+br-7b57d7b1a86f  DOWN           1e:cc:34:f0:5c:85 <NO-CARRIER,BROADCAST,MULTICAST,UP> 
+br-92bf5527c266  DOWN           ba:51:45:ea:7e:38 <NO-CARRIER,BROADCAST,MULTICAST,UP> 
+br-bb424a37f96d  DOWN           2e:1b:5b:38:18:d3 <NO-CARRIER,BROADCAST,MULTICAST,UP> 
+br-cc0fcf2e6a4a  DOWN           76:86:9d:e2:05:ec <NO-CARRIER,BROADCAST,MULTICAST,UP> 
+br-05315dabc651  DOWN           06:d6:4f:5b:56:1b <NO-CARRIER,BROADCAST,MULTICAST,UP> 
+br-3647650d8d2e  DOWN           26:a8:59:62:c4:c6 <NO-CARRIER,BROADCAST,MULTICAST,UP> 
+docker0          DOWN           de:6a:80:32:22:98 <NO-CARRIER,BROADCAST,MULTICAST,UP> 
+br-93d4fae1925d  DOWN           da:eb:4b:c4:3a:bc <NO-CARRIER,BROADCAST,MULTICAST,UP> 
+br-c4706f8e8063  UP             a2:ae:44:65:d6:51 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+vethd11e48d@if2  UP             56:2e:d7:2b:f0:38 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+veth10b3057@if2  UP             32:ff:fd:18:d6:ba <BROADCAST,MULTICAST,UP,LOWER_UP> 
+
+[3] Checking current network route...
+8.8.8.8 via 192.168.100.1 dev wlp0s20f3 src 192.168.100.10 uid 1000 
+    cache 
+
+[4] Checking existing network namespaces...
+
+[5] Checking LTTng kernel tracing...
+[OK] LTTng kernel tracing is available.
+
+[6] Checking network tracepoints...
+[OK] net/net_dev_queue
+[OK] net/net_dev_start_xmit
+[OK] net/net_dev_xmit
+[OK] net/netif_receive_skb
+[OK] skb/kfree_skb
+
+[7] Checking packet length fields...
+--- net/net_dev_queue ---
+	field:void * skbaddr;	offset:8;	size:8;	signed:0;
+	field:unsigned int len;	offset:16;	size:4;	signed:0;
+	field:__data_loc char[] name;	offset:20;	size:4;	signed:0;
+
+--- net/net_dev_start_xmit ---
+	field:__data_loc char[] name;	offset:8;	size:4;	signed:0;
+	field:const void * skbaddr;	offset:16;	size:8;	signed:0;
+	field:unsigned int len;	offset:36;	size:4;	signed:0;
+	field:unsigned int data_len;	offset:40;	size:4;	signed:0;
+	field:u16 gso_size;	offset:58;	size:2;	signed:0;
+	field:u16 gso_segs;	offset:60;	size:2;	signed:0;
+	field:u16 gso_type;	offset:62;	size:2;	signed:0;
+
+--- net/net_dev_xmit ---
+	field:void * skbaddr;	offset:8;	size:8;	signed:0;
+	field:unsigned int len;	offset:16;	size:4;	signed:0;
+	field:__data_loc char[] name;	offset:24;	size:4;	signed:0;
+
+==================================
+Preflight completed.
+No network settings were changed.
+==================================

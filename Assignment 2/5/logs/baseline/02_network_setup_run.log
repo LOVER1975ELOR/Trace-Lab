@@ -1,0 +1,45 @@
+==================================
+Lab 5 - Virtual MTU Network Setup
+==================================
+Date: 2026-11-12T14:15:30+03:30
+Kernel: 6.17.0-40-generic
+
+[1] Creating network namespaces...
+
+[2] Creating the veth pair...
+
+[3] Assigning IPv4 addresses...
+
+[4] Configuring MTU...
+
+[5] Enabling interfaces...
+
+[6] Verifying interface MTUs...
+--- Transmitter ---
+19: l5veth_tx@if18: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000
+    link/ether 72:1f:e3:d6:10:bd brd ff:ff:ff:ff:ff:ff link-netns lab5_mtu_rx
+
+--- Receiver ---
+18: l5veth_rx@if19: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000
+    link/ether b6:ac:2b:a2:04:1e brd ff:ff:ff:ff:ff:ff link-netns lab5_mtu_tx
+
+[7] Testing connectivity with normal Ping...
+PING 10.205.0.2 (10.205.0.2) 56(84) bytes of data.
+64 bytes from 10.205.0.2: icmp_seq=1 ttl=64 time=0.078 ms
+64 bytes from 10.205.0.2: icmp_seq=2 ttl=64 time=0.073 ms
+
+--- 10.205.0.2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1056ms
+rtt min/avg/max/mdev = 0.073/0.075/0.078/0.002 ms
+
+[8] Active lab namespaces...
+lab5_mtu_rx (id: 3)
+lab5_mtu_tx (id: 2)
+
+==================================
+Virtual network is ready.
+MTU: 1500 bytes
+Sender: 10.205.0.1
+Receiver: 10.205.0.2
+==================================
+The namespaces remain active for later tests.

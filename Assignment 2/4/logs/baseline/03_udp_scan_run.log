@@ -1,0 +1,34 @@
+==================================
+Lab 4 - UDP Scan with DNS Payload
+==================================
+Date: 2026-11-12T12:48:22+03:30
+Target: 8.8.8.8
+Protocol: UDP
+Destination port: 53
+Packet count: 3
+Interval: 500 milliseconds
+
+[1] Creating a DNS query payload...
+Payload file: /home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab4/payloads/dns_query.bin
+Payload size: 29 bytes
+Payload hex: 12 34 01 00 00 01 00 00 00 00 00 00 07 65 78 61 6d 70 6c 65 03 63 6f 6d 00 00 01 00 01
+
+[2] Sending UDP packets...
+
+[3] Exit status: 0
+
+========== STDOUT ==========
+HPING 8.8.8.8 (wlp0s20f3 8.8.8.8): udp mode set, 28 headers + 29 data bytes
+len=89 ip=8.8.8.8 ttl=114 id=63379 seq=0 rtt=190.9 ms
+len=89 ip=8.8.8.8 ttl=114 id=8359 seq=1 rtt=201.5 ms
+len=89 ip=8.8.8.8 ttl=114 id=40700 seq=2 rtt=214.4 ms
+
+========== STDERR ==========
+[main] memlockall(): No such device
+Warning: can't disable memory paging!
+
+--- 8.8.8.8 hping statistic ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 190.9/202.3/214.4 ms
+
+Scan completed.

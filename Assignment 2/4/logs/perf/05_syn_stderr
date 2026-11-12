@@ -1,0 +1,6 @@
+
+--- 8.8.8.8 hping statistic ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 189.8/201.7/214.0 ms
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 1.731 MB logs/perf/05_syn_perf.data (34 samples) ]

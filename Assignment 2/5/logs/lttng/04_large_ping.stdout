@@ -1,0 +1,7 @@
+PING 10.205.0.2 (10.205.0.2) 2000(2028) bytes of data.
+2008 bytes from 10.205.0.2: icmp_seq=1 ttl=64 time=0.065 ms
+2008 bytes from 10.205.0.2: icmp_seq=2 ttl=64 time=0.302 ms
+
+--- 10.205.0.2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1057ms
+rtt min/avg/max/mdev = 0.065/0.183/0.302/0.118 ms

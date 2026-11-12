@@ -1,0 +1,101 @@
+LAB 4 — SAVED EVIDENCE AND REPRODUCTION
+
+Name: Mahdi Davoodzadeh
+SN: 405725536
+
+Start with Lab_4_Assignment_1_SYN_UDP_Perf_Report.pdf.
+
+CONTENTS
+  scripts/       Six original setup, scan, capture, and analysis scripts.
+  payloads/      Original 29-byte DNS query for example.com (A, IN).
+  logs/baseline/ Scan outputs, exit statuses, environment and run logs.
+  logs/perf/     Idle/SYN/UDP counters; both binary Perf recordings;
+                 symbolized perf-script exports; program outputs and logs.
+  notes/         Available tracepoints, comparison and verification results.
+  SHA256SUMS     Checksums of every other packaged file.
+
+VERIFY AND REOPEN THE ORIGINAL RECORDINGS
+  Run from this folder:
+
+    sha256sum -c SHA256SUMS
+    perf report --stdio -i logs/perf/05_syn_perf.data
+    perf report --stdio -i logs/perf/05_udp_perf.data
+    perf script -i logs/perf/05_syn_perf.data > /tmp/lab4-syn-events.txt
+    perf script -i logs/perf/05_udp_perf.data > /tmp/lab4-udp-events.txt
+
+  The recording kernel was 6.17.0-40-generic, and Perf was 6.17.13. Perf
+  decoding may require a compatible Perf release. Resolving kernel call
+  chains on another machine can additionally require matching kernel/module
+  symbols and build IDs. The original symbolized *_perf_script.txt exports
+  are included so the reported call stacks remain directly readable.
+
+  The saved SYN capture contains 3 tcp:tcp_send_reset events, all directed
+  to 8.8.8.8:53; the UDP capture contains 0. Compare these text exports:
+
+    grep -c 'tcp:tcp_send_reset:' logs/perf/05_syn_perf_script.txt
+    grep -c 'tcp:tcp_send_reset:' logs/perf/05_udp_perf_script.txt
+
+  The second grep prints 0 and exits with status 1 because it has no match.
+  notes/06_syn_udp_comparison.txt contains the complete saved comparison.
+  Event counts include system-wide activity; use destination addresses to
+  identify the experiment's TCP reset events.
+
+ENVIRONMENT FOR A FRESH EXPERIMENT
+  Original environment: Ubuntu 24.04.5 LTS, x86-64, kernel 6.17.0-40-generic,
+  Perf 6.17.13. Use Bash, sudo, hping3, Python 3, iproute2, coreutils, grep,
+  awk, and Perf compatible with the running kernel. TraceFS should be
+  mounted at /sys/kernel/tracing and expose the events checked by script 01.
+  A typical Ubuntu installation uses hping3, python3, iproute2, linux-tools-
+  common, and the linux-tools package matching the running kernel.
+
+  Confirm prerequisites:
+
+    uname -r
+    perf --version
+    findmnt /sys/kernel/tracing
+    ip route get 8.8.8.8
+
+  If TraceFS is absent, mount it before running the preflight:
+
+    sudo mount -t tracefs tracefs /sys/kernel/tracing
+
+  Run scripts as a normal user with sudo access. The scripts send three
+  packets per scan to 8.8.8.8 port 53; the UDP scan uses the packaged DNS
+  payload. Network/firewall behavior and timing can differ on another host.
+  System-wide counts also depend on background activity. Compare the
+  protocol behavior and destination-specific events with the saved results.
+
+CREATE A FRESH RUN WITHOUT OVERWRITING THE SUBMISSION
+  From this folder, in Bash:
+
+    lab4_package="$PWD"
+    lab4_rerun=$(mktemp -d "$lab4_package/../lab4-rerun-XXXXXX")
+    cp -a scripts payloads "$lab4_rerun/"
+    mkdir -p "$lab4_rerun/logs/runs" "$lab4_rerun/notes"
+    cd "$lab4_rerun"
+
+  Continue in the same terminal:
+
+    (
+      set -euo pipefail
+      sudo -v
+      for lab4_script in scripts/0[1-6]_*.sh; do
+        lab4_label=$(basename "$lab4_script" .sh)
+        bash "$lab4_script" 2>&1 | tee "logs/runs/${lab4_label}.log"
+      done
+    )
+
+  Order: 01 preflight; 02 SYN baseline; 03 UDP baseline and DNS payload;
+  04 idle/SYN/UDP perf stat; 05 both perf record sessions; 06 comparison.
+  The scripts check for previous outputs and stop rather than replace them.
+  Script 03 verifies the packaged payload and can recreate it if absent.
+  If a recording command fails, inspect its run log before continuing.
+
+  The scans have timeouts. Perf records until its bounded scan command
+  finishes. For user-readable binary results after a new run:
+
+    sudo chown "$(id -u):$(id -g)" logs/perf/05_syn_perf.data logs/perf/05_udp_perf.data
+
+  Analyze the newly generated recordings and notes using the same commands
+  above. Original scripts and experimental evidence in the submission stay
+  unchanged; new results live in the separate rerun directory.

@@ -1,0 +1,91 @@
+==================================
+Lab 5 - End-to-End Packet Trace
+==================================
+Date: 2026-11-12T15:22:08+03:30
+Kernel: 6.17.0-40-generic
+Target: 10.205.0.2
+Payload: 2000 bytes
+
+[1] Creating LTTng session...
+Session lab5_packet_1000_124829 created.
+Traces will be output to /home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab5/logs/lttng/08_packet_trace
+
+[2] Enabling network and scheduling events...
+kernel event net_dev_queue created in channel channel0
+kernel event net_dev_xmit created in channel channel0
+kernel event net_dev_start_xmit created in channel channel0
+kernel event netif_receive_skb created in channel channel0
+kernel event sched_switch created in channel channel0
+kernel event sched_wakeup created in channel channel0
+kernel event sched_waking created in channel channel0
+
+[3] Enabling system calls...
+kernel event socket created in channel channel0
+kernel event sendto created in channel channel0
+kernel event sendmsg created in channel channel0
+kernel event recvfrom created in channel channel0
+kernel event recvmsg created in channel channel0
+kernel event setsockopt created in channel channel0
+
+[4] Adding process and thread context...
+kernel context vpid added to all channels
+kernel context vtid added to all channels
+kernel context procname added to all channels
+
+[5] Starting LTTng...
+Tracing started for session lab5_packet_1000_124829
+
+[6] Starting packet capture in the transmitter namespace...
+
+[7] Sending one oversized Ping...
+Ping: SUCCESS
+
+[8] Finishing packet capture...
+tcpdump exit status: 0
+tcpdump: listening on l5veth_tx, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+4 packets captured
+4 packets received by filter
+0 packets dropped by kernel
+
+[9] Stopping LTTng...
+Waiting for data availability.
+Tracing stopped for session lab5_packet_1000_124829
+Destroying session lab5_packet_1000_124829..
+Session lab5_packet_1000_124829 destroyed
+
+[10] Preparing readable files...
+
+[11] Extracting packet headers with TShark...
+
+========== PING OUTPUT ==========
+PING 10.205.0.2 (10.205.0.2) 2000(2028) bytes of data.
+2008 bytes from 10.205.0.2: icmp_seq=1 ttl=64 time=0.079 ms
+
+--- 10.205.0.2 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.079/0.079/0.079/0.000 ms
+
+========== PCAP PACKETS ==========
+frame.number,ip.src,ip.dst,ip.id,ip.len,ip.flags.mf,ip.frag_offset,icmp.type
+1,10.205.0.1,10.205.0.2,0x9e55,1500,True,0,
+2,10.205.0.1,10.205.0.2,0x9e55,548,False,185,8
+3,10.205.0.2,10.205.0.1,0xa982,1500,True,0,
+4,10.205.0.2,10.205.0.1,0xa982,548,False,185,0
+
+========== LTTNG EVENT COUNTS ==========
+net_dev_queue                  19
+net_dev_xmit                   19
+net_dev_start_xmit             0
+netif_receive_skb              0
+sched_switch                   5596
+syscall_entry_sendto           114
+syscall_entry_sendmsg          208
+
+========== FILES ==========
+-rw-r--r-- 1 elor elor 4.2K Nov 12 15:22 /home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab5/logs/pcap/08_ping_2000.pcap
+1.1M	/home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab5/logs/lttng/08_packet_trace_gui
+14234 /home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab5/logs/lttng/08_packet_events.txt
+
+Recording completed.
+Trace Compass: /home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab5/logs/lttng/08_packet_trace_gui/kernel
+Wireshark PCAP: /home/elor/Documents/Learning/MSC/Stack-Protocol/course-exercises/lab5/logs/pcap/08_ping_2000.pcap

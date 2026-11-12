@@ -1,0 +1,5 @@
+frame.number,ip.src,ip.dst,ip.id,ip.len,ip.flags.mf,ip.frag_offset,icmp.type
+1,10.205.0.1,10.205.0.2,0x9e55,1500,True,0,
+2,10.205.0.1,10.205.0.2,0x9e55,548,False,185,8
+3,10.205.0.2,10.205.0.1,0xa982,1500,True,0,
+4,10.205.0.2,10.205.0.1,0xa982,548,False,185,0

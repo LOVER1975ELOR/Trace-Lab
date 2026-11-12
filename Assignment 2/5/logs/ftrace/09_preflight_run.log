@@ -1,0 +1,78 @@
+======================================
+Lab 5 - ftrace Fragmentation Preflight
+======================================
+Date: 2026-11-12T15:55:16+03:30
+Kernel: 6.17.0-40-generic
+
+[1] Checking TraceFS...
+TARGET              SOURCE  FSTYPE  OPTIONS
+/sys/kernel/tracing tracefs tracefs rw,nosuid,nodev,noexec,relatime
+
+[2] Checking available tracers...
+timerlat osnoise hwlat blk mmiotrace function_graph wakeup_dl wakeup_rt wakeup function nop
+
+[3] Checking fragmentation functions...
+ip_frag_init
+ip_fraglist_init
+ip_fraglist_prepare
+ip_frag_next
+ip_do_fragment
+ip_fragment.constprop.0
+__ip_append_data
+ip_append_data.part.0
+ip_finish_output2
+__ip_finish_output
+ip_finish_output
+ip_output
+__ip_local_out
+ip_local_out
+ip_append_data
+ip_push_pending_frames
+raw_sendmsg
+Matching function entries: 17
+
+[4] Checking current ftrace configuration...
+--------------------------------------
+[current_tracer]
+nop
+
+--------------------------------------
+[tracing_on]
+1
+
+--------------------------------------
+[set_graph_function]
+#### all functions enabled ####
+
+--------------------------------------
+[set_ftrace_filter]
+#### all functions enabled ####
+
+--------------------------------------
+[set_ftrace_pid]
+no pid
+
+--------------------------------------
+[set_event_pid]
+
+--------------------------------------
+[set_event]
+
+--------------------------------------
+[buffer_size_kb]
+7 (expanded: 1408)
+
+[5] Checking experimental network...
+--- Transmitter ---
+19: l5veth_tx@if18: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000
+    link/ether 72:1f:e3:d6:10:bd brd ff:ff:ff:ff:ff:ff link-netns lab5_mtu_rx
+
+--- Receiver ---
+18: l5veth_rx@if19: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000
+    link/ether b6:ac:2b:a2:04:1e brd ff:ff:ff:ff:ff:ff link-netns lab5_mtu_tx
+
+======================================
+Preflight completed.
+No tracing configuration was changed.
+No network packets were sent.
+======================================

@@ -1,0 +1,95 @@
+==================================
+Lab 4 - Network Tracing Preflight
+==================================
+Date: 2026-11-12T12:44:22+03:30
+Kernel: 6.17.0-40-generic
+
+[1] Checking required tools...
+[OK] hping3: /usr/sbin/hping3
+[OK] perf: /usr/bin/perf
+[OK] ip: /usr/sbin/ip
+
+[2] Perf version...
+perf version 6.17.13
+
+[3] Checking network route to 8.8.8.8...
+8.8.8.8 via 192.168.100.1 dev wlp0s20f3 src 192.168.100.10 uid 1000 
+    cache 
+
+[4] Checking network tracepoint groups...
+[AVAILABLE] net (16 event directories)
+[AVAILABLE] skb (3 event directories)
+[AVAILABLE] tcp (24 event directories)
+[AVAILABLE] udp (1 event directories)
+[AVAILABLE] sock (7 event directories)
+
+[5] Discovering relevant perf tracepoints...
+  mptcp:ack_update_msk                               [Tracepoint event]
+  mptcp:get_mapping_status                           [Tracepoint event]
+  mptcp:mptcp_sendmsg_frag                           [Tracepoint event]
+  mptcp:mptcp_subflow_get_send                       [Tracepoint event]
+  mptcp:subflow_check_data_avail                     [Tracepoint event]
+  net:napi_gro_frags_entry                           [Tracepoint event]
+  net:napi_gro_frags_exit                            [Tracepoint event]
+  net:napi_gro_receive_entry                         [Tracepoint event]
+  net:napi_gro_receive_exit                          [Tracepoint event]
+  net:net_dev_queue                                  [Tracepoint event]
+  net:net_dev_start_xmit                             [Tracepoint event]
+  net:net_dev_xmit                                   [Tracepoint event]
+  net:net_dev_xmit_timeout                           [Tracepoint event]
+  net:netif_receive_skb                              [Tracepoint event]
+  net:netif_receive_skb_entry                        [Tracepoint event]
+  net:netif_receive_skb_exit                         [Tracepoint event]
+  net:netif_receive_skb_list_entry                   [Tracepoint event]
+  net:netif_receive_skb_list_exit                    [Tracepoint event]
+  net:netif_rx                                       [Tracepoint event]
+  net:netif_rx_entry                                 [Tracepoint event]
+  net:netif_rx_exit                                  [Tracepoint event]
+  skb:consume_skb                                    [Tracepoint event]
+  skb:kfree_skb                                      [Tracepoint event]
+  skb:skb_copy_datagram_iovec                        [Tracepoint event]
+  sock:inet_sk_error_report                          [Tracepoint event]
+  sock:inet_sock_set_state                           [Tracepoint event]
+  sock:sk_data_ready                                 [Tracepoint event]
+  sock:sock_exceed_buf_limit                         [Tracepoint event]
+  sock:sock_rcvqueue_full                            [Tracepoint event]
+  sock:sock_recv_length                              [Tracepoint event]
+  sock:sock_send_length                              [Tracepoint event]
+  tcp:tcp_ao_handshake_failure                       [Tracepoint event]
+  tcp:tcp_ao_key_not_found                           [Tracepoint event]
+  tcp:tcp_ao_mismatch                                [Tracepoint event]
+  tcp:tcp_ao_rcv_sne_update                          [Tracepoint event]
+  tcp:tcp_ao_rnext_request                           [Tracepoint event]
+  tcp:tcp_ao_snd_sne_update                          [Tracepoint event]
+  tcp:tcp_ao_synack_no_key                           [Tracepoint event]
+  tcp:tcp_ao_wrong_maclen                            [Tracepoint event]
+  tcp:tcp_bad_csum                                   [Tracepoint event]
+  tcp:tcp_cong_state_set                             [Tracepoint event]
+  tcp:tcp_destroy_sock                               [Tracepoint event]
+  tcp:tcp_hash_ao_required                           [Tracepoint event]
+  tcp:tcp_hash_bad_header                            [Tracepoint event]
+  tcp:tcp_hash_md5_mismatch                          [Tracepoint event]
+  tcp:tcp_hash_md5_required                          [Tracepoint event]
+  tcp:tcp_hash_md5_unexpected                        [Tracepoint event]
+  tcp:tcp_probe                                      [Tracepoint event]
+  tcp:tcp_rcv_space_adjust                           [Tracepoint event]
+  tcp:tcp_rcvbuf_grow                                [Tracepoint event]
+  tcp:tcp_receive_reset                              [Tracepoint event]
+  tcp:tcp_retransmit_skb                             [Tracepoint event]
+  tcp:tcp_retransmit_synack                          [Tracepoint event]
+  tcp:tcp_send_reset                                 [Tracepoint event]
+  tcp:tcp_sendmsg_locked                             [Tracepoint event]
+  udp:udp_fail_queue_rcv_skb                         [Tracepoint event]
+
+[6] Checking selected candidate events...
+[OK] net/net_dev_queue
+[OK] net/net_dev_xmit
+[OK] net/netif_receive_skb
+[OK] skb/kfree_skb
+[OK] tcp/tcp_send_reset
+[OK] udp/udp_fail_queue_rcv_skb
+
+==================================
+Preflight completed.
+No scan packets were sent.
+==================================
